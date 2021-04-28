@@ -78,6 +78,7 @@ class RegistrerDeg extends React.Component {
                 <h1>Registrer deg</h1>
 
                 <form onSubmit={this.handleSubmit.bind(this)}>
+                    <div>
                     <label>
                         Navn: 
                         <input type ="text"
@@ -85,7 +86,8 @@ class RegistrerDeg extends React.Component {
                         onChange = {this.handleInputChange.bind(this, 'navn')}
                         />
                     </label>
-
+                    </div>
+                    <div>
                     <label> 
                         Epost: 
                         <input type = "text"
@@ -93,7 +95,8 @@ class RegistrerDeg extends React.Component {
                         onChange = {this.handleInputChange.bind(this, 'epost')}
                         />
                     </label>
-
+                    </div>
+                    <div>
                     <label>
                         Passord:
                         <input
@@ -102,7 +105,8 @@ class RegistrerDeg extends React.Component {
                             onChange={this.handleInputChange.bind(this, 'passord')}
                         />
                     </label>
-
+                    </div>
+                    <div>
                     <label>
                         Gjenta passord:
                         <input
@@ -111,7 +115,7 @@ class RegistrerDeg extends React.Component {
                             onChange={this.handleInputChange.bind(this, 'gjentaPassord')}
                         />
                     </label>
-
+                    </div>
                     <div>
                         <button type="submit">Registrer bruker</button>
                     </div>
