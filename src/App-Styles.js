@@ -23,7 +23,7 @@ margin: 0px;
 width: 100vw;
 display: flex;
 flex-direction: row;
-aligns-items: center;
+align-items: center;
 justify-content: space-evenly;
 `;
 
