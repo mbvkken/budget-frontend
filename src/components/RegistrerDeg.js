@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { registrerBruker } from '../services/session';
+import { PrimaryButton } from '../App-Styles';
 
 class RegistrerDeg extends React.Component {
     constructor(props){
@@ -117,7 +118,7 @@ class RegistrerDeg extends React.Component {
                     </label>
                     </div>
                     <div>
-                        <button type="submit">Registrer bruker</button>
+                        <PrimaryButton type="submit">Registrer bruker</PrimaryButton>
                     </div>
 
                     <div>

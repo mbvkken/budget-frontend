@@ -1,6 +1,8 @@
 import React from 'react';
 
 import { sjekkBruker } from '../services/session';
+import { PrimaryButton } from '../App-Styles';
+
 
 class LoggInn extends React.Component {
     constructor(props) {
@@ -57,6 +59,12 @@ class LoggInn extends React.Component {
         }
     }
 
+    handleRegistrering(event) {
+        event.preventDefault();
+        const { history } = this.props;
+        history.push('/registrer')
+    }
+
     render() {
         const { error, loginStatus } = this.state;
 
@@ -64,18 +72,23 @@ class LoggInn extends React.Component {
             <div style = {{textAlign: 'center'}}>
                 <h1>Logg Inn</h1>
                 <form>
+                    <div>
                     <label>
                         Epost: 
                         <input type = "text" value={this.state.loginStatus.epost} onChange={this.handleInputChange.bind(this, 'epost')}
                         />
                     </label>
+                    </div>
+                    <div>
                     <label>
                         Passord: 
                         <input type="password" value={this.state.loginStatus.passord} onChange={this.handleInputChange.bind(this, 'passord')}
                         /> 
                     </label>
+                    </div>
                     <div>
-                        <button onClick={this.handleLoginClick.bind(this)}>Logg Inn</button>
+                        <PrimaryButton onClick={this.handleLoginClick.bind(this)}>Logg inn</PrimaryButton>
+                        <PrimaryButton onClick={this.handleRegistrering.bind(this)}>Registrer deg</PrimaryButton>
                     </div>
                     <div>
                         {loginStatus && <p>Logger inn...</p>}
