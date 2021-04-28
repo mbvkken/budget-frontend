@@ -1,6 +1,15 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { Nav } from '../App-Styles';
+import { Link } from 'react-router-dom';
+
+// bildeimport
+
+import { ReactComponent as Budsjett } from '../logos/dollar.svg';
+import { ReactComponent as Hus } from '../logos/hjem.svg';
+import { ReactComponent as Piggy } from '../logos/piggy.svg';
+import { ReactComponent as Pluss } from '../logos/pluss.svg';
+import { ReactComponent as Profil } from '../logos/profil.svg';
 
 class Hjem extends React.Component {
     constructor(props){
@@ -36,15 +45,30 @@ class Hjem extends React.Component {
         return (
             <div>
                 <p>{navn} er innlogget med {epost}.</p>
+                
+                <Link to="/loggut">Log out</Link>
+                
                 <Nav>
-                    <ul>
-                        <li>Hjem</li>
-                        <li>Budsjett</li>
-                        <li>Sparemål</li>
-                        <li>Profil</li>
-                    </ul>
                     
+                    <Hus />
+                    
+                    <Link to="/budsjett-oversikt">
+                        <Budsjett />
+                    </Link>
+
+                    <Link to="/"> 
+                        <Pluss />
+                    </Link>
+
+                    <Link to="/">
+                        <Piggy />
+                    </Link>
+
+                    <Link to="/profil">
+                        <Profil />
+                    </Link>
                 </Nav>
+            
             </div>
         )
     }

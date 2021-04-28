@@ -18,13 +18,13 @@ place-items: center;
 
 export const Nav = styled.div`
 background: ${primaryGreen};
-height: 90px;
+padding: 1em 0;
 margin: 0px;
-display: grid;
-place-items: center;
-width: 100%;
-  position: fixed;
-  bottom: 0;
+width: 100vw;
+display: flex;
+flex-direction: row;
+aligns-items: center;
+justify-content: space-evenly;
 `;
 
 // app
@@ -32,6 +32,7 @@ export const PageContain = styled.div`
 display: flex;
 flex-flow: column wrap;
 align-items: center;
+min-height: 100vh;
 `;
 
 // buttons
