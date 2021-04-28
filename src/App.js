@@ -5,8 +5,11 @@ import styled from 'styled-components';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom';
 // import { Page, Tabbar, Tab, TabPage, Toolbar, Button } from 'react-onsenui';
 
+import Hjem from './components/Hjem';
 import LoggInn from './components/LoggInn';
 import RegistrerDeg from './components/RegistrerDeg';
+import BudsjettOversikt from './components/BudsjettOversikt';
+import BudsjettOpprett from './components/BudsjettOpprett';
 
 const greenshade = '#5e8c71'
 const Header = styled.div`
@@ -27,6 +30,7 @@ width: 100%;
   position: fixed;
   bottom: 0;
 `;
+
 const PageContain = styled.div`
 display: flex;
 flex-flow: column wrap;
@@ -43,17 +47,25 @@ function App() {
     <div>
       <Header> <h1>Mynt</h1></Header>
       <HashRouter>
+
         <PageContain>
+
           <Switch>
+            <Route path="/" exact component={withAuthentication(Hjem)}/>
             <Route path="/logginn" component={LoggInn} />
             <Route path="/registrer" component={RegistrerDeg} />
+            <Route path="/budsjett-oversikt" component={BudsjettOversikt}/>
+            <Route path="/budsjett-opprett" component={BudsjettOpprett} />
           </Switch>
+
           <button>
-            <Link to="/registrer">Sign up</Link>
+            <Link to="/registrer">Registrer Deg</Link>
           </button>
+
           <button>
-            <Link to="/logginn">Sign in</Link>
+            <Link to="/logginn">Logg inn</Link>
           </button>
+
         </PageContain>
 
         <Nav> <h1>push things</h1></Nav>
