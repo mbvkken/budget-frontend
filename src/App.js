@@ -21,7 +21,7 @@ function App() {
         <PageContain>
 
           <Switch>
-            <Route path="/" exact component={withAuthentication(Hjem)}/>
+            <Route path="/" exact component={Hjem}/>
             <Route path="/logginn" component={LoggInn} />
             <Route path="/registrer" component={RegistrerDeg} />
             <Route path="/budsjett-oversikt" component={BudsjettOversikt}/>

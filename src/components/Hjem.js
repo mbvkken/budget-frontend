@@ -35,7 +35,7 @@ class Hjem extends React.Component {
 
         return (
             <div>
-                <p>${navn} er innlogget med ${epost}.</p>
+                <p>{navn} er innlogget med {epost}.</p>
                 <Nav>
                     <ul>
                         <li>Hjem</li>
