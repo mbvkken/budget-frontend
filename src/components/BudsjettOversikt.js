@@ -1,24 +1,41 @@
 import React from 'react';
-import styled from 'styled-components';
+import { Nav, Body } from '../App-Styles';
+import { Link } from 'react-router-dom';
 
-const primaryGreen = '#5e8c71';
-const Nav = styled.div`
-background: ${primaryGreen};
-height: 90px;
-margin: 0px;
-display: grid;
-place-items: center;
-width: 100%;
-  position: fixed;
-  bottom: 0;
-`;
+// bildeimport
+import { ReactComponent as Budsjett } from '../logos/dollar.svg';
+import { ReactComponent as Hus } from '../logos/hjem.svg';
+import { ReactComponent as Piggy } from '../logos/piggy.svg';
+import { ReactComponent as Pluss } from '../logos/pluss.svg';
+import { ReactComponent as ProfilIcon } from '../logos/profil.svg';
 
 class BudsjettOversikt extends React.Component {
 
     render() {
         return (
             <div>
-                 <Nav> <h1>push things</h1></Nav>
+                <Body>
+                    Nice og kul oversikt over dine budsjetter...
+                </Body>
+                <Nav>
+                  <Link to="/">
+                    <Hus />
+                  </Link>
+                    
+                    <Budsjett />
+                    
+                    <Link to="/"> 
+                        <Pluss />
+                    </Link>
+
+                    <Link to="/">
+                        <Piggy />
+                    </Link>
+
+                    <Link to="/profil">
+                        <ProfilIcon />
+                    </Link>
+                </Nav>
             </div>
         )
     }

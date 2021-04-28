@@ -27,6 +27,11 @@ align-items: center;
 justify-content: space-evenly;
 `;
 
+export const Body = styled.div`
+background-color: ${offWhite};
+height: 90vh;
+`
+
 // app
 export const PageContain = styled.div`
 display: flex;

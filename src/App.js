@@ -9,6 +9,7 @@ import LoggUt from './components/LoggUt';
 import RegistrerDeg from './components/RegistrerDeg';
 import BudsjettOversikt from './components/BudsjettOversikt';
 import BudsjettOpprett from './components/BudsjettOpprett';
+import Profil from './components/Profil';
 
 import { Header, PageContain } from './App-Styles';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/registrer" component={RegistrerDeg} />
             <Route path="/budsjett-oversikt" component={BudsjettOversikt}/>
             <Route path="/budsjett-opprett" component={BudsjettOpprett} />
+            <Route path="/profil" component={Profil}/>
           </Switch>
 
         </PageContain>
