@@ -14,8 +14,8 @@ class BudsjettOpprett extends React.Component {
         try {
             payload = jwtDecode(token);
         } catch (err) {
-
-        }
+            throw new Error('kunne ikke autorisere')
+        };
 
         this.state = {
             budsjett: {
@@ -23,6 +23,7 @@ class BudsjettOpprett extends React.Component {
             },
             budsjettposter: [],
             session: payload,
+            isLoading: false,
             error: null
         }
     }
@@ -51,20 +52,33 @@ class BudsjettOpprett extends React.Component {
             const newBudget = await createNewBudget(budsjett.tittel, epost);
             history.push('/');
         } catch (error) {
-            console.log(error);
             this.setState({ error });
-        
         }
     }
 
     
     render() {
         const { budsjett } = this.state;
+        
         const {
             session: {
                 epost
-            } = {}
+            } = {},
+            isLoading,
+            error,
         } = this.state;
+
+        if (error) {
+            return (
+              <div>Kunne ikke hente budsjetter: {error.message}</div>
+            );
+          }
+      
+          if (isLoading) {
+            return (
+              <div>Laster inn budsjetter...</div>
+            );
+          }
 
         return (
             <div>

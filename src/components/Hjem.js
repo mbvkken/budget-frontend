@@ -23,10 +23,8 @@ class Hjem extends React.Component {
         try {
             payload = jwtDecode(token);
         } catch (err) {
-
+            // throw new Error('noe gikk galt')
         }
-
-    
 
         this.state = {
             budsjett: [],
@@ -62,10 +60,23 @@ class Hjem extends React.Component {
             session: {
                 navn,
                 epost
-            } = {}
+            } = {},
+            budsjett,
+            isLoading,
+            error,
         } = this.state;
 
-        const { budsjett } = this.state;
+        if(error) {
+            return (
+                <div>Kunne ikke hente budsjetter...</div>
+            )
+        }
+
+        if(isLoading) {
+            return (
+                <div>Laster inn budsjetter...</div>
+            )
+        }
 
         const budsjettElementer = budsjett
         .map( ({ tittel }) => {
