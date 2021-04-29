@@ -49,3 +49,12 @@ export const PrimaryButton = styled.button`
     padding: 1em 2em;
     border-radius: 2em;
 `;
+
+//elements
+
+export const BudsjettIcon = styled.div`
+  border: 1px solid grey;
+  height: 10em;
+  width: 10em;
+  background-color: pink;
+`

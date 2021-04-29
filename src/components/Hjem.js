@@ -1,7 +1,8 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { Nav, Body } from '../App-Styles';
+import { Nav, Body, BudsjettIcon } from '../App-Styles';
 import { Link } from 'react-router-dom';
+import { getBudgetByEpost, newBudget } from '../services/budget';
 
 // bildeimport
 
@@ -25,12 +26,34 @@ class Hjem extends React.Component {
 
         }
 
+    
+
         this.state = {
             budsjett: [],
             isLoading: false,
             error: null,
             message: '',
             session: payload,
+        }
+    }
+
+    async componentDidMount() {
+        await this.populateBudgets();
+    }
+    
+    async populateBudgets() {
+        const {
+            session: {
+                epost
+            } = {}
+        } = this.state;
+
+        try {
+            this.setState({ isLoading: true });
+            const budsjett = await getBudgetByEpost(epost);
+            this.setState({ budsjett: budsjett, isLoading: false });
+        } catch (error) {
+            this.setState({ error });
         }
     }
 
@@ -42,22 +65,34 @@ class Hjem extends React.Component {
             } = {}
         } = this.state;
 
+        const { budsjett } = this.state;
+
+        const budsjettElementer = budsjett
+        .map( ({ tittel }) => {
+            return (
+            <BudsjettIcon>
+                {tittel}
+            </BudsjettIcon>
+            )
+        })
+
         return (
             <div>
                 <Body>
                     <p>{navn} er innlogget med {epost}.</p>
                 
                     <Link to="/loggut">Log out</Link>
+
+                    {budsjettElementer}
                 </Body>
-                <Nav>
-                    
+                <Nav> 
                     <Hus />
                     
                     <Link to="/budsjett-oversikt">
                         <Budsjett />
                     </Link>
 
-                    <Link to="/"> 
+                    <Link to="/budsjett-opprett"> 
                         <Pluss />
                     </Link>
 
