@@ -14,17 +14,22 @@ class BudsjettOpprett extends React.Component {
         try {
             payload = jwtDecode(token);
         } catch (err) {
-
-        }
+            throw new Error('kunne ikke autorisere')
+        };
 
         this.state = {
-            budsjett: {},
+            budsjett: {
+                tittel: ''
+            },
+            budsjettposter: [],
             session: payload,
+            isLoading: false,
             error: null
         }
     }
 
     handleInputChange(field, event) {
+        event.preventDefault();
         this.setState({
             budsjett: {
                 ...this.state.budsjett,
@@ -51,13 +56,29 @@ class BudsjettOpprett extends React.Component {
         }
     }
 
+    
     render() {
         const { budsjett } = this.state;
+        
         const {
             session: {
                 epost
-            } = {}
+            } = {},
+            isLoading,
+            error,
         } = this.state;
+
+        if (error) {
+            return (
+              <div>Kunne ikke hente budsjetter: {error.message}</div>
+            );
+          }
+      
+          if (isLoading) {
+            return (
+              <div>Laster inn budsjetter...</div>
+            );
+          }
 
         return (
             <div>
@@ -69,6 +90,9 @@ class BudsjettOpprett extends React.Component {
                             Tittel:
                             <input type="text" name="tittel" value={budsjett.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
                         </label>
+                        {/* <div>
+                            <button onClick={}>Lag ny budsjettpost</button>
+                        </div> */}
                         <div>
                             <PrimaryButton onClick={this.handleNewBudgetClick.bind(this)}>Legg til nytt budsjett</PrimaryButton>
                         </div>

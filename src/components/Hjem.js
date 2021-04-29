@@ -23,7 +23,7 @@ class Hjem extends React.Component {
         try {
             payload = jwtDecode(token);
         } catch (err) {
-
+            // throw new Error('noe gikk galt')
         }
 
      
@@ -62,10 +62,23 @@ class Hjem extends React.Component {
             session: {
                 navn,
                 epost
-            } = {}
+            } = {},
+            budsjett,
+            isLoading,
+            error,
         } = this.state;
 
-        const { budsjett } = this.state;
+        if(error) {
+            return (
+                <div>Kunne ikke hente budsjetter...</div>
+            )
+        }
+
+        if(isLoading) {
+            return (
+                <div>Laster inn budsjetter...</div>
+            )
+        }
 
         const budsjettElementer = budsjett
         .map( ({ tittel }) => {
@@ -82,6 +95,8 @@ class Hjem extends React.Component {
                     <p>{navn} er innlogget med {epost}.</p>
                 
                     <Link to="/loggut">Log out</Link>
+
+                    {budsjettElementer}
                 </Body>
 
                 {/* <Nav>
@@ -92,7 +107,7 @@ class Hjem extends React.Component {
                         <Budsjett />
                     </Link>
 
-                    <Link to="/"> 
+                    <Link to="/budsjett-opprett"> 
                         <Pluss />
                     </Link>
 
