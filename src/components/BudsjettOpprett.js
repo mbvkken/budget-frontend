@@ -18,13 +18,17 @@ class BudsjettOpprett extends React.Component {
         }
 
         this.state = {
-            budsjett: {},
+            budsjett: {
+                tittel: ''
+            },
+            budsjettposter: [],
             session: payload,
             error: null
         }
     }
 
     handleInputChange(field, event) {
+        event.preventDefault();
         this.setState({
             budsjett: {
                 ...this.state.budsjett,
@@ -47,10 +51,13 @@ class BudsjettOpprett extends React.Component {
             const newBudget = await createNewBudget(budsjett.tittel, epost);
             history.push('/');
         } catch (error) {
+            console.log(error);
             this.setState({ error });
+        
         }
     }
 
+    
     render() {
         const { budsjett } = this.state;
         const {
@@ -69,6 +76,9 @@ class BudsjettOpprett extends React.Component {
                             Tittel:
                             <input type="text" name="tittel" value={budsjett.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
                         </label>
+                        {/* <div>
+                            <button onClick={}>Lag ny budsjettpost</button>
+                        </div> */}
                         <div>
                             <PrimaryButton onClick={this.handleNewBudgetClick.bind(this)}>Legg til nytt budsjett</PrimaryButton>
                         </div>

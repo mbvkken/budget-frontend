@@ -13,7 +13,14 @@ export function createNewBudget(tittel, epost) {
       },
       body: JSON.stringify({ tittel, epost })
     })
-    .then((res) => res.json());
+    .then((res) => {
+      if (res.ok){
+        // return;
+        throw new Error('negativ test');
+      } else {
+        throw new Error('dette funket ikke');
+      }
+    });
   }
 
 
