@@ -5,16 +5,10 @@ import { Link } from 'react-router-dom';
 import { getBudgetByEpost, newBudget } from '../services/budget';
 import BudsjettOpprett from './BudsjettOpprett';
 
-// bildeimport
 
-// import { ReactComponent as Budsjett } from '../logos/dollar.svg';
-// import { ReactComponent as Hus } from '../logos/hjem.svg';
-// import { ReactComponent as Piggy } from '../logos/piggy.svg';
-// import { ReactComponent as Pluss } from '../logos/pluss.svg';
-// import { ReactComponent as ProfilIcon } from '../logos/profil.svg';
 
 class Hjem extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         const token = localStorage.getItem('bruker_budsjett_token');
@@ -27,7 +21,7 @@ class Hjem extends React.Component {
             // throw new Error('noe gikk galt')
         }
 
-     
+
 
         this.state = {
             budsjett: [],
@@ -41,7 +35,8 @@ class Hjem extends React.Component {
     async componentDidMount() {
         await this.populateBudgets();
     }
-    
+
+
     async populateBudgets() {
         const {
             session: {
@@ -58,7 +53,14 @@ class Hjem extends React.Component {
         }
     }
 
-    render(){
+handleClick(id){
+const {history} = this.props;
+history.push("/budsjett-detaljer/"+id)
+
+}
+
+
+    render() {
         const {
             session: {
                 navn,
@@ -69,35 +71,35 @@ class Hjem extends React.Component {
             error,
         } = this.state;
 
-        if(error) {
+        if (error) {
             return (
                 <div>Kunne ikke hente budsjetter...</div>
             )
         }
 
-        if(isLoading) {
+        if (isLoading) {
             return (
                 <div>Laster inn budsjetter...</div>
             )
         }
 
         const budsjettElementer = budsjett
-        .map( ({ tittel }) => {
-            return (
-            <BudsjettIcon>
-                {tittel}
-            </BudsjettIcon>
-            )
+            .map(({ tittel }) => {
+                    return(
+                <BudsjettIcon onClick={()=> this.handleClick("testtest") }>
+                            {tittel}
+                        </BudsjettIcon>
+                       )
         })
 
         return (
-            <div>
-                    <p>{navn} er innlogget med {epost}.</p>
-                
-                    <Link to="/loggut">Log out</Link>
-                    <BudsjettOpprett/>
-                    {budsjettElementer}            
-            </div>
+                        <div>
+                            <p>{navn} er innlogget med {epost}.</p>
+
+                            <Link to="/loggut">Log out</Link>
+                            <BudsjettOpprett />
+                            {budsjettElementer}
+                        </div>
         )
     }
 
