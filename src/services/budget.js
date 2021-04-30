@@ -5,13 +5,13 @@ export function getBudgetByEpost(epost) {
     .then((res) => res.json());
   }
 
-export function createNewBudget(tittel, shared, epost) {
-  let emailArray = shared.replace(/\s+/g, '').split(",")
-  emailArray.push(epost);
+export function createNewBudget(tittel, shared, epostOwner) {
+  let emailArray = shared.replace(/\s+/g, '').split(",");
+  emailArray.push(epostOwner);
   let noNullEmailArray = emailArray.filter(item => item);
 
-  console.log('array is',noNullEmailArray);
-  emailArray.map((epost) => {
+  console.log('array is', noNullEmailArray);
+  noNullEmailArray.map((epost) => {
     // console.log(typeof(email))
     return  fetch(`${API_URL}/budsjett`, {
       method: 'POST',
@@ -23,7 +23,6 @@ export function createNewBudget(tittel, shared, epost) {
     .then((res) => {
       if (res.ok){
         return;
-        // throw new Error('negativ test');
       } else {
         throw new Error('dette funket ikke');
       }
