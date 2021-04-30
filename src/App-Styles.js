@@ -59,10 +59,12 @@ export const PrimaryButton = styled.button`
     transition: .1s;
     &:active {
     background-color: #7faa91;
+    /* border: 0; */
     /* transform: scale(.99); */
     padding: .9em 1.9em;
-
   }
+    &:focus { outline: none; }
+
 
 `;
 
