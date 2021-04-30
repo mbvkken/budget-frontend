@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { registrerBruker } from '../services/session';
+import { registrerBruker, sjekkBruker } from '../services/session';
 import { PrimaryButton } from '../App-Styles';
+
 
 class RegistrerDeg extends React.Component {
     constructor(props){
@@ -46,10 +47,13 @@ class RegistrerDeg extends React.Component {
         });
 
         try {
+            // if (!passord || !epost || !navn) {
+            //     throw new Error('');
+            // }
             if (passord !== gjentaPassord) {
                 throw new Error('Passordene er ikke like');
             }
-
+           
             const result = await registrerBruker( {
                 navn, 
                 epost,
@@ -59,12 +63,23 @@ class RegistrerDeg extends React.Component {
             if (result.error) {
                 throw new Error(result.error);
             }
-        
-            if (!result.token) {
-                throw new Error('Kan ikke validere - prøv igjen');
+
+            const result2 = await sjekkBruker({
+                epost,
+                passord
+            });
+
+            if(result2.error) {
+                throw new Error(result.error);
             }
 
-            localStorage.setItem('bruker_budsjett_token', result.token);
+            if(!result2.token) {
+                throw new Error('Kunne ikke verifisere - prøv igjen.');
+            }
+        
+
+            localStorage.setItem('bruker_budsjett_token', result2.token);
+        
             history.push('/');
         } catch (error) {
             this.setState( { error, isSigningUp: false } );

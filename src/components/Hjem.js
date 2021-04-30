@@ -1,16 +1,17 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { Nav, Body, BudsjettIcon } from '../App-Styles';
+import { Body, BudsjettIcon } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { getBudgetByEpost, newBudget } from '../services/budget';
+import BudsjettOpprett from './BudsjettOpprett';
 
 // bildeimport
 
-import { ReactComponent as Budsjett } from '../logos/dollar.svg';
-import { ReactComponent as Hus } from '../logos/hjem.svg';
-import { ReactComponent as Piggy } from '../logos/piggy.svg';
-import { ReactComponent as Pluss } from '../logos/pluss.svg';
-import { ReactComponent as ProfilIcon } from '../logos/profil.svg';
+// import { ReactComponent as Budsjett } from '../logos/dollar.svg';
+// import { ReactComponent as Hus } from '../logos/hjem.svg';
+// import { ReactComponent as Piggy } from '../logos/piggy.svg';
+// import { ReactComponent as Pluss } from '../logos/pluss.svg';
+// import { ReactComponent as ProfilIcon } from '../logos/profil.svg';
 
 class Hjem extends React.Component {
     constructor(props){
@@ -19,12 +20,14 @@ class Hjem extends React.Component {
         const token = localStorage.getItem('bruker_budsjett_token');
 
         let payload;
-
         try {
             payload = jwtDecode(token);
+            console.log(payload)
         } catch (err) {
             // throw new Error('noe gikk galt')
         }
+
+     
 
         this.state = {
             budsjett: [],
@@ -93,10 +96,12 @@ class Hjem extends React.Component {
                     <p>{navn} er innlogget med {epost}.</p>
                 
                     <Link to="/loggut">Log out</Link>
-
+                    <BudsjettOpprett/>
                     {budsjettElementer}
                 </Body>
-                <Nav> 
+
+                {/* <Nav>
+                    
                     <Hus />
                     
                     <Link to="/budsjett-oversikt">
@@ -114,7 +119,7 @@ class Hjem extends React.Component {
                     <Link to="/profil">
                         <ProfilIcon />
                     </Link>
-                </Nav>
+                </Nav> */}
             
             </div>
         )

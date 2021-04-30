@@ -19,7 +19,8 @@ class BudsjettOpprett extends React.Component {
 
         this.state = {
             budsjett: {
-                tittel: ''
+                tittel: '',
+                shared: '',
             },
             budsjettposter: [],
             session: payload,
@@ -35,6 +36,7 @@ class BudsjettOpprett extends React.Component {
                 ...this.state.budsjett,
                 [field]: event.target.value
             }
+          
         })
     }
 
@@ -49,7 +51,12 @@ class BudsjettOpprett extends React.Component {
         } = this.state;
 
         try {
-            const newBudget = await createNewBudget(budsjett.tittel, epost);
+            // if (!budsjett.tittel.trim()) {
+            //     alert('Please Enter title');
+            //     return;
+            //   }
+            const newBudget = await createNewBudget(budsjett.tittel, budsjett.shared, epost );
+
             history.push('/');
         } catch (error) {
             this.setState({ error });
@@ -68,11 +75,11 @@ class BudsjettOpprett extends React.Component {
             error,
         } = this.state;
 
-        if (error) {
-            return (
-              <div>Kunne ikke hente budsjetter: {error.message}</div>
-            );
-          }
+        // if (error) {
+        //     return (
+        //       <div>Kunne ikke hente budsjetter: {error.message}</div>
+        //     );
+        //   }
       
           if (isLoading) {
             return (
@@ -82,7 +89,7 @@ class BudsjettOpprett extends React.Component {
 
         return (
             <div>
-                <Body>
+                {/* <Body> */}
                     <h1>Lag et nytt budsjett</h1>
 
                     <form>
@@ -90,6 +97,13 @@ class BudsjettOpprett extends React.Component {
                             Tittel:
                             <input type="text" name="tittel" value={budsjett.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
                         </label>
+
+                        <label>
+                            Share with:
+                            <input type="text" name="shared" value={budsjett.shared} onChange={this.handleInputChange.bind(this, "shared")}></input>
+                            <p>separate with ","</p>
+                        </label>
+
                         {/* <div>
                             <button onClick={}>Lag ny budsjettpost</button>
                         </div> */}
@@ -97,7 +111,7 @@ class BudsjettOpprett extends React.Component {
                             <PrimaryButton onClick={this.handleNewBudgetClick.bind(this)}>Legg til nytt budsjett</PrimaryButton>
                         </div>
                     </form>
-                </Body>
+                {/* </Body> */}
             </div>
         )
     }
