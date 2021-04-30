@@ -11,7 +11,6 @@ import { ReactComponent as Pluss } from '../logos/pluss.svg';
 import { ReactComponent as ProfilIcon } from '../logos/profil.svg';
 
 const NavBar = (props) => {
-    
         return (
             <div>
                 

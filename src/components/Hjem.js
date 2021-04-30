@@ -92,35 +92,11 @@ class Hjem extends React.Component {
 
         return (
             <div>
-                <Body>
                     <p>{navn} er innlogget med {epost}.</p>
                 
                     <Link to="/loggut">Log out</Link>
                     <BudsjettOpprett/>
-                    {budsjettElementer}
-                </Body>
-
-                {/* <Nav>
-                    
-                    <Hus />
-                    
-                    <Link to="/budsjett-oversikt">
-                        <Budsjett />
-                    </Link>
-
-                    <Link to="/budsjett-opprett"> 
-                        <Pluss />
-                    </Link>
-
-                    <Link to="/">
-                        <Piggy />
-                    </Link>
-
-                    <Link to="/profil">
-                        <ProfilIcon />
-                    </Link>
-                </Nav> */}
-            
+                    {budsjettElementer}            
             </div>
         )
     }

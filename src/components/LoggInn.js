@@ -38,7 +38,10 @@ class LoggInn extends React.Component {
                 loginStatus: true, 
                 error: null
             })
+if(!epost || !passord){
+    throw new Error('Kunne ikke verifisere - prøv igjen.');
 
+}
             const result = await sjekkBruker({
                 epost,
                 passord
