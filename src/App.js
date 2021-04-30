@@ -38,8 +38,10 @@ function App() {
             <Route path="/loggut" component={LoggUt} />
             <Route path="/registrer" component={RegistrerDeg} />
             <Route path="/budsjett-oversikt" component={BudsjettOversikt} />
-            <Route path="/budsjett-opprett" component={BudsjettOpprett} />
-            <Route path="/profil" component={Profil} />
+            <Route path="/budsjett/:budsjettid" component={null} />
+            <Route path="/budsjett-opprett/:budsjettid" component={BudsjettOpprett} />
+            <Route path="/budsjett-endre/:budsjettid" component={null}/>
+            <Route path="/profil/:epost" component={Profil} />
           </Switch>
 
 
