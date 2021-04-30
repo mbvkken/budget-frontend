@@ -3,6 +3,7 @@ import jwtDecode from 'jwt-decode';
 import { Body, BudsjettIcon } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { getBudgetByEpost, newBudget } from '../services/budget';
+import BudsjettOpprett from './BudsjettOpprett';
 
 // bildeimport
 
@@ -19,9 +20,9 @@ class Hjem extends React.Component {
         const token = localStorage.getItem('bruker_budsjett_token');
 
         let payload;
-
         try {
             payload = jwtDecode(token);
+            console.log(payload)
         } catch (err) {
             // throw new Error('noe gikk galt')
         }
@@ -95,7 +96,7 @@ class Hjem extends React.Component {
                     <p>{navn} er innlogget med {epost}.</p>
                 
                     <Link to="/loggut">Log out</Link>
-
+                    <BudsjettOpprett/>
                     {budsjettElementer}
                 </Body>
 

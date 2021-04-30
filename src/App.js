@@ -26,28 +26,29 @@ function App() {
 
   return (
 
-      <HashRouter>
+    <HashRouter>
       <GridContain>
-      <Header> <h1>Mynt</h1></Header>
+        <Header> <h1>Mynt</h1></Header>
 
         <PageContain>
 
           <Switch >
-            <Route path="/" exact component={Hjem}/>
+            <Route path="/" exact component={Hjem} />
             <Route path="/logginn" component={LoggInn} />
             <Route path="/loggut" component={LoggUt} />
             <Route path="/registrer" component={RegistrerDeg} />
-            <Route path="/budsjett-oversikt" component={BudsjettOversikt}/>
+            <Route path="/budsjett-oversikt" component={BudsjettOversikt} />
             <Route path="/budsjett-opprett" component={BudsjettOpprett} />
-            <Route path="/profil" component={Profil}/>
+            <Route path="/profil" component={Profil} />
           </Switch>
- 
+
 
         </PageContain>
-<NavBar/>
         
-        </GridContain>  
-      </HashRouter>
+        <NavBar />
+
+      </GridContain>
+    </HashRouter>
   )
 }
 

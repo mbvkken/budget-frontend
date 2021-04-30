@@ -14,6 +14,7 @@ color: ${offWhite};
 margin: 0px;
 display: grid;
 place-items: center;
+overflow-y:auto;
 `;
 
 export const Nav = styled.div`
@@ -42,6 +43,7 @@ flex-flow: column wrap;
 align-items: center;
 height: 100%;
 background-color: ${offWhite};
+overflow-y: scroll;
 
 
 `;
@@ -54,6 +56,14 @@ export const PrimaryButton = styled.button`
     margin: 1em;
     padding: 1em 2em;
     border-radius: 2em;
+    transition: .1s;
+    &:active {
+    background-color: #7faa91;
+    /* transform: scale(.99); */
+    padding: .9em 1.9em;
+
+  }
+
 `;
 
 //elements

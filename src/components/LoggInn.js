@@ -51,8 +51,10 @@ class LoggInn extends React.Component {
             if(!result.token) {
                 throw new Error('Kunne ikke verifisere - prøv igjen.');
             }
-            
+           
+         
             localStorage.setItem('bruker_budsjett_token', result.token);
+       
             history.push('/');
         } catch (error) {
             this.setState( { error, loginStatus: false } )
