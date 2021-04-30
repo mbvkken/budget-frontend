@@ -19,7 +19,9 @@ const NavBar = (props) => {
                     <Hus />
                   </Link>
                     
+                    <Link to='budsjett-oversikt'>
                     <Budsjett />
+                    </Link>
                     
                     <Link to="/budsjett-opprett"> 
                         <Pluss />
