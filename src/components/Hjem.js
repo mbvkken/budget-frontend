@@ -40,6 +40,7 @@ class Hjem extends React.Component {
 
     async componentDidMount() {
         await this.populateBudgets();
+        console.trace('hei');
     }
     
     async populateBudgets() {

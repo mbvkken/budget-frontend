@@ -5,31 +5,33 @@ export function getBudgetByEpost(epost) {
     .then((res) => res.json());
 }
 
-export function createNewBudget(tittel, shared, epost) {
-  let emailArray = shared.replace(/\s+/g, '').split(",")
-  emailArray.push(epost);
+export function createNewBudget(tittel, shared, epostOwner) {
+  let emailArray = shared.replace(/\s+/g, '').split(",");
+  emailArray.push(epostOwner);
   let noNullEmailArray = emailArray.filter(item => item);
-
   console.log('array is', noNullEmailArray);
+
   emailArray.map((epost) => {
-    // console.log(typeof(email))
-    return fetch(`${API_URL}/budsjett`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ tittel, epost })
+    noNullEmailArray.map((epost) => {
+      
+      return fetch(`${API_URL}/budsjett`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ tittel, epost })
+      }).then((res) => {
+          if (res.ok) {
+            return;
+            // throw new Error('negativ test');
+          } else {
+            throw new Error('dette funket ikke');
+          }
+      })
     })
-      .then((res) => {
-        if (res.ok) {
-          return;
-          // throw new Error('negativ test');
-        } else {
-          throw new Error('dette funket ikke');
-        }
-      });
-  });
+  })
 }
+
 
 export function deleteBudget(id) {
   return fetch(`${API_URL}/budsjett/${id}`, {
@@ -48,7 +50,3 @@ export function updateBudget(id) {
   })
   .then((res) => res.json())
 }
-
-
-
-        // 'X-Auth-Token': localStorage.getItem('bruker_budsjett_token')
