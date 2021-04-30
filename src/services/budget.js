@@ -23,7 +23,6 @@ export function createNewBudget(tittel, shared, epostOwner) {
       }).then((res) => {
           if (res.ok) {
             return;
-            // throw new Error('negativ test');
           } else {
             throw new Error('dette funket ikke');
           }
