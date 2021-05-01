@@ -14,7 +14,10 @@ class BudsjettLink extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { value: '' };
+    this.state = { kat: {
+      tittel: '',
+      id: ''
+    } };
   }
   async handleDeleteClick() {
     const id = this.props.match.params.id;
@@ -32,19 +35,25 @@ class BudsjettLink extends React.Component {
     }
   }
 
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
+  handleInputChange(field, event) {
+    event.preventDefault();
+    this.setState({
+        kat: {
+            ...this.state.kat,
+            [field]: event.target.value
+        }
+      
+    })
+}
   async handleNewKatClick(event) {
     event.preventDefault();
-    const id = 825//this.props.match.params.id;
-    const tittel = this.state.value
-    console.log(id, tittel)
-
+    const { history } = this.props;
+    const { tittel } = this.state.kat;
+    const id = this.props.match.params.id;
+  
 
     try {
-      await opprettNyKategori({ tittel, id });
+      await opprettNyKategori( tittel, id );
       // const {history} = this.props;
     } catch (error) {
     }
@@ -52,7 +61,9 @@ class BudsjettLink extends React.Component {
 
   render() {
     const id = this.props.match.params.id;
-    console.log(this.props.match.params)
+    const { kat } = this.state;
+
+    // console.log(this.props.match.params)
     return (
       <div>
         <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
@@ -60,16 +71,20 @@ class BudsjettLink extends React.Component {
 
         <p>Hello {id}!</p>
 
-        <form onSubmit={this.handleNewKatClick}>
-          <label>
-            Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange.bind(this)} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
-        <Fab color="primary" aria-label="add">
+        <form>
+                        <label>
+                            Tittel:
+                            <input type="text" name="tittel" value={kat.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
+                        </label>
+
+
+                        <div>
+                            <PrimaryButton onClick={this.handleNewKatClick.bind(this)}>Legg til nytt kategori</PrimaryButton>
+                        </div>
+                    </form>
+        {/* <Fab color="primary" aria-label="add">
           <AddIcon />
-        </Fab>
+        </Fab> */}
       </div>
 
     )

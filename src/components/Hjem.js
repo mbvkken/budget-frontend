@@ -57,6 +57,8 @@ class Hjem extends React.Component {
 
 handleClick(id){
 const {history} = this.props;
+const {budsjett} = this.state;
+console.log(budsjett);
 history.push("/budsjett-detaljer/"+id)
 
 }

@@ -10,10 +10,23 @@ export function createNewBudget(tittel, shared, epostOwner) {
   emailArray.push(epostOwner);
   let noNullEmailArray = emailArray.filter(item => item);
   console.log('array is', noNullEmailArray);
-
-  emailArray.map((epost) => {
+  
+  // return fetch(`${API_URL}/budsjett`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json'
+  //   },
+  //   body: JSON.stringify({ tittel, epostOwner })
+  // }).then((res) => {
+  //   if (res.ok) {
+  //     return;
+  //   } else {
+  //     throw new Error('dette funket ikke');
+  //   }
+  // })
+  // emailArray.map((epost) => {
     noNullEmailArray.map((epost) => {
-      
+
       return fetch(`${API_URL}/budsjett`, {
         method: 'POST',
         headers: {
@@ -21,14 +34,13 @@ export function createNewBudget(tittel, shared, epostOwner) {
         },
         body: JSON.stringify({ tittel, epost })
       }).then((res) => {
-          if (res.ok) {
-            return;
-          } else {
-            throw new Error('dette funket ikke');
-          }
+        if (res.ok) {
+          return;
+        } else {
+          throw new Error('dette funket ikke');
+        }
       })
     })
-  })
 }
 
 
@@ -36,7 +48,7 @@ export function deleteBudget(id) {
   return fetch(`${API_URL}/budsjett/${id}`, {
     method: 'DELETE',
   })
-  .then((res) => res.json());
+    .then((res) => res.json());
 }
 
 export function updateBudget(id) {
@@ -47,5 +59,5 @@ export function updateBudget(id) {
     },
     body: JSON.stringify(id)
   })
-  .then((res) => res.json())
+    .then((res) => res.json())
 }
