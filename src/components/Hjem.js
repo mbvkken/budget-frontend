@@ -4,17 +4,12 @@ import { Body, BudsjettIcon } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
 import BudsjettOpprett from './BudsjettOpprett';
+import {Typography} from '@material-ui/core'
 
-// bildeimport
 
-// import { ReactComponent as Budsjett } from '../logos/dollar.svg';
-// import { ReactComponent as Hus } from '../logos/hjem.svg';
-// import { ReactComponent as Piggy } from '../logos/piggy.svg';
-// import { ReactComponent as Pluss } from '../logos/pluss.svg';
-// import { ReactComponent as ProfilIcon } from '../logos/profil.svg';
 
 class Hjem extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
         const token = localStorage.getItem('bruker_budsjett_token');
@@ -27,7 +22,7 @@ class Hjem extends React.Component {
             // throw new Error('noe gikk galt')
         }
 
-     
+
 
         this.state = {
             budsjett: [],
@@ -42,7 +37,8 @@ class Hjem extends React.Component {
         await this.populateBudgets();
         console.trace('hei');
     }
-    
+
+
     async populateBudgets() {
         const {
             session: {
@@ -59,19 +55,13 @@ class Hjem extends React.Component {
         }
     }
 
-    async handleDeleteClick() {
-        const { id } = this.props;
+handleClick(id){
+const {history} = this.props;
+history.push("/budsjett-detaljer/"+id)
 
-        if (!window.confirm('u sure?')) {
-            return;
-        }
-        
-        try {
-            await deleteBudget(id);
-        } catch (error) {
-            console.log('sletting av budsjett feilet...', error);
-        }
-    }
+}
+
+   
 
     render(){
         const { id } = this.props;
@@ -85,7 +75,7 @@ class Hjem extends React.Component {
             error,
         } = this.state;
 
-        if(error) {
+        if (error) {
             return (
                 <div>Kunne ikke hente budsjetter...</div>
             )
@@ -106,18 +96,18 @@ class Hjem extends React.Component {
         }
 
         const budsjettElementer = budsjett
-        .map( ({ tittel }) => {
-            return (
-            <BudsjettIcon>
-                {tittel}
-            </BudsjettIcon>
-            )
+            .map(({ tittel, budsjettID }) => {
+                    return(
+                <BudsjettIcon key={budsjettID} onClick={()=> this.handleClick(budsjettID) }>
+                            {tittel} and
+                            {budsjettID}
+                        </BudsjettIcon>
+                       )
         })
 
         return (
             <div>
-                    <p>{navn} er innlogget med {epost}.</p>
-                    <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
+                    <Typography>{navn} er innlogget med {epost}.</Typography>
                     <Link to="/loggut">Log out</Link>
                     <BudsjettOpprett/>
                     {budsjettElementer}            

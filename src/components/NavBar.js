@@ -1,5 +1,5 @@
 import React from 'react';
-import { Nav } from '../App-Styles';
+import { Nav, Body } from '../App-Styles';
 import { Link,  } from 'react-router-dom';
 
 
@@ -40,4 +40,9 @@ const NavBar = (props) => {
     
 }
 
-export default NavBar;
+const TempNoNavBar =() =>{
+    return (<Body> 
+
+    </Body>)
+}
+export  {NavBar,TempNoNavBar};

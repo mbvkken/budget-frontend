@@ -10,7 +10,6 @@ export const Header = styled.div`
 font-family: Arial, Helvetica, sans-serif;
 background: ${primaryGreen};
 color: ${offWhite};
-/* height: 120px; */
 margin: 0px;
 display: grid;
 place-items: center;
@@ -32,7 +31,7 @@ justify-content: space-evenly;
 `;
 
 export const Body = styled.div`
-/* background-color: ${offWhite}; */
+background-color: ${offWhite};
 /* height: 90vh; */
 `
 
