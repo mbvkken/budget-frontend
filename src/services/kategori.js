@@ -1,6 +1,6 @@
 const API_URL = "http://localhost:3001";
 
-export async function opprettNyKategori({ tittel, budsjettID }){
+export async function opprettNyKategori( tittel, budsjettID ){
     return fetch(`${API_URL}/kategori`, {
         method: 'POST',
         headers: {
