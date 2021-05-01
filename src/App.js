@@ -12,6 +12,7 @@ import RegistrerDeg from './components/RegistrerDeg';
 import BudsjettOversikt from './components/BudsjettOversikt';
 import BudsjettOpprett from './components/BudsjettOpprett';
 import Profil from './components/Profil';
+import SignIn from './components/Altlogin';
 import {NavBar, TempNoNavBar} from './components/NavBar';
 
 
@@ -36,7 +37,7 @@ function App() {
 
           <Switch >
             <Route path="/" exact component={Hjem} />
-            <Route path="/logginn" component={LoggInn} />
+            <Route path="/logginn" component={SignIn} />
             <Route path="/loggut" component={LoggUt} />
             <Route path="/registrer" component={RegistrerDeg} />
             <Route path="/budsjett-oversikt" component={BudsjettOversikt} />

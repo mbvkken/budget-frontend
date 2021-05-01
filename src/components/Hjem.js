@@ -4,6 +4,7 @@ import { Body, BudsjettIcon } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
 import BudsjettOpprett from './BudsjettOpprett';
+import {Typography} from '@material-ui/core'
 
 
 
@@ -60,19 +61,7 @@ history.push("/budsjett-detaljer/"+id)
 
 }
 
-    async handleDeleteClick() {
-        const { id } = this.props;
-
-        if (!window.confirm('u sure?')) {
-            return;
-        }
-        
-        try {
-            await deleteBudget(id);
-        } catch (error) {
-            console.log('sletting av budsjett feilet...', error);
-        }
-    }
+   
 
     render(){
         const { id } = this.props;
@@ -107,18 +96,18 @@ history.push("/budsjett-detaljer/"+id)
         }
 
         const budsjettElementer = budsjett
-            .map(({ tittel }) => {
+            .map(({ tittel, budsjettID }) => {
                     return(
-                <BudsjettIcon onClick={()=> this.handleClick("testtest") }>
-                            {tittel}
+                <BudsjettIcon key={budsjettID} onClick={()=> this.handleClick(budsjettID) }>
+                            {tittel} and
+                            {budsjettID}
                         </BudsjettIcon>
                        )
         })
 
         return (
             <div>
-                    <p>{navn} er innlogget med {epost}.</p>
-                    <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
+                    <Typography>{navn} er innlogget med {epost}.</Typography>
                     <Link to="/loggut">Log out</Link>
                     <BudsjettOpprett/>
                     {budsjettElementer}            

@@ -2,6 +2,8 @@ import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { Body, PrimaryButton } from '../App-Styles';
 import { createNewBudget } from '../services/budget';
+import {Typography} from '@material-ui/core'
+
 
 class BudsjettOpprett extends React.Component {
     constructor(props) {
@@ -90,7 +92,7 @@ class BudsjettOpprett extends React.Component {
         return (
             <div>
                 {/* <Body> */}
-                    <h1>Lag et nytt budsjett</h1>
+                    <Typography variant="h4" >Lag et nytt budsjett</Typography>
 
                     <form>
                         <label>
