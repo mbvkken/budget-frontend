@@ -31,7 +31,7 @@ const NavBar = (props) => {
                         <Piggy />
                     </Link>
 
-                    <Link to="/profil">
+                    <Link to="/profil/:epost">
                         <ProfilIcon />
                     </Link>
                 </Nav>
