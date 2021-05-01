@@ -2,7 +2,7 @@ import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { Body, BudsjettIcon } from '../App-Styles';
 import { Link } from 'react-router-dom';
-import { getBudgetByEpost, newBudget } from '../services/budget';
+import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
 import BudsjettOpprett from './BudsjettOpprett';
 
 
@@ -34,6 +34,7 @@ class Hjem extends React.Component {
 
     async componentDidMount() {
         await this.populateBudgets();
+        console.trace('hei');
     }
 
 
@@ -59,8 +60,22 @@ history.push("/budsjett-detaljer/"+id)
 
 }
 
+    async handleDeleteClick() {
+        const { id } = this.props;
 
-    render() {
+        if (!window.confirm('u sure?')) {
+            return;
+        }
+        
+        try {
+            await deleteBudget(id);
+        } catch (error) {
+            console.log('sletting av budsjett feilet...', error);
+        }
+    }
+
+    render(){
+        const { id } = this.props;
         const {
             session: {
                 navn,
@@ -77,7 +92,15 @@ history.push("/budsjett-detaljer/"+id)
             )
         }
 
-        if (isLoading) {
+        if(!budsjett) {
+            return (
+                <div>
+                    <p>Ingen budsjett med id: {id} funnet...</p>
+                </div>
+            )
+        }
+
+        if(isLoading) {
             return (
                 <div>Laster inn budsjetter...</div>
             )
@@ -93,13 +116,13 @@ history.push("/budsjett-detaljer/"+id)
         })
 
         return (
-                        <div>
-                            <p>{navn} er innlogget med {epost}.</p>
-
-                            <Link to="/loggut">Log out</Link>
-                            <BudsjettOpprett />
-                            {budsjettElementer}
-                        </div>
+            <div>
+                    <p>{navn} er innlogget med {epost}.</p>
+                    <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
+                    <Link to="/loggut">Log out</Link>
+                    <BudsjettOpprett/>
+                    {budsjettElementer}            
+            </div>
         )
     }
 

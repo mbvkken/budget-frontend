@@ -16,7 +16,7 @@ import {NavBar, TempNoNavBar} from './components/NavBar';
 
 
 import { Header, PageContain } from './App-Styles';
-import styled from 'styled-components'; 
+import styled from 'styled-components';
 
 const GridContain = styled.div`
 display: grid;
@@ -25,7 +25,6 @@ height: 100vh;
 `
 
 function App() {
-// const pathsWithNavbar =["/budsjett-oversikt","/budsjett-opprett","/profil", "/" ]
 
   return (
 
@@ -47,6 +46,7 @@ function App() {
             <Route path="/budsjett-endre/:budsjettid" component={null}/>
             <Route path="/profil/:epost" component={Profil} />
           </Switch>
+ 
 
         </PageContain>
         <Switch>
