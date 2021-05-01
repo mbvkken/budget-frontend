@@ -1,11 +1,11 @@
 import React from 'react';
-import { Nav, Body } from '../App-Styles';
-import { Link } from 'react-router-dom';
-import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
-import { opprettNyKategori, endreKategori, sletteKategori, getKatsByBudsjettID } from '../services/kategori';
+// import { Nav, Body } from '../App-Styles';
+// import { Link } from 'react-router-dom';
+import { deleteBudget } from '../services/budget';
+import { opprettNyKategori, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID } from '../services/kategori';
 import { PrimaryButton } from '../App-Styles';
-import { Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
+// import { Fab } from '@material-ui/core';
+// import AddIcon from '@material-ui/icons/Add';
 
 
 
@@ -15,12 +15,13 @@ class BudsjettLink extends React.Component {
     super(props);
 
     this.state = {
+      activeKat: '',
       isLoading: false,
       error: null,
       allKatsByID: [],
       kat: {
         tittel: '',
-        id: ''
+        ID: ''
       }
     };
   }
@@ -39,10 +40,32 @@ class BudsjettLink extends React.Component {
       this.setState({ isLoading: true });
       const kats = await getKatsByBudsjettID(id);
       this.setState({ allKatsByID: kats, isLoading: false });
+      console.log(this.state.allKatsByID)
     } catch (error) {
       this.setState({ error });
     }
+
+
   }
+
+  // async populatePosts() {
+  //   const {kat, allKatsByID} = this.state;
+
+   
+  //   allKatsByID.map(({kat}) => {
+  //   try {
+  //     this.setState({ isLoading: true });
+  //     const posts = await getPostsBykatID(kat.id);
+  //     this.setState({ allPostsByKatID: posts, isLoading: false });
+  //   } catch (error) {
+  //     this.setState({ error });
+  //   }
+  // }
+  //   )
+
+
+  // }
+
   async handleDeleteClick() {
     const id = this.props.match.params.id;
     console.log(id)
@@ -83,6 +106,10 @@ class BudsjettLink extends React.Component {
     } catch (error) {
     }
   }
+  async handleClicker(ID) {
+  await this.setState({activeKat: ID})
+  console.log(this.state.activeKat)
+}
 
   render() {
     const id = this.props.match.params.id;
@@ -90,11 +117,10 @@ class BudsjettLink extends React.Component {
 
 
     const KatsElementer = allKatsByID
-      .map(({ tittel, katid }) => {
+      .map(({ID}) => {
         return (
-          <div>
-            {tittel} and
-            {katid}
+          <div onClick={()=>this.handleClicker(ID)}>
+            {ID}
           </div>
         )
       })
@@ -119,6 +145,28 @@ class BudsjettLink extends React.Component {
             <PrimaryButton onClick={this.handleNewKatClick.bind(this)}>Legg til nytt kategori</PrimaryButton>
           </div>
         </form>
+
+        {/* <form>
+          <label>
+            Tittel:
+            <input type="text" name="tittel" value={kat.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
+          </label>
+          <label>
+          Sum:
+            <input type="text" name="tittel" value={kat.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
+          </label>
+          Fast? 
+          <label>
+          <input type="checkbox" name="tittel" value={kat.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
+          </label>
+
+
+
+          <div>
+            <PrimaryButton onClick={this.handleNewKatClick.bind(this)}>Legg til nytt post</PrimaryButton>
+          </div>
+        </form> */}
+
         {KatsElementer}            
 
         {/* <Fab color="primary" aria-label="add">
