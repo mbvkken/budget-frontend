@@ -25,3 +25,7 @@ export async function sletteKategori({ kategoriID }){
         method: 'DELETE'
     })
 }
+export function getKatsByBudsjettID(budsjettID) {
+    return fetch(`${API_URL}/kategori/${budsjettID}`)
+      .then((res) => res.json());
+  }
