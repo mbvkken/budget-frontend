@@ -10,9 +10,6 @@ import SimpleModal from '../primitives/addKat';
 import ControlledAccordions from '../primitives/accordian';
 
 
-
-
-
 class BudsjettLink extends React.Component {
   constructor(props) {
     super(props);

@@ -38,9 +38,8 @@ export default class Katdiv extends React.Component {
         } catch (error) {
           this.setState({ error });
         }
-    
-    
       }
+      
     render() {
         const id = this.props.katid;
         const {allPostsByID} = this.state;
