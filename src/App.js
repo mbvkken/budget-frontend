@@ -13,6 +13,8 @@ import BudsjettOversikt from './components/BudsjettOversikt';
 import BudsjettOpprett from './components/BudsjettOpprett';
 import Profil from './components/Profil';
 import SignIn from './components/Altlogin';
+import SignUp from './components/RegisterAlt';
+
 import {NavBar, TempNoNavBar} from './components/NavBar';
 
 
@@ -37,9 +39,9 @@ function App() {
 
           <Switch >
             <Route path="/" exact component={Hjem} />
-            <Route path="/logginn" component={LoggInn} />
+            <Route path="/logginn" component={SignIn} />
             <Route path="/loggut" component={LoggUt} />
-            <Route path="/registrer" component={RegistrerDeg} />
+            <Route path="/registrer" component={SignUp} />
             <Route path="/budsjett-oversikt" component={BudsjettOversikt} />
             <Route path="/budsjett-detaljer/:id" render={(props)=>(<BudsjettLink {...props}/>)}/>
             <Route path="/budsjett/:budsjettid" component={null} />
