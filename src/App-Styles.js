@@ -41,6 +41,8 @@ display: flex;
 flex-flow: column wrap;
 align-items: center;
 height: 100%;
+width: 100%;
+
 background-color: ${offWhite};
 overflow-y: scroll;
 
