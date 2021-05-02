@@ -47,9 +47,10 @@ export default function TransitionsModal(props) {
 
     try {
       await opprettNyKategori(tittel, props.katID);
-    //   window.location.reload(false);
     } catch (error) {
     }
+    // testfunc();
+    handleClose();
   };
 
   return (
@@ -79,7 +80,7 @@ export default function TransitionsModal(props) {
             <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} />
 
           <div>
-            <PrimaryButton onClick={handleNewKatClick}>Legg til nytt kategori</PrimaryButton>
+            <PrimaryButton onClick={handleNewKatClick}>Legg til nytt Kategori</PrimaryButton>
           </div>
         </form>
         </div>

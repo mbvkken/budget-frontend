@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
 // colors 
-// export const primaryGreen = '#5e8c71';
-export const primaryGreen = '#25a55f';
+export const primaryGreen = '#5e8c71';
+// export const primaryGreen = '#25a55f';
 export const offWhite = '#FAF9F6';
 
 // elements
