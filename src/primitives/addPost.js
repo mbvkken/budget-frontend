@@ -15,14 +15,14 @@ const useStyles = makeStyles((theme) => ({
           margin: theme.spacing(1),
         },
       },
-    modal: {
+      modal: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
+    border: '1px solid #000',
     borderRadius: '20px',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -50,9 +50,9 @@ const kategoriID = props.katid
 const fast = 0;
     try {
       await opprettNyPost( tittel, sum, fast, kategoriID);
-    //   window.location.reload(false);
     } catch (error) {
     }
+    handleClose();
   };
 
   return (
@@ -84,7 +84,7 @@ const fast = 0;
             {/* <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} /> */}
 
           <div>
-            <PrimaryButton onClick={handleNewPostClick}>Legg til nytt kategori</PrimaryButton>
+            <PrimaryButton onClick={handleNewPostClick}>Legg til nytt Post</PrimaryButton>
           </div>
         </form>
         </div>
