@@ -6,6 +6,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Katdiv from '../components/Kategori'
+import EditKat from '../primitives/editKat';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,6 +41,7 @@ export default function ControlledAccordions(props) {
                 >
                     <Typography className={classes.heading}>{props.named}</Typography>
                     <Typography className={classes.secondaryHeading}>I am an accordion</Typography>
+                    <EditKat katid={props.katid}/>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>

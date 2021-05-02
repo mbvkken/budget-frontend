@@ -33,7 +33,7 @@ function App() {
 
     <HashRouter>
       <GridContain>
-        <Header> <h1>Mynt</h1></Header>
+        <Header> <h1>MYNT</h1></Header>
 
         <PageContain>
 
