@@ -1,5 +1,6 @@
 import React from 'react';
 import {getPostsByKatID,opprettNyPost} from '../services/budsjettpost'
+import AddPost from '../primitives/addPost'
 
 export default class Katdiv extends React.Component {
     constructor(props) {
@@ -23,9 +24,11 @@ export default class Katdiv extends React.Component {
         // console.log(this.state.allPostsByID)
         // console.trace('hei');
       }
+     
+
     async populatePosts() {
         const katid = this.props.katid;
-        console.log(this.props.katid, this.props.named)
+        // console.log(this.props.katid, this.props.named)
        
         try {
           this.setState({ isLoading: true });
@@ -54,6 +57,8 @@ export default class Katdiv extends React.Component {
           })
         return (
             <div>
+          <AddPost katid={id}/>
+
           {postsElementer}
             </div>
         )

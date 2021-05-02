@@ -6,7 +6,7 @@ import Fade from '@material-ui/core/Fade';
 import { Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { PrimaryButton } from '../App-Styles';
-import { opprettNyKategori, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID } from '../services/kategori';
+import { opprettNyPost, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID } from '../services/budsjettpost';
 import Input from '@material-ui/core/Input';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,10 +29,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function TransitionsModal(props) {
+export default function AddPost(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [tittel, setTittel] = useState("");
+  const [sum, setSum] = useState("");
+
   
   const handleOpen = () => {
     setOpen(true);
@@ -42,11 +44,12 @@ export default function TransitionsModal(props) {
     setOpen(false);
   };
 
-  async function handleNewKatClick(event) {
+  async function handleNewPostClick(event) {
     event.preventDefault();
-
+const kategoriID = props.katid
+const fast = 0;
     try {
-      await opprettNyKategori(tittel, props.katID);
+      await opprettNyPost( tittel, sum, fast, kategoriID);
     //   window.location.reload(false);
     } catch (error) {
     }
@@ -55,7 +58,7 @@ export default function TransitionsModal(props) {
   return (
     <div>
    
- <Fab color="primary" aria-label="add" onClick={handleOpen}>
+ <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
         </Fab>
 
@@ -77,9 +80,11 @@ export default function TransitionsModal(props) {
             <form>
        
             <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} />
+            <Input placeholder="Sum" value={sum} onChange={e => setSum(e.target.value)} />
+            {/* <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} /> */}
 
           <div>
-            <PrimaryButton onClick={handleNewKatClick}>Legg til nytt kategori</PrimaryButton>
+            <PrimaryButton onClick={handleNewPostClick}>Legg til nytt kategori</PrimaryButton>
           </div>
         </form>
         </div>
