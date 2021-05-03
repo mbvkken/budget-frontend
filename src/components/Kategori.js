@@ -1,7 +1,9 @@
 import React from 'react';
 import {getPostsByKatID,opprettNyPost} from '../services/budsjettpost'
 import AddPost from '../primitives/addPost'
-import EdDelButton from '../primitives/edDelMenuBudsjett.js';
+import EditKat from '../primitives/editDeleteElements';
+import EditDeleteMenu from '../primitives/edDelMenu';
+
 import { PrimaryButton, Horiz } from '../App-Styles';
 
 
@@ -51,7 +53,7 @@ export default class Katdiv extends React.Component {
               <div key={ID}>
               <Horiz  >
                 {tittel}   {sum}kr
-                <EdDelButton/>
+                <EditKat katid={ID} />
             </Horiz >
             <p>-------------------</p>
 

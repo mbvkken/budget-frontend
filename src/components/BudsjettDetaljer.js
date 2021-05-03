@@ -8,7 +8,7 @@ import { PrimaryButton, Horiz } from '../App-Styles';
 import Katdiv from './Kategori'
 import SimpleModal from '../primitives/addKat';
 import ControlledAccordions from '../primitives/accordian';
-import EdDelButton from '../primitives/edDelMenuBudsjett.js';
+import EdDelButton from '../primitives/edDelMenu.js';
 
 
 
@@ -82,7 +82,7 @@ class BudsjettLink extends React.Component {
         return (
           <Horiz  key={ID} onClick={()=>this.handleClicker(ID)}>
             <ControlledAccordions named={tittel} katid={ID}/>
-            <EdDelButton/>
+            <EdDelButton katid={'heyyy' /*ID*/} />
           </Horiz>
 
         )

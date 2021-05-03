@@ -6,7 +6,7 @@ import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Katdiv from '../components/Kategori'
-import EditKat from '../primitives/editKat';
+import EditKat from './editDeleteElements';
 
 const useStyles = makeStyles((theme) => ({
     root: {

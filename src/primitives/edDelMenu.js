@@ -1,12 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import  EditKat  from '../primitives/editDeleteElements';
+import { Horiz } from '../App-Styles';
 
-export default function SimpleMenu() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+
+export default function EditDeleteMenu(props) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [open, setOpen] = useState(false);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -15,6 +19,16 @@ export default function SimpleMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+const handleEdit = () =>{
+  toggleChild();
+  <EditKat katID={'eyoo'/*props.katid*/} isOpen={'jello'}/>
+  handleClose();
+}
+
+function toggleChild() {
+  setOpen(!open)
+  console.log(open)
+}
 
   return (
     <div>
@@ -35,10 +49,11 @@ export default function SimpleMenu() {
         keepMounted
         open={Boolean(anchorEl)}
         onClose={handleClose}
-      >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        >
+        <Horiz>
+        <MenuItem onClick={handleEdit}>Rediger</MenuItem>
+        <MenuItem onClick={handleClose}>Slett</MenuItem>
+      </Horiz>
       </Menu>
     </div>
   );
