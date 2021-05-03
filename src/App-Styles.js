@@ -33,9 +33,19 @@ justify-content: space-evenly;
 
 export const Body = styled.div`
 background-color: ${offWhite};
+overflow-x: hidden;
+width: 100vw;
 /* height: 90vh; */
 `;
-
+export const HorizontalList = styled.div`
+display: flex;
+width: 90vw;
+flex-flow: row nowrap;
+justify-content: space-between;
+align-items: center;
+border-bottom: 2px solid grey;
+/* height: 90vh; */
+`;
 export const Horiz = styled.div`
 display: flex;
 width: 100%;
@@ -43,7 +53,7 @@ flex-flow: row nowrap;
 justify-content: center;
 align-items: center;
 /* height: 90vh; */
-`
+`;
 
 // app
 export const PageContain = styled.div`
@@ -81,9 +91,30 @@ export const PrimaryButton = styled.button`
 
 //elements
 
+export const Carousel = styled.div`
+
+display: flex;
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+
+/* background-color: red; */
+`;
+
+
 export const BudsjettIcon = styled.div`
-  border: 1px solid grey;
-  height: 10em;
-  width: 10em;
-  background-color: pink;
-  `
+    flex: 0 0 auto;
+margin: 5px;
+border: 4px solid red;
+    border-radius: 5px;
+    height: 10em;
+    width: 10em;
+    display: grid;
+    place-items: center;
+    /* background-color: pink; */
+    /* box-shadow: 2px 2px;  */
+    `;
+
+export const Containit = styled.div`
+width: 90vw;
+
+`;

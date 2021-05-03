@@ -11,21 +11,6 @@ export function createNewBudget(tittel, shared, epostOwner) {
   let noNullEmailArray = emailArray.filter(item => item);
   console.log('array is', noNullEmailArray);
   
-  // return fetch(`${API_URL}/budsjett`, {
-  //   method: 'POST',
-  //   headers: {
-  //     'Content-Type': 'application/json'
-  //   },
-  //   body: JSON.stringify({ tittel, epostOwner })
-  // }).then((res) => {
-  //   if (res.ok) {
-  //     return;
-  //   } else {
-  //     throw new Error('dette funket ikke');
-  //   }
-  // })
-  // emailArray.map((epost) => {
-    // noNullEmailArray.map((epost) => {
 
       return fetch(`${API_URL}/budsjett`, {
         method: 'POST',
@@ -40,7 +25,6 @@ export function createNewBudget(tittel, shared, epostOwner) {
           throw new Error('dette funket ikke');
         }
       }) 
-    // })
 }
 
 

@@ -10,7 +10,7 @@ export async function opprettNyKategori( tittel, budsjettID ){
     })
 }
 
-export async function endreKategori({ tittel, kategoriID}){
+export async function endreKategori( tittel, kategoriID){
     return fetch(`${API_URL}/kategori/${kategoriID}`, {
         method: 'PUT',
         headers: {

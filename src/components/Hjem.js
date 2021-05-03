@@ -1,10 +1,14 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { Body, BudsjettIcon } from '../App-Styles';
+import { Body, BudsjettIcon, Carousel, Containit } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
 import BudsjettOpprett from './BudsjettOpprett';
-import {Typography} from '@material-ui/core'
+import { Typography } from '@material-ui/core'
+import { EditBud } from '../primitives/editDeleteElements';
+import EditDeleteMenu from '../primitives/edDelMenu';
+import BudsjettCarousel from '../primitives/Carousel'
+
 
 
 
@@ -55,17 +59,17 @@ class Hjem extends React.Component {
         }
     }
 
-handleClick(id){
-const {history} = this.props;
-const {budsjett} = this.state;
-console.log(budsjett);
-history.push("/budsjett-detaljer/"+id)
+    handleClick(id) {
+        const { history } = this.props;
+        const { budsjett } = this.state;
+        console.log(budsjett);
+        history.push("/budsjett-detaljer/" + id)
 
-}
+    }
 
-   
 
-    render(){
+
+    render() {
         const { id } = this.props;
         const {
             session: {
@@ -83,7 +87,7 @@ history.push("/budsjett-detaljer/"+id)
             )
         }
 
-        if(!budsjett) {
+        if (!budsjett) {
             return (
                 <div>
                     <p>Ingen budsjett med id: {id} funnet...</p>
@@ -91,7 +95,7 @@ history.push("/budsjett-detaljer/"+id)
             )
         }
 
-        if(isLoading) {
+        if (isLoading) {
             return (
                 <div>Laster inn budsjetter...</div>
             )
@@ -99,20 +103,35 @@ history.push("/budsjett-detaljer/"+id)
 
         const budsjettElementer = budsjett
             .map(({ tittel, budsjettID }) => {
-                    return(
-                <BudsjettIcon key={budsjettID} onClick={()=> this.handleClick(budsjettID) }>
-                            {tittel} and
-                            {budsjettID}
-                        </BudsjettIcon>
-                       )
-        })
+                return (
+                   
+                            <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
+                                <div>{tittel}
+                                 
+                            {/*budsjettID*/}</div>
+                            </BudsjettIcon>
+                            /* <EditDeleteMenu budID={budsjettID} />
+                        <EditBud budID={budsjettID} /> */
+               
+                )
+            })
 
         return (
             <div>
-                    <Typography>{navn} er innlogget med {epost}.</Typography>
-                    <Link to="/loggut">Log out</Link>
-                    <BudsjettOpprett/>
-                    {budsjettElementer}            
+                <h1>Velkommen tilbake, {navn}!</h1>
+                <div>
+                    <h2>Mine budsjetter</h2>
+                    <Containit>
+                        <Carousel>
+                    {budsjettElementer}
+                    </Carousel>
+                    </Containit>
+                </div>
+                <div>
+                    <h2>Mine sparemål</h2>
+                
+                    {/* {budsjettElementer} */}
+                </div>
             </div>
         )
     }
