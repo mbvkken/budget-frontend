@@ -43,10 +43,11 @@ export default function EditKat(props) {
   };
 
   async function handleNewKatClick(event) {
+    console.log(props.katid)
     event.preventDefault();
 
     try {
-      await endreKategori(tittel, props.katID);
+      await endreKategori(tittel, props.katid);
     //   window.location.reload(false);
     } catch (error) {
     }

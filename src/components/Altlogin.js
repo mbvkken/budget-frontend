@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,19 +12,21 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { sjekkBruker } from '../services/session';
+import { PrimaryButton,primaryGreen  } from '../App-Styles';
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {'Copyright © '}
+//       <Link color="inherit" href="https://material-ui.com/">
+//         Your Website
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -35,20 +37,80 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#2c415e',//theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(1),
   },
   submit: {
+    backgroundColor: `${primaryGreen}`,
+
     margin: theme.spacing(3, 0, 2),
   },
+
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
+const [epost, setEpost] = useState('');
+const [passord, setPassord] = useState('');
 
+ const [err, setError] = useState('') ;
+  const  [loginStatus, setStatus] = useState(false);
+
+
+
+  async function handleLoginClick(event) {
+    event.preventDefault();
+
+    const { history } = props;
+    // const { epost, passord } = this.state.loginDetails;
+
+    try {
+   
+        setStatus({
+            loginStatus: true
+        })
+       setError({err: ''})
+// if(!epost || !passord){
+// throw new Error('Kunne ikke verifisere - prøv igjen.');
+
+// }
+console.log(epost, passord)
+        const result = await sjekkBruker({
+          epost,
+          passord
+        });
+
+        if(result.error) {
+            throw new Error(result.error);
+        }
+
+        if(!result.token) {
+            throw new Error('Kunne ikke verifisere - prøv igjen.');
+
+        }
+       
+     
+        localStorage.setItem('bruker_budsjett_token', result.token);
+
+        // history.push('/');
+    } catch (error) {
+        await setError( { error } );
+        await setStatus({loginStatus: false}); 
+        console.log(loginStatus)
+
+
+    }
+}
+
+function handleRegistrering(event) {
+  event.preventDefault();
+  const { history } = props;
+  history.push('/registrer')
+}
+const test = {err};
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -65,6 +127,8 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
+            value={epost}
+            onChange={e => setEpost(e.target.value)}
             id="email"
             label="Email Address"
             name="email"
@@ -76,6 +140,8 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
+            value={passord}
+            onChange={e => setPassord(e.target.value)}
             name="password"
             label="Password"
             type="password"
@@ -91,27 +157,30 @@ export default function SignIn() {
             fullWidth
             variant="contained"
             color="primary"
+            onClick={handleLoginClick}
             className={classes.submit}
           >
             Sign In
           </Button>
           <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Forgot password?
-              </Link>
-            </Grid>
+          <div>
+                        {/* {loginStatus && <p>Logger inn...</p>} */}
+                      
+                        {/* {err && <p>{test} </p>} */}
+                     
+                    </div>
+            
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link onClick={handleRegistrering} variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
+      {/* <Box mt={8}>
         <Copyright />
-      </Box>
+      </Box> */}
     </Container>
   );
 }

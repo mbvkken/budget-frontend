@@ -23,7 +23,7 @@ export function redigereBudsjettpost(tittel, sum, fast, budsjettpostID){
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({tittel, sum, fast})
+        body: JSON.stringify({tittel, sum, fast, budsjettpostID})
     })  
 }
 
