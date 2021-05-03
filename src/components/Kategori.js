@@ -1,6 +1,9 @@
 import React from 'react';
 import {getPostsByKatID,opprettNyPost} from '../services/budsjettpost'
 import AddPost from '../primitives/addPost'
+import EdDelButton from '../primitives/edDelMenuBudsjett.js';
+import { PrimaryButton, Horiz } from '../App-Styles';
+
 
 export default class Katdiv extends React.Component {
     constructor(props) {
@@ -46,9 +49,10 @@ export default class Katdiv extends React.Component {
         const postsElementer = allPostsByID.map(({tittel, sum, ID}) => {
               return (
               <div key={ID}>
-              <div>
+              <Horiz  >
                 {tittel}   {sum}kr
-            </div>
+                <EdDelButton/>
+            </Horiz >
             <p>-------------------</p>
 
               </div>

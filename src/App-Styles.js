@@ -5,7 +5,7 @@ export const primaryGreen = '#5e8c71';
 // export const primaryGreen = '#25a55f';
 export const offWhite = '#FAF9F6';
 
-// elements
+// elements 
 // header og nav
 export const Header = styled.div`
 font-family: Arial, Helvetica, sans-serif;
@@ -34,6 +34,15 @@ justify-content: space-evenly;
 export const Body = styled.div`
 background-color: ${offWhite};
 /* height: 90vh; */
+`;
+
+export const Horiz = styled.div`
+display: flex;
+width: 100%;
+flex-flow: row nowrap;
+justify-content: center;
+align-items: center;
+/* height: 90vh; */
 `
 
 // app
@@ -42,7 +51,7 @@ display: flex;
 flex-flow: column wrap;
 align-items: center;
 height: 100%;
-width: 100%;
+width: 100vw;
 
 background-color: ${offWhite};
 overflow-y: scroll;

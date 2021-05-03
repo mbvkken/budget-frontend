@@ -3,11 +3,13 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import { deleteBudget } from '../services/budget';
 import { opprettNyKategori, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID } from '../services/kategori';
-import { PrimaryButton } from '../App-Styles';
+import { PrimaryButton, Horiz } from '../App-Styles';
 
 import Katdiv from './Kategori'
 import SimpleModal from '../primitives/addKat';
 import ControlledAccordions from '../primitives/accordian';
+import EdDelButton from '../primitives/edDelMenuBudsjett.js';
+
 
 
 class BudsjettLink extends React.Component {
@@ -78,9 +80,11 @@ class BudsjettLink extends React.Component {
       .map(({tittel, ID}) => {
         // console.log('this is '+ID)
         return (
-          <div key={ID} onClick={()=>this.handleClicker(ID)}>
+          <Horiz  key={ID} onClick={()=>this.handleClicker(ID)}>
             <ControlledAccordions named={tittel} katid={ID}/>
-          </div>
+            <EdDelButton/>
+          </Horiz>
+
         )
       })
 
@@ -94,6 +98,7 @@ class BudsjettLink extends React.Component {
 <SimpleModal katID={this.props.match.params.id}/>       
         {KatsElementer}              
       </div>
+
 
     )
 

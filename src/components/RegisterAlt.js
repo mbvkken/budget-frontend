@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -13,6 +13,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { PrimaryButton,primaryGreen  } from '../App-Styles';
+import styled from "styled-components";
+import { registrerBruker,sjekkBruker } from '../services/session';
 
 
 function Copyright() {
@@ -38,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: `${primaryGreen}`//'#5e8c71',  //theme.palette.secondary.main,
+    backgroundColor: '#2c415e', //'#5e8c71',  //theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -49,10 +51,99 @@ submit: {
     backgroundColor: `${primaryGreen}`,
   },
 
+
 }));
 
-export default function SignUp() {
+export default function SignUp(props) {
   const classes = useStyles();
+//   const [signupForm, setSignUp] = useState({navn: '',
+//   epost: '',
+//   passord: '',
+//   gjentaPassord: ''});
+
+  const [navn, setNavn] = useState('');
+  const [epost, setEpost] = useState('');
+  const [passord, setPassord] = useState('');
+  const [gjentaPassord, setGjentaPassord] = useState('');
+
+
+
+
+  
+
+ const [err, setError] = useState('') ;
+  const  [isSigningUp, setSigningUp] = useState(false);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    const { history } = props;
+
+
+    setSigningUp({
+        isSigningUp: true
+    });
+    setError({  
+        error: null
+    });
+
+
+    try {
+        // if (!passord || !epost || !navn) {
+        //     throw new Error('');
+        // }
+        if (passord !== gjentaPassord) {
+            throw new Error('Passordene er ikke like');
+        }
+       
+        const result = await registrerBruker( {
+            navn, 
+            epost,
+            passord
+        });
+
+        if (result.error) {
+            throw new Error(result.error);
+        }
+
+        const result2 = await sjekkBruker({
+            epost,
+            passord
+        });
+
+        if(result2.error) {
+            throw new Error(result.error);
+        }
+
+        if(!result2.token) {
+            throw new Error('Kunne ikke verifisere - prøv igjen.');
+        }
+    
+
+        localStorage.setItem('bruker_budsjett_token', result2.token);
+    
+        history.push('/');
+    } catch (error) {
+        setSigningUp({
+            isSigningUp: false
+        });
+        setError({  
+            error: error
+        });
+    }
+}
+
+// const inputChange = (event) => {
+//     setSignUp((prevState) => ({
+//        ...prevState,
+//        [field]: event.target.value
+//     }));
+// }
+function handleRegistrering(event) {
+    event.preventDefault();
+    const { history } = props;
+    history.push('/logginn')
+  }
 
   return (
     <Container component="main" maxWidth="xs">
@@ -73,6 +164,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={navn}
+                onChange={e => setNavn(e.target.value)}
                 id="firstName"
                 label="Navn"
                 autoFocus
@@ -84,6 +177,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={epost}
+                onChange={e => setEpost(e.target.value)}
                 id="email"
                 label="Epost"
                 name="email"
@@ -95,6 +190,8 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={passord}
+                onChange={e => setPassord(e.target.value)}
                 name="password"
                 label="Passord"
                 type="password"
@@ -109,10 +206,12 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
+                value={gjentaPassord}
+                onChange={e => setGjentaPassord(e.target.value)}
                 name="password"
                 label="Gjenta Passord"
                 type="password"
-                id="password"
+                id="password2"
                 autoComplete="current-password"
                 // className={classes.textfield}
 
@@ -126,21 +225,23 @@ export default function SignUp() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={handleSubmit}
+
           >
             Sign Up
           </Button>
           <Grid container justify="center">
             <Grid item>
-              <Link href="/registrer" variant="body2">
+              <Link onClick={handleRegistrering} variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
+      {/* <Box mt={5}>
         <Copyright />
-      </Box>
+      </Box> */}
     </Container>
   );
 }

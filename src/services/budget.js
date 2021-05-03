@@ -25,22 +25,22 @@ export function createNewBudget(tittel, shared, epostOwner) {
   //   }
   // })
   // emailArray.map((epost) => {
-    noNullEmailArray.map((epost) => {
+    // noNullEmailArray.map((epost) => {
 
       return fetch(`${API_URL}/budsjett`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ tittel, epost })
+        body: JSON.stringify({tittel, epostOwner, noNullEmailArray })
       }).then((res) => {
         if (res.ok) {
           return;
         } else {
           throw new Error('dette funket ikke');
         }
-      })
-    })
+      }) 
+    // })
 }
 
 
@@ -51,13 +51,13 @@ export function deleteBudget(id) {
     .then((res) => res.json());
 }
 
-export function updateBudget(id) {
-  return fetch(`${API_URL}/budsjett/${id}`, {
+export function updateBudget(tittel,ID) {
+  return fetch(`${API_URL}/budsjett/${ID}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(id)
+    body: JSON.stringify({tittel,ID})
   })
     .then((res) => res.json())
 }
