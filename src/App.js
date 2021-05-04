@@ -14,6 +14,7 @@ import BudsjettOpprett from './components/BudsjettOpprett';
 import Profil from './components/Profil';
 import SignIn from './components/Altlogin';
 import SignUp from './components/RegisterAlt';
+import Sparemal from './components/Sparemal'
 
 import {NavBar, TempNoNavBar} from './components/NavBar';
 
@@ -46,11 +47,18 @@ function App() {
             <Route path="/logginn" component={SignIn} />
             <Route path="/loggut" component={LoggUt} />
             <Route path="/registrer" component={SignUp} />
+
+            {/* Budsjett */}
             <Route path="/budsjett-oversikt" component={BudsjettOversikt} />
             <Route path="/budsjett-detaljer" component={BudsjettLink} />
             <Route path="/budsjett/:budsjettid" component={null} />
             <Route path="/budsjett-opprett/" component={BudsjettOpprett} />
             <Route path="/budsjett-endre/:budsjettid" component={null}/>
+
+            {/** sparemaal */}
+            <Route path="/sparemaal" component={Sparemal}/>
+
+            {/** Profil */}
             <Route path="/profil/:epost" component={Profil} />
           </Switch>
  {/* :id" render={(props)=>(<BudsjettLink {...props}/>)} */}

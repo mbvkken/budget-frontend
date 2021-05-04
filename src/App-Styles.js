@@ -104,19 +104,16 @@ export const PrimaryButton = styled.button`
 //elements
 
 export const Carousel = styled.div`
-
-display: flex;
+  display: flex;
   flex-wrap: nowrap;
   overflow-x: scroll;
-
-/* background-color: red; */
 `;
 
 
 export const BudsjettIcon = styled.div`
     flex: 0 0 auto;
     margin: 5px;
-    border: 4px solid ${secondaryGreen};
+    border: 2px solid ${secondaryGreen};
     box-sizing: border-box;
     border-radius: 10px;
     height: 8em;
