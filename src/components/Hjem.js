@@ -69,7 +69,7 @@ class Hjem extends React.Component {
         const { budsjett } = this.state;
         localStorage.setItem('currentBudget', JSON.stringify(budsjettObj));
         console.log(budsjettObj);
-        history.push("/budsjett-detaljer/" + budsjettObj.budsjettID)
+        history.push("/budsjett-detaljer")
 
     }
 
