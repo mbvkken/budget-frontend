@@ -125,7 +125,7 @@ class Hjem extends React.Component {
 
         return (
             <div>
-                <Typography variant="h4" style={{ margin: "1em 20px" }}>Velkommen tilbake, {navn}!</Typography>
+                <Typography variant="h4" style={{ margin: "1em 20px" }}>Velkommen, {navn}!</Typography>
                 <div>
                     <Typography variant="h5" style={{ margin: "0.5em 20px" }}>Mine budsjetter</Typography>
                     <Containit>

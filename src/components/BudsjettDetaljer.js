@@ -3,7 +3,7 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import { deleteBudget } from '../services/budget';
 import { opprettNyKategori, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID } from '../services/kategori';
-import { PrimaryButton, Horiz } from '../App-Styles';
+import { PrimaryButton, Horiz, SecondaryButton, deleteRed } from '../App-Styles';
 
 import Katdiv from './Kategori'
 import SimpleModal from '../primitives/addKat';
@@ -109,12 +109,20 @@ class BudsjettLink extends React.Component {
 
 
     return (
+      
       <div style={{width: '95vw'}}>
-        <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
 
-        <h1>{tittel}</h1>
-<SimpleModal budID={this.state.currentBudgetID}/>       
-        {KatsElementer}              
+        <h1 style={{display: 'flex', justifyContent: 'center', placeItems: 'center'}}> {tittel} 
+
+          {/* <SecondaryButton onClick={this.handleDeleteClick.bind(this)}>DELETE</SecondaryButton> */}
+        
+        </h1>
+
+          <SimpleModal budID={this.state.currentBudgetID}/>       
+          {KatsElementer}
+          <div style={{display: 'flex', justifyContent: 'center', placeItems: 'center'}}>
+          <SecondaryButton  onClick={this.handleDeleteClick.bind(this)}>DELETE</SecondaryButton>
+          </div>
       </div>
 
 

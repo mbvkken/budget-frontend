@@ -55,10 +55,12 @@ export default function TransitionsModal(props) {
 
   return (
     <div>
-   
- <Fab color="primary" aria-label="add" onClick={handleOpen}>
-          <AddIcon />
-        </Fab>
+
+        <div style={{display: 'flex', justifyContent: 'center', marginBottom: '10px'}}>
+          <Fab color="primary" aria-label="add" onClick={handleOpen}>
+            <AddIcon />
+          </Fab>
+        </div>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -80,7 +82,7 @@ export default function TransitionsModal(props) {
             <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} />
 
           <div>
-            <PrimaryButton onClick={handleNewKatClick}>Legg til nytt Kategori</PrimaryButton>
+            <PrimaryButton onClick={handleNewKatClick}>Legg til ny kategori</PrimaryButton>
           </div>
         </form>
         </div>

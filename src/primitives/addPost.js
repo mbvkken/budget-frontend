@@ -57,11 +57,11 @@ const fast = 0;
 
   return (
     <div>
-   
- <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
+        <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px'}}>
+          <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
-        </Fab>
-
+          </Fab>
+        </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -84,7 +84,7 @@ const fast = 0;
             {/* <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} /> */}
 
           <div>
-            <PrimaryButton onClick={handleNewPostClick}>Legg til nytt Post</PrimaryButton>
+            <PrimaryButton onClick={handleNewPostClick}>Legg til ny budsjettpost</PrimaryButton>
           </div>
         </form>
         </div>
