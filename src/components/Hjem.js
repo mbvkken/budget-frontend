@@ -1,6 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import {primaryGreen, secondaryBlue} from '../App-Styles'
+import { primaryGreen, secondaryGreen } from '../App-Styles'
 import { Body, BudsjettIcon, Carousel, Containit } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
@@ -12,7 +12,8 @@ import BudsjettCarousel from '../primitives/Carousel'
 import HomeIcon from '@material-ui/icons/Home';
 import { red } from '@material-ui/core/colors';
 import styled from 'styled-components';
-import {ReactComponent as Kr} from '../kr.svg' 
+import { ReactComponent as KrIcon} from '../kr.svg'
+
 
 
 
@@ -105,42 +106,41 @@ class Hjem extends React.Component {
                 <div>Laster inn budsjetter...</div>
             )
         }
-const Centered = styled.div`
+        const Centered = styled.div`
 display: grid;
 place-items: center;
 `
         const budsjettElementer = budsjett
             .map(({ tittel, budsjettID }) => {
                 return (
-                   
-                            <BudsjettIcon key={budsjettID} onClick={() => this.handleClick({budsjettID, tittel})}>
-                                
-                                <Centered>
-                                <Kr style={{ fontSize: 60, color: secondaryBlue }} />
-                               
-                                <h3 style={{margin: "0"}}>{tittel}</h3>                               
-                                </Centered>
-                            </BudsjettIcon>
-                            /* <EditDeleteMenu budID={budsjettID} />
-                        <EditBud budID={budsjettID} /> */
-               
+                    <BudsjettIcon key={budsjettID} onClick={() => this.handleClick({ budsjettID, tittel })}>
+
+                        <Centered>
+                            <KrIcon />
+
+                            <h3 style={{ margin: "0" }}>{tittel}</h3>
+                        </Centered>
+                    </BudsjettIcon>
+                    /* <EditDeleteMenu budID={budsjettID} />
+                <EditBud budID={budsjettID} /> */
+
                 )
             })
 
         return (
             <div>
-                <h1>Velkommen tilbake, {navn}!</h1>
+                <Typography variant="h4" style={{ margin: "1em 20px" }}>Velkommen tilbake, {navn}!</Typography>
                 <div>
-                    <h2>Mine budsjetter</h2>
+                    <Typography variant="h5" style={{ margin: "0.5em 20px" }}>Mine budsjetter</Typography>
                     <Containit>
                         <Carousel>
-                    {budsjettElementer}
-                    </Carousel>
+                            {budsjettElementer}
+                        </Carousel>
                     </Containit>
                 </div>
                 <div>
-                    <h2>Mine sparemål</h2>
-                
+                    <Typography variant="h5" style={{ margin: "0.5em 20px" }}>Mine sparemål</Typography>
+
                     {/* {budsjettElementer} */}
                 </div>
             </div>

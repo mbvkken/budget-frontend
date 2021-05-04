@@ -12,9 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { PrimaryButton,primaryGreen  } from '../App-Styles';
+import { PrimaryButton, primaryGreen, secondaryGreen  } from '../App-Styles';
 import styled from "styled-components";
-import { registrerBruker,sjekkBruker } from '../services/session';
+import { registrerBruker, sjekkBruker } from '../services/session';
 
 
 function Copyright() {
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#2c415e', //'#5e8c71',  //theme.palette.secondary.main,
+    backgroundColor: `${secondaryGreen} !important`, //'#5e8c71',  //theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -152,7 +152,7 @@ function handleRegistrering(event) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Registrer deg
         </Typography>
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
@@ -218,21 +218,21 @@ function handleRegistrering(event) {
             </Grid>
        
           </Grid>
-          <Button
+          <PrimaryButton
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
             onClick={handleSubmit}
-
+            style={{width: '100%'}}
           >
-            Sign Up
-          </Button>
+            Registrer deg
+          </PrimaryButton>
           <Grid container justify="center">
             <Grid item>
-              <Link onClick={handleRegistrering} variant="body2">
-                Already have an account? Sign in
+              <Link style={{color: `${secondaryGreen}`}} onClick={handleRegistrering} variant="body2">
+                Har allerede en konto? Logg inn
               </Link>
             </Grid>
           </Grid>

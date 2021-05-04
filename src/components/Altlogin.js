@@ -13,7 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { sjekkBruker } from '../services/session';
-import { PrimaryButton,primaryGreen  } from '../App-Styles';
+import { PrimaryButton, primaryGreen, secondaryGreen } from '../App-Styles';
 
 // function Copyright() {
 //   return (
@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: `${primaryGreen}`,//theme.palette.secondary.main,
+    backgroundColor: `${secondaryGreen} !important`,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -116,7 +116,7 @@ const test = {err};
           <LockOutlinedIcon />
         </Avatar>
         {/* <Typography component="h1" variant="h5"> */}
-         <h1>Sign in</h1>
+         <h1>Logg inn</h1>
         {/* </Typography> */}
         <form className={classes.form} noValidate>
           <TextField
@@ -127,7 +127,7 @@ const test = {err};
             value={epost}
             onChange={e => setEpost(e.target.value)}
             id="email"
-            label="Email Address"
+            label="Epost"
             name="email"
             autoComplete="email"
             autoFocus
@@ -140,39 +140,37 @@ const test = {err};
             value={passord}
             onChange={e => setPassord(e.target.value)}
             name="password"
-            label="Password"
+            label="Passord"
             type="password"
             id="password"
             autoComplete="current-password"
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
-            label="Remember me"
+            label="Husk meg"
           />
-          <Button
+          <PrimaryButton
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             onClick={handleLoginClick}
             className={classes.submit}
+            style = {{width: '100%', fontSize: '1em'}}
           >
-            Sign In
-          </Button>
-          <Grid container>
-          <div>
-                        {/* {loginStatus && <p>Logger inn...</p>} */}
-                      
-                        {/* {err && <p>{test} </p>} */}
-                     
-                    </div>
-            
-            <Grid item>
-              <Link onClick={handleRegistrering} variant="body2">
-                {"Don't have an account? Sign Up"}
-              </Link>
-            </Grid>
-          </Grid>
+            Logg inn
+          </PrimaryButton>
+          <PrimaryButton
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            onClick={handleRegistrering}
+            className={classes.submit}
+            style = {{width: '100%', fontSize: '1em', marginTop: '0'}}
+          >
+            Registrer deg
+          </PrimaryButton>
         </form>
       </div>
       {/* <Box mt={8}>

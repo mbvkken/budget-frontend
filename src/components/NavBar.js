@@ -23,7 +23,7 @@ const NavBar = (props) => {
                     <Budsjett />
                     </Link>
                     
-                    <Link to="/budsjett-opprett/:budsjettid"> 
+                    <Link to="/budsjett-opprett"> 
                         <Pluss />
                     </Link>
 

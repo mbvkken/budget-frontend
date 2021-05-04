@@ -1,8 +1,8 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { Body, PrimaryButton } from '../App-Styles';
+import { Body, PrimaryButton, Input, Label } from '../App-Styles';
 import { createNewBudget } from '../services/budget';
-import {Typography} from '@material-ui/core'
+import { Typography } from '@material-ui/core'
 
 
 class BudsjettOpprett extends React.Component {
@@ -38,7 +38,7 @@ class BudsjettOpprett extends React.Component {
                 ...this.state.budsjett,
                 [field]: event.target.value
             }
-          
+
         })
     }
 
@@ -57,18 +57,18 @@ class BudsjettOpprett extends React.Component {
             //     alert('Please Enter title');
             //     return;
             //   }
-            const newBudget = await createNewBudget(budsjett.tittel, budsjett.shared, epost );
+            const newBudget = await createNewBudget(budsjett.tittel, budsjett.shared, epost);
 
-            history.push('/');
+            history.push('/budsjett-detaljer/:budsjettid');
         } catch (error) {
             this.setState({ error });
         }
     }
 
-    
+
     render() {
         const { budsjett } = this.state;
-        
+
         const {
             session: {
                 epost
@@ -82,38 +82,35 @@ class BudsjettOpprett extends React.Component {
         //       <div>Kunne ikke hente budsjetter: {error.message}</div>
         //     );
         //   }
-      
-          if (isLoading) {
+
+        if (isLoading) {
             return (
-              <div>Laster inn budsjetter...</div>
+                <div>Laster inn budsjetter...</div>
             );
-          }
+        }
 
         return (
             <div>
-                {/* <Body> */}
-                    <Typography variant="h4" >Lag et nytt budsjett</Typography>
+                <Typography variant="h4" style={{margin: "2em 0em"}}>Lag et nytt budsjett</Typography>
 
-                    <form>
+                <form>
+                    <div>
+                    <label>
+                        Tittel:
+                    <Input type="text" name="tittel" value={budsjett.tittel} placeholder="Budsjettnavn" onChange={this.handleInputChange.bind(this, "tittel")}/>
+                    </label>
+                    </div>
+                    <div>
                         <label>
-                            Tittel:
-                            <input type="text" name="tittel" value={budsjett.tittel} onChange={this.handleInputChange.bind(this, "tittel")}></input>
+                            Del med:
+                        <Input type="text" name="shared" value={budsjett.shared} placeholder="Epost" onChange={this.handleInputChange.bind(this, "shared")}/>
+                        <p style={{margin: "0px"}}>Separer med ","</p>
                         </label>
-
-                        <label>
-                            Share with:
-                            <input type="text" name="shared" value={budsjett.shared} onChange={this.handleInputChange.bind(this, "shared")}></input>
-                            <p>separate with ","</p>
-                        </label>
-
-                        {/* <div>
-                            <button onClick={}>Lag ny budsjettpost</button>
-                        </div> */}
-                        <div>
-                            <PrimaryButton onClick={this.handleNewBudgetClick.bind(this)}>Legg til nytt budsjett</PrimaryButton>
-                        </div>
-                    </form>
-                {/* </Body> */}
+                    </div>
+                    <div style={{display: 'grid', placeItems: 'center'}}>
+                        <PrimaryButton style={{width: '100%'}} onClick={this.handleNewBudgetClick.bind(this)}>Legg til nytt budsjett</PrimaryButton>
+                    </div>
+                </form>
             </div>
         )
     }
