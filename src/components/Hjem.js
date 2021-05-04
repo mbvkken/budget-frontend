@@ -1,6 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { primaryGreen, secondaryBlue } from '../App-Styles'
+import { primaryGreen, secondaryGreen } from '../App-Styles'
 import { Body, BudsjettIcon, Carousel, Containit } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
@@ -12,6 +12,7 @@ import BudsjettCarousel from '../primitives/Carousel'
 import HomeIcon from '@material-ui/icons/Home';
 import { red } from '@material-ui/core/colors';
 import styled from 'styled-components';
+import { ReactComponent as KrIcon} from '../kr.svg'
 
 
 
@@ -114,7 +115,7 @@ place-items: center;
                     <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
 
                         <Centered>
-                            <HomeIcon style={{ fontSize: 60, color: secondaryBlue }} />
+                            <KrIcon/>
 
                             <h3 style={{ margin: "0" }}>{tittel}</h3>
                         </Centered>

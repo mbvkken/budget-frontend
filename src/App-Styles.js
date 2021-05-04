@@ -2,8 +2,7 @@ import styled from 'styled-components';
 
 // colors 
 export const primaryGreen = '#5e8c71';
-export const secondaryBlue ='#3b5274'
-// export const primaryGreen = '#25a55f';
+export const secondaryGreen ='#3C5948';
 export const offWhite = '#FAF9F6';
 
 // elements 
@@ -117,20 +116,13 @@ display: flex;
 export const BudsjettIcon = styled.div`
     flex: 0 0 auto;
     margin: 5px;
-    border: 4px solid ${secondaryBlue};
+    border: 4px solid ${secondaryGreen};
     box-sizing: border-box;
     border-radius: 10px;
     height: 8em;
     width: 8em;
     display: grid;
-    /* grid-auto-rows: 60% 40%; */
-place-items: center;
-    /* flex-direction: column;
-    align-items: center;
-    justify-content: center; */
-
-    /* background-color: pink; */
-    /* box-shadow: 2px 2px;  */
+    place-items: center;
     `;
 
 export const Containit = styled.div`

@@ -23,7 +23,7 @@ import styled from 'styled-components';
 
 const GridContain = styled.div`
 display: grid;
-grid-template-rows: 100px 1fr 100px;
+grid-template-rows: 100px 1fr 70px;
 height: 100vh; 
 `
 
@@ -55,6 +55,7 @@ function App() {
  
 
         </PageContain>
+
         <Switch>
         <Route path="/logginn" component={TempNoNavBar} />
         <Route path="/loggut"  component={TempNoNavBar} />

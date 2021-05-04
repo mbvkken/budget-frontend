@@ -97,18 +97,18 @@ class BudsjettOpprett extends React.Component {
                     <div>
                     <label>
                         Tittel:
-                    <Input type="text" name="tittel" value={budsjett.tittel} onChange={this.handleInputChange.bind(this, "tittel")}/>
+                    <Input type="text" name="tittel" value={budsjett.tittel} placeholder="Budsjettnavn" onChange={this.handleInputChange.bind(this, "tittel")}/>
                     </label>
                     </div>
                     <div>
                         <label>
                             Del med:
-                        <Input type="text" name="shared" value={budsjett.shared} onChange={this.handleInputChange.bind(this, "shared")}/>
+                        <Input type="text" name="shared" value={budsjett.shared} placeholder="Epost" onChange={this.handleInputChange.bind(this, "shared")}/>
                         <p style={{margin: "0px"}}>Separer med ","</p>
                         </label>
                     </div>
-                    <div>
-                        <PrimaryButton onClick={this.handleNewBudgetClick.bind(this)}>Legg til nytt budsjett</PrimaryButton>
+                    <div style={{display: 'grid', placeItems: 'center'}}>
+                        <PrimaryButton style={{width: '100%'}} onClick={this.handleNewBudgetClick.bind(this)}>Legg til nytt budsjett</PrimaryButton>
                     </div>
                 </form>
             </div>
