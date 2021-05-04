@@ -13,6 +13,7 @@ export default class Katdiv extends React.Component {
         super(props);
 
         this.state = {
+            totalSum: '',
             activePost: '',
             isLoading: false,
             error: null,
@@ -26,18 +27,24 @@ export default class Katdiv extends React.Component {
     }
 
     async componentDidMount() {
+    
         await this.populatePosts();
         // console.log(this.state.allPostsByID)
         // console.trace('hei');
+        this.props.setSum(this.state.totalSum)
       }
      
       renderPosts(posts){
         this.setState({allPostsByID: posts});
-        console.log(this.state.allPostsByID)
+        // console.log(this.state.allPostsByID)
 
 
       }
-    async populatePosts() {
+      getTotalSum(posts){
+        const summedUp =(posts.reduce((a, b) => a + (parseInt(b.sum) || 0), 0))
+        this.setState({totalSum: summedUp})
+      }
+      async populatePosts() {
         const katid = this.props.katid;
         // console.log(this.props.katid, this.props.named)
        
@@ -48,7 +55,11 @@ export default class Katdiv extends React.Component {
         } catch (error) {
           this.setState({ error });
         }
+        this.getTotalSum(this.state.allPostsByID);
+
       }
+
+
 
     
       
@@ -60,14 +71,7 @@ export default class Katdiv extends React.Component {
 
                 <ListPosts key={ID} sum={sum} tittel={tittel} />
 
-              // <div key={ID}>
-/*                 
-              <Horiz>
-                {tittel}   {sum}kr
-                <EditKat katid={ID} />
-            </Horiz > */
-      
-             // </div>
+    
             )
           })
         return (
