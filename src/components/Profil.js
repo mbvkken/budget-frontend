@@ -23,8 +23,6 @@ class Profil extends React.Component {
             // throw new Error('noe gikk galt')
         }
 
-
-
         this.state = {
             budsjett: [],
             isLoading: false,
@@ -55,7 +53,7 @@ class Profil extends React.Component {
         }
 
         const profilKort = {
-            backgroundColor: '#4D735D',
+            backgroundColor: '#3C5948',
             color: '#FAF9F6',
             width: 'auto',
             borderRadius: '2px',
