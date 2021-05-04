@@ -31,9 +31,7 @@ export default function ControlledAccordions(props) {
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
-function updateSum(newSum){
-setTotalSum(newSum)
-};
+
 
 // function getTotalSum(posts){
 //     const summedUp =(posts.reduce((a, b) => a + (parseInt(b.sum) || 0), 0))
