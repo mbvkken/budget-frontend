@@ -10,13 +10,14 @@ body {
   /* color: #2c415e; */
 }
 
-h1 {
+h1,h2{
   font-family: 'Ubuntu', sans-serif;
+  /* color: #3b5274 */
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-
-    
 }
+

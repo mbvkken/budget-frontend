@@ -119,7 +119,6 @@ export default function SignUp(props) {
             throw new Error('Kunne ikke verifisere - prøv igjen.');
         }
     
-
         localStorage.setItem('bruker_budsjett_token', result2.token);
     
         history.push('/');

@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Link } from 'react-router-dom';
-import ListItem from '../primitives/list'
+import ListBudsjett from '../primitives/list'
 import jwtDecode from 'jwt-decode';
 import { Body, BudsjettIcon, Carousel, Containit, Horiz } from '../App-Styles';
 import { Link } from 'react-router-dom';
@@ -104,7 +104,7 @@ class Hjem extends React.Component {
             .map(({ tittel, budsjettID }) => {
                 return (
 
-                    <ListItem key={budsjettID} tittel={tittel} onClick={() => this.handleClick(budsjettID)} />
+                    <ListBudsjett key={budsjettID} tittel={tittel} onClick={() => this.handleClick(budsjettID)} />
 
 
                     /* <EditDeleteMenu budID={budsjettID} />

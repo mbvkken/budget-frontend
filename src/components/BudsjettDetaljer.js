@@ -91,7 +91,7 @@ class BudsjettLink extends React.Component {
 
 
     return (
-      <div>
+      <div style={{width: '95vw'}}>
         <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
 
         <p>Hello {id}!</p>

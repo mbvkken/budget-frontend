@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 // colors 
 export const primaryGreen = '#5e8c71';
+export const secondaryBlue ='#3b5274'
 // export const primaryGreen = '#25a55f';
 export const offWhite = '#FAF9F6';
 
@@ -37,6 +38,16 @@ overflow-x: hidden;
 width: 100vw;
 /* height: 90vh; */
 `;
+export const HorizontalList2 = styled.div`
+display: grid;
+width: 90vw;
+/* flex-flow: row nowrap; */
+display: grid;
+    grid-auto-columns: 1fr 20px;
+justify-content: space-between;
+align-items: center;
+/* height: 90vh; */
+`;
 export const HorizontalList = styled.div`
 display: flex;
 width: 90vw;
@@ -44,6 +55,7 @@ flex-flow: row nowrap;
 justify-content: space-between;
 align-items: center;
 border-bottom: 2px solid grey;
+/* border-bottom: 2px solid grey; */
 /* height: 90vh; */
 `;
 export const Horiz = styled.div`
@@ -52,6 +64,7 @@ width: 100%;
 flex-flow: row nowrap;
 justify-content: center;
 align-items: center;
+margin: 5px;
 /* height: 90vh; */
 `;
 
@@ -104,17 +117,24 @@ display: flex;
 export const BudsjettIcon = styled.div`
     flex: 0 0 auto;
 margin: 5px;
-border: 4px solid red;
-    border-radius: 5px;
-    height: 10em;
-    width: 10em;
+border: 4px solid ${secondaryBlue};
+box-sizing: border-box;
+    border-radius: 10px;
+    height: 8em;
+    width: 8em;
     display: grid;
-    place-items: center;
+    /* grid-auto-rows: 60% 40%; */
+place-items: center;
+    /* flex-direction: column;
+    align-items: center;
+    justify-content: center; */
+
     /* background-color: pink; */
     /* box-shadow: 2px 2px;  */
     `;
 
 export const Containit = styled.div`
 width: 90vw;
+
 
 `;
