@@ -36,6 +36,7 @@ function App() {
         <Header> <h1 
           style = {{letterSpacing: '0.1em',
                   fontFamily: 'Ubuntu, sans-serif'
+          
                   }}>Mynt.</h1></Header>
 
         <PageContain>

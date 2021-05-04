@@ -58,8 +58,8 @@ class BudsjettOpprett extends React.Component {
             //     return;
             //   }
             const newBudget = await createNewBudget(budsjett.tittel, budsjett.shared, epost);
-
-            history.push('/budsjett-detaljer/:budsjettid');
+console.log(newBudget)
+            history.push('/budsjett-detaljer');
         } catch (error) {
             this.setState({ error });
         }
@@ -91,7 +91,8 @@ class BudsjettOpprett extends React.Component {
 
         return (
             <div>
-                <Typography variant="h4" style={{margin: "2em 0em"}}>Lag et nytt budsjett</Typography>
+                <h1 style={{margin: "2em 0em",fontFamily: 'Ubuntu',
+    fontWeight: "400" }}>Lag et nytt budsjett</h1>
 
                 <form>
                     <div>
