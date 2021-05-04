@@ -64,12 +64,11 @@ class Hjem extends React.Component {
         }
     }
 
-    handleClick(budsjettObj) {
+    handleClick(id) {
         const { history } = this.props;
         const { budsjett } = this.state;
-        localStorage.setItem('currentBudget', JSON.stringify(budsjettObj));
-        console.log(budsjettObj);
-        history.push("/budsjett-detaljer")
+        console.log(budsjett);
+        history.push("/budsjett-detaljer/" + id)
 
     }
 
@@ -113,10 +112,10 @@ place-items: center;
         const budsjettElementer = budsjett
             .map(({ tittel, budsjettID }) => {
                 return (
-                    <BudsjettIcon key={budsjettID} onClick={() => this.handleClick({ budsjettID, tittel })}>
+                    <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
 
                         <Centered>
-                            <KrIcon />
+                            <KrIcon/>
 
                             <h3 style={{ margin: "0" }}>{tittel}</h3>
                         </Centered>

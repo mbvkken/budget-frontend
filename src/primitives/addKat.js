@@ -46,10 +46,10 @@ export default function TransitionsModal(props) {
     event.preventDefault();
 
     try {
-      await opprettNyKategori(tittel, props.budID);
+      await opprettNyKategori(tittel, props.katID);
     } catch (error) {
     }
-    const newKat = {ID: 5,budsjettID:props.budID, tittel: tittel }
+    // testfunc();
     handleClose();
   };
 
