@@ -18,7 +18,8 @@ class BudsjettLink extends React.Component {
 
     this.state = {
       overallSum: '',
-      currentBudget: {},
+      currentBudgetID: '',
+      currentBudgetName: '',
       activeKat: '',
       isLoading: false,
       error: null,
@@ -43,15 +44,19 @@ class BudsjettLink extends React.Component {
 
   async populateKats() {
     const unparsed = localStorage.getItem('currentBudget');
-    const currentBudget = JSON.parse(unparsed)
-    const id = currentBudget.budsjettID
-    this.setState({currentBudget:currentBudget })
-
+    
+    const budget = JSON.parse(unparsed)
+    await this.setState({currentBudgetID:budget.budsjettID,currentBudgetName:budget.tittel })
+// const {currentBudget} = this.state;
+    const id = this.state.currentBudgetID;
+    console.log("othertest! "+ this.state.currentBudgetID)
+    
     ;
-   
+    
     try {
       this.setState({ isLoading: true });
-      const kats = await getKatsByBudsjettID(id);
+      console.log(id)
+      const kats = await getKatsByBudsjettID(budget.budsjettID);
       this.setState({ allKatsByID: kats, isLoading: false });
       // console.log(this.state.allKatsByID)
     } catch (error) {
@@ -83,8 +88,8 @@ class BudsjettLink extends React.Component {
 }
 
   render() {
-    const id = this.state.currentBudget.budsjettID;
-    const tittel = this.state.currentBudget.tittel
+    const id = this.state.currentBudgetID;
+    const tittel = this.state.currentBudgetName
 
     const { kat, allKatsByID} = this.state;
 
@@ -108,7 +113,7 @@ class BudsjettLink extends React.Component {
         <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
 
         <h1>{tittel}</h1>
-<SimpleModal budID={this.props.match.params.id}/>       
+<SimpleModal budID={this.state.currentBudgetID}/>       
         {KatsElementer}              
       </div>
 
