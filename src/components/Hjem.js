@@ -64,11 +64,13 @@ class Hjem extends React.Component {
         }
     }
 
-    handleClick(id) {
+    handleClick(budsjettObj) {
         const { history } = this.props;
         const { budsjett } = this.state;
-        console.log(budsjett);
-        history.push("/budsjett-detaljer/" + id)
+        localStorage.setItem('currentBudget', JSON.stringify(budsjettObj));
+        console.log(budsjettObj);
+        history.push("/budsjett-detaljer")
+
     }
 
     render() {
@@ -110,7 +112,7 @@ class Hjem extends React.Component {
         const budsjettElementer = budsjett
             .map(({ tittel, budsjettID }) => {
                 return (
-                    <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
+                    <BudsjettIcon key={budsjettID} onClick={() => this.handleClick({ budsjettID, tittel })}>
 
                         <Centered>
                             <KrIcon />

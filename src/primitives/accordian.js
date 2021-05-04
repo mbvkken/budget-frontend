@@ -26,10 +26,17 @@ const useStyles = makeStyles((theme) => ({
 export default function ControlledAccordions(props) {
     const classes = useStyles();
     const [expanded, setExpanded] = React.useState(false);
+    const [totalSum, setTotalSum] = React.useState('');
 
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+
+
+// function getTotalSum(posts){
+//     const summedUp =(posts.reduce((a, b) => a + (parseInt(b.sum) || 0), 0))
+//     this.setState({totalSum: summedUp})
+//   }
 
     return (
         <div className={classes.root}>
@@ -40,12 +47,12 @@ export default function ControlledAccordions(props) {
                     id="panel1bh-header"
                 >
                     <Typography className={classes.heading}>{props.named}</Typography>
-                    <Typography className={classes.secondaryHeading}>I am an accordion</Typography>
+                    <Typography className={classes.secondaryHeading}>{totalSum}</Typography>
                     <EditKat katid={props.katid}/>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Typography>
-                        <Katdiv title={props.named} katid={props.katid} />
+                        <Katdiv title={props.named} katid={props.katid} setSum={setTotalSum} />
                      </Typography>
                 </AccordionDetails>
             </Accordion>

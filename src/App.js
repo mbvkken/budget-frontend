@@ -49,7 +49,7 @@ function App() {
 
             {/* Budsjett */}
             <Route path="/budsjett-oversikt" component={BudsjettOversikt} />
-            <Route path="/budsjett-detaljer/:id" render={(props)=>(<BudsjettLink {...props}/>)}/>
+            <Route path="/budsjett-detaljer" component={BudsjettLink} />
             <Route path="/budsjett/:budsjettid" component={null} />
             <Route path="/budsjett-opprett/" component={BudsjettOpprett} />
             <Route path="/budsjett-endre/:budsjettid" component={null}/>
@@ -60,7 +60,7 @@ function App() {
             {/** Profil */}
             <Route path="/profil/:epost" component={Profil} />
           </Switch>
- 
+ {/* :id" render={(props)=>(<BudsjettLink {...props}/>)} */}
 
         </PageContain>
 

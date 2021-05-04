@@ -36,9 +36,10 @@ class Hjem extends React.Component {
             session: payload,
         }
     }
-
+    
     async componentDidMount() {
         await this.populateBudgets();
+        // console.log(budID);
     }
 
 
