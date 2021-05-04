@@ -40,7 +40,7 @@ width: 100vw;
 `;
 export const HorizontalList2 = styled.div`
 display: grid;
-width: 90vw;
+min-width: 100%;
 /* flex-flow: row nowrap; */
 display: grid;
     grid-auto-columns: 1fr 20px;
@@ -50,7 +50,7 @@ align-items: center;
 `;
 export const HorizontalList = styled.div`
 display: flex;
-width: 90vw;
+min-width: 300px; //noooo
 flex-flow: row nowrap;
 justify-content: space-between;
 align-items: center;
@@ -60,7 +60,7 @@ border-bottom: 2px solid grey;
 `;
 export const Horiz = styled.div`
 display: flex;
-width: 100%;
+min-width: 100%;
 flex-flow: row nowrap;
 justify-content: center;
 align-items: center;

@@ -12,7 +12,7 @@ import BudsjettCarousel from '../primitives/Carousel'
 import HomeIcon from '@material-ui/icons/Home';
 import { red } from '@material-ui/core/colors';
 import styled from 'styled-components';
-
+import {ReactComponent as Kr} from '../kr.svg' 
 
 
 
@@ -63,11 +63,12 @@ class Hjem extends React.Component {
         }
     }
 
-    handleClick(id) {
+    handleClick(budsjettObj) {
         const { history } = this.props;
         const { budsjett } = this.state;
-        console.log(budsjett);
-        history.push("/budsjett-detaljer/" + id)
+        localStorage.setItem('currentBudget', JSON.stringify(budsjettObj));
+        console.log(budsjettObj);
+        history.push("/budsjett-detaljer/" + budsjettObj.budsjettID)
 
     }
 
@@ -112,10 +113,10 @@ place-items: center;
             .map(({ tittel, budsjettID }) => {
                 return (
                    
-                            <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
+                            <BudsjettIcon key={budsjettID} onClick={() => this.handleClick({budsjettID, tittel})}>
                                 
                                 <Centered>
-                                <HomeIcon style={{ fontSize: 60, color: secondaryBlue }} />
+                                <Kr style={{ fontSize: 60, color: secondaryBlue }} />
                                
                                 <h3 style={{margin: "0"}}>{tittel}</h3>                               
                                 </Centered>

@@ -17,6 +17,8 @@ class BudsjettLink extends React.Component {
     super(props);
 
     this.state = {
+      overallSum: '',
+      currentBudget: {},
       activeKat: '',
       isLoading: false,
       error: null,
@@ -32,11 +34,20 @@ class BudsjettLink extends React.Component {
     await this.populateKats();
     console.log(this.state.allKatsByID)
     // console.trace('hei');
+    
   }
 
+   updateOverallSum(newSum){
+    this.setState({overallSum:newSum})
+    }
 
   async populateKats() {
-    const id = this.props.match.params.id;
+    const unparsed = localStorage.getItem('currentBudget');
+    const currentBudget = JSON.parse(unparsed)
+    const id = currentBudget.budsjettID
+    this.setState({currentBudget:currentBudget })
+
+    ;
    
     try {
       this.setState({ isLoading: true });
@@ -51,7 +62,7 @@ class BudsjettLink extends React.Component {
 
 
   async handleDeleteClick() {
-    const id = this.props.match.params.id;
+    const id = this.state.currentBudget.budsjettID;
     console.log(id)
     if (!window.confirm('u sure?')) {
       return;
@@ -68,11 +79,13 @@ class BudsjettLink extends React.Component {
 
   async handleClicker(ID) {
   await this.setState({activeKat: ID})
-  console.log(this.state.activeKat)
+  // console.log(this.state.activeKat)
 }
 
   render() {
-    const id = this.props.match.params.id;
+    const id = this.state.currentBudget.budsjettID;
+    const tittel = this.state.currentBudget.tittel
+
     const { kat, allKatsByID} = this.state;
 
 
@@ -80,9 +93,9 @@ class BudsjettLink extends React.Component {
       .map(({tittel, ID}) => {
         // console.log('this is '+ID)
         return (
-          <Horiz  key={ID} onClick={()=>this.handleClicker(ID)}>
-            <ControlledAccordions named={tittel} katid={ID}/>
-            <EdDelButton katid={'heyyy' /*ID*/} />
+          <Horiz  key={ID} onClick={()=>this.handleClicker(ID)} style={{width: "95%"}}>
+            <ControlledAccordions named={tittel} katid={ID} setSum={this.updateOverallSum}/>
+            <EdDelButton katid={ID} />
           </Horiz>
 
         )
@@ -94,8 +107,8 @@ class BudsjettLink extends React.Component {
       <div style={{width: '95vw'}}>
         <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
 
-        <p>Hello {id}!</p>
-<SimpleModal katID={this.props.match.params.id}/>       
+        <h1>{tittel}</h1>
+<SimpleModal budID={this.props.match.params.id}/>       
         {KatsElementer}              
       </div>
 
