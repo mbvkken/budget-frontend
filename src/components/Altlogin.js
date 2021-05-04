@@ -91,11 +91,8 @@ console.log(epost, passord)
             throw new Error('Kunne ikke verifisere - prøv igjen.');
 
         }
-       
-     
         localStorage.setItem('bruker_budsjett_token', result.token);
-
-        // history.push('/');
+        history.push('/');
     } catch (error) {
         await setError( { error } );
         await setStatus({loginStatus: false}); 

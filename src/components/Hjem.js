@@ -1,5 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
+import {primaryGreen, secondaryBlue} from '../App-Styles'
 import { Body, BudsjettIcon, Carousel, Containit } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
@@ -8,6 +9,9 @@ import { Typography } from '@material-ui/core'
 import { EditBud } from '../primitives/editDeleteElements';
 import EditDeleteMenu from '../primitives/edDelMenu';
 import BudsjettCarousel from '../primitives/Carousel'
+import HomeIcon from '@material-ui/icons/Home';
+import { red } from '@material-ui/core/colors';
+import styled from 'styled-components';
 
 
 
@@ -100,15 +104,21 @@ class Hjem extends React.Component {
                 <div>Laster inn budsjetter...</div>
             )
         }
-
+const Centered = styled.div`
+display: grid;
+place-items: center;
+`
         const budsjettElementer = budsjett
             .map(({ tittel, budsjettID }) => {
                 return (
                    
                             <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
-                                <div>{tittel}
-                                 
-                            {/*budsjettID*/}</div>
+                                
+                                <Centered>
+                                <HomeIcon style={{ fontSize: 60, color: secondaryBlue }} />
+                               
+                                <h3 style={{margin: "0"}}>{tittel}</h3>                               
+                                </Centered>
                             </BudsjettIcon>
                             /* <EditDeleteMenu budID={budsjettID} />
                         <EditBud budID={budsjettID} /> */
