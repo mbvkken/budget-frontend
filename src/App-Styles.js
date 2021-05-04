@@ -103,8 +103,8 @@ display: flex;
 
 export const BudsjettIcon = styled.div`
     flex: 0 0 auto;
-margin: 5px;
-border: 4px solid red;
+    margin: 5px;
+    border: 4px solid red;
     border-radius: 5px;
     height: 10em;
     width: 10em;
@@ -115,6 +115,14 @@ border: 4px solid red;
     `;
 
 export const Containit = styled.div`
-width: 90vw;
+  margin: 0 20px;
+  width: 85vw;
+`;
 
+export const Input = styled.input`
+  width: 90%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  font-size: 1em;
+  border: 1px solid #ccc;
 `;

@@ -104,32 +104,30 @@ class Hjem extends React.Component {
         const budsjettElementer = budsjett
             .map(({ tittel, budsjettID }) => {
                 return (
-                   
-                            <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
-                                <div>{tittel}
-                                 
+                    <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
+                        <div>{tittel}
+
                             {/*budsjettID*/}</div>
-                            </BudsjettIcon>
-                            /* <EditDeleteMenu budID={budsjettID} />
-                        <EditBud budID={budsjettID} /> */
-               
+                    </BudsjettIcon>
+                    /* <EditDeleteMenu budID={budsjettID} />
+                <EditBud budID={budsjettID} /> */
                 )
             })
 
         return (
             <div>
-                <h1>Velkommen tilbake, {navn}!</h1>
+                <Typography variant="h4" style={{margin: "1em 20px"}}>Velkommen tilbake, {navn}!</Typography>
                 <div>
-                    <h2>Mine budsjetter</h2>
+                    <Typography variant="h5" style={{margin: "0.5em 20px"}}>Mine budsjetter</Typography>
                     <Containit>
                         <Carousel>
-                    {budsjettElementer}
-                    </Carousel>
+                            {budsjettElementer}
+                        </Carousel>
                     </Containit>
                 </div>
                 <div>
-                    <h2>Mine sparemål</h2>
-                
+                <Typography variant="h5" style={{margin: "0.5em 20px"}}>Mine sparemål</Typography>
+
                     {/* {budsjettElementer} */}
                 </div>
             </div>

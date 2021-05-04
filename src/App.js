@@ -33,7 +33,10 @@ function App() {
 
     <HashRouter>
       <GridContain>
-        <Header> <h1>Mynt</h1></Header>
+        <Header> <h1 
+          style = {{letterSpacing: '0.1em',
+                  fontFamily: 'Ubuntu, sans-serif'
+                  }}>Mynt.</h1></Header>
 
         <PageContain>
 
@@ -45,7 +48,7 @@ function App() {
             <Route path="/budsjett-oversikt" component={BudsjettOversikt} />
             <Route path="/budsjett-detaljer/:id" render={(props)=>(<BudsjettLink {...props}/>)}/>
             <Route path="/budsjett/:budsjettid" component={null} />
-            <Route path="/budsjett-opprett/:budsjettid" component={BudsjettOpprett} />
+            <Route path="/budsjett-opprett/" component={BudsjettOpprett} />
             <Route path="/budsjett-endre/:budsjettid" component={null}/>
             <Route path="/profil/:epost" component={Profil} />
           </Switch>
