@@ -1,11 +1,12 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { Body, PrimaryButton } from '../App-Styles';
+import { Body, offWhite, PrimaryButton } from '../App-Styles';
 import { makeStyles } from '@material-ui/core/styles';
 import Avatar from '@material-ui/core/Avatar';
 import { deepOrange, deepPurple } from '@material-ui/core/colors';
 import { formHelperTextClasses } from '@material-ui/core';
 import { Link } from 'react-router-dom';
+import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
 
 
 
@@ -73,8 +74,19 @@ class Profil extends React.Component {
             justifyContent: 'center'
         }
 
+        const editButton = {
+            width: '92%',
+            fontSize: 'medium'
+        }
+
         const loggUtKnapp = {
-            width: '92%'
+            width: '92%',
+            fontSize: 'medium',
+            marginTop: '0px'
+        }
+
+        const ToolTip = {
+           
         }
 
         return (
@@ -84,12 +96,20 @@ class Profil extends React.Component {
                 </div>
                 <div style = {profilStyleUnder}>
                     <div style={profilKort}>
+                        <h2>Profil</h2>
                         <p>Navn: {navn}</p>
                         <p>Epost: {epost}</p>
+                        <h2>Innstillinger <HelpOutlineIcon style={{fill: `${offWhite}`}}/></h2>
+                        <p>Kjønn: </p>
+                        <p>Årsinntekt: </p>
+                        <p>Bil: fossil/el/ingen</p>
+                        <p>Student: ja/nei</p>
                     </div>
+                    <PrimaryButton style = {editButton}>Rediger brukerinnstillinger</PrimaryButton>
                     <Link to="/loggut">
                         <PrimaryButton style = {loggUtKnapp}>Logg ut</PrimaryButton>
                     </Link>
+
                 </div>
             </div>
         )

@@ -27,7 +27,7 @@ const NavBar = (props) => {
                         <Pluss />
                     </Link>
 
-                    <Link to="/">
+                    <Link to="/sparemaal">
                         <Piggy />
                     </Link>
 

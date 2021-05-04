@@ -1,6 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { primaryGreen, secondaryGreen } from '../App-Styles'
+import { offWhite, primaryGreen, secondaryGreen } from '../App-Styles'
 import { Body, BudsjettIcon, Carousel, Containit } from '../App-Styles';
 import { Link } from 'react-router-dom';
 import { deleteBudget, getBudgetByEpost, newBudget } from '../services/budget';
@@ -8,11 +8,11 @@ import BudsjettOpprett from './BudsjettOpprett';
 import { Typography } from '@material-ui/core'
 import { EditBud } from '../primitives/editDeleteElements';
 import EditDeleteMenu from '../primitives/edDelMenu';
-import BudsjettCarousel from '../primitives/Carousel'
-import HomeIcon from '@material-ui/icons/Home';
+import BudsjettCarousel from '../primitives/Carousel';
 import { red } from '@material-ui/core/colors';
+import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import styled from 'styled-components';
-import { ReactComponent as KrIcon} from '../kr.svg'
+import { ReactComponent as KrIcon } from '../kr.svg'
 
 
 
@@ -69,10 +69,7 @@ class Hjem extends React.Component {
         const { budsjett } = this.state;
         console.log(budsjett);
         history.push("/budsjett-detaljer/" + id)
-
     }
-
-
 
     render() {
         const { id } = this.props;
@@ -106,23 +103,21 @@ class Hjem extends React.Component {
             )
         }
         const Centered = styled.div`
-display: grid;
-place-items: center;
-`
+            display: grid;
+            place-items: center;
+            `;
+
         const budsjettElementer = budsjett
             .map(({ tittel, budsjettID }) => {
                 return (
                     <BudsjettIcon key={budsjettID} onClick={() => this.handleClick(budsjettID)}>
 
                         <Centered>
-                            <KrIcon/>
+                            <KrIcon />
 
-                            <h3 style={{ margin: "0" }}>{tittel}</h3>
+                            <h4 style={{ margin: "0px 0.4em", textAlign: "center" }}>{tittel}</h4>
                         </Centered>
                     </BudsjettIcon>
-                    /* <EditDeleteMenu budID={budsjettID} />
-                <EditBud budID={budsjettID} /> */
-
                 )
             })
 
@@ -134,13 +129,29 @@ place-items: center;
                     <Containit>
                         <Carousel>
                             {budsjettElementer}
+                            <Link to="/budsjett-opprett">
+                                <span>
+                                    <BudsjettIcon>
+                                        <Link to="/budsjett-opprett">
+                                            <AddCircleOutlineIcon style={{ fill: `${secondaryGreen}`, fontSize: "70px" }} />
+                                        </Link>
+                                    </BudsjettIcon>
+                                </span>
+                            </Link>
                         </Carousel>
                     </Containit>
                 </div>
                 <div>
                     <Typography variant="h5" style={{ margin: "0.5em 20px" }}>Mine sparemål</Typography>
+                    <Containit style={{backgroundColor: 'rgba(105, 105, 105, 0.8)'}}>
+                        <div style = {{position: 'absolute', padding: '1.5em', fontSize: '30px', fontWeight: '900', color: `${offWhite}`}}>Kommer snart...</div>
+                        <Carousel>
+                            <BudsjettIcon>
+                                <AddCircleOutlineIcon style={{ fill: `${secondaryGreen}`, fontSize: "70px" }} />
+                            </BudsjettIcon>
+                        </Carousel>
+                    </Containit>
 
-                    {/* {budsjettElementer} */}
                 </div>
             </div>
         )
