@@ -1,31 +1,35 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import { Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import { PrimaryButton } from '../App-Styles';
-import { opprettNyKategori, getKatsByBudsjettID, endreKategori } from '../services/kategori';
-import { updateBudget} from '../services/budget';
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import { Fab } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import { PrimaryButton } from "../App-Styles";
+import {
+  opprettNyKategori,
+  getKatsByBudsjettID,
+  endreKategori,
+} from "../services/kategori";
+import { updateBudget } from "../services/budget";
 
-import Input from '@material-ui/core/Input';
+import Input from "@material-ui/core/Input";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-          margin: theme.spacing(1),
-        },
-      },
-    modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    borderRadius: '20px',
+    border: "2px solid #000",
+    borderRadius: "20px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -35,7 +39,7 @@ export default function EditKat(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(props.isOpen);
   const [tittel, setTittel] = useState("");
-  console.log(props.katid)
+  // console.log(props.katid);
   const handleOpen = () => {
     setOpen(true);
   };
@@ -45,20 +49,18 @@ export default function EditKat(props) {
   };
 
   async function handleNewKatClick(event) {
-    console.log(tittel, props.katid)
+    console.log(tittel, props.katid);
     event.preventDefault();
     handleClose();
     try {
       await endreKategori(tittel, props.katid);
-    //   window.location.reload(false);
-    } catch (error) {
-    }
-  };
+      //   window.location.reload(false);
+    } catch (error) {}
+  }
 
   return (
     <div>
-   
- {/* <Fab color="primary" aria-label="add" onClick={handleOpen}>
+      {/* <Fab color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
         </Fab> */}
 
@@ -75,29 +77,32 @@ export default function EditKat(props) {
         }}
       >
         <Fade in={open}>
-           <div className={classes.paper}>
-       
+          <div className={classes.paper}>
             <form>
-       
-            <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} />
+              <Input
+                placeholder="Tittel"
+                value={tittel}
+                onChange={(e) => setTittel(e.target.value)}
+              />
 
-          <div>
-            <PrimaryButton onClick={handleNewKatClick}>Endre Kategori</PrimaryButton>
+              <div>
+                <PrimaryButton onClick={handleNewKatClick}>
+                  Endre Kategori
+                </PrimaryButton>
+              </div>
+            </form>
           </div>
-        </form>
-        </div>
         </Fade>
       </Modal>
     </div>
   );
 }
 
-
 export function EditBud(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const [tittel, setTittel] = useState("");
-  
+
   const handleOpen = () => {
     setOpen(true);
   };
@@ -107,22 +112,20 @@ export function EditBud(props) {
   };
 
   async function handleBudClick(event) {
-    console.log(tittel, props.budID)
+    console.log(tittel, props.budID);
     event.preventDefault();
     handleClose();
     try {
       await updateBudget(tittel, props.budID);
-    //   window.location.reload(false);
-    } catch (error) {
-    }
-  };
+      //   window.location.reload(false);
+    } catch (error) {}
+  }
 
   return (
     <div>
-   
- <Fab color="primary" aria-label="add" onClick={handleOpen}>
-          <AddIcon />
-        </Fab>
+      <Fab color="primary" aria-label="add" onClick={handleOpen}>
+        <AddIcon />
+      </Fab>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -137,17 +140,21 @@ export function EditBud(props) {
         }}
       >
         <Fade in={open}>
-           <div className={classes.paper}>
-       
+          <div className={classes.paper}>
             <form>
-       
-            <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} />
+              <Input
+                placeholder="Tittel"
+                value={tittel}
+                onChange={(e) => setTittel(e.target.value)}
+              />
 
-          <div>
-            <PrimaryButton onClick={handleBudClick}>Endre Budsjett</PrimaryButton>
+              <div>
+                <PrimaryButton onClick={handleBudClick}>
+                  Endre Budsjett
+                </PrimaryButton>
+              </div>
+            </form>
           </div>
-        </form>
-        </div>
         </Fade>
       </Modal>
     </div>
