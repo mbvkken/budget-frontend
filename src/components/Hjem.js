@@ -145,8 +145,7 @@ class Hjem extends React.Component {
                 </div>
                 <div>
                     <Typography variant="h5" style={{ margin: "0.5em 20px" }}>Mine sparemål</Typography>
-                    <Containit style={{backgroundColor: 'rgba(105, 105, 105, 0.8)'}}>
-                        <div style = {{position: 'absolute', padding: '1.5em', fontSize: '30px', fontWeight: '900', color: `${offWhite}`}}>Kommer snart...</div>
+                    <Containit>
                         <Carousel>
                             <BudsjettIcon>
                                 <AddCircleOutlineIcon style={{ fill: `${secondaryGreen}`, fontSize: "70px" }} />

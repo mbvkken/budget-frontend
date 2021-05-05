@@ -1,14 +1,16 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
 import { Body, offWhite, PrimaryButton } from '../App-Styles';
-import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import { deepOrange, deepPurple } from '@material-ui/core/colors';
-import { formHelperTextClasses } from '@material-ui/core';
+import { deepOrange } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
-
-
+import {
+    Tooltip,
+    ClickAwayListener,
+    formHelperTextClasses,
+    makeStyles,
+    Avatar
+} from '@material-ui/core';
 
 class Profil extends React.Component {
     constructor(props) {
@@ -30,16 +32,19 @@ class Profil extends React.Component {
             error: null,
             message: '',
             session: payload,
+            open: false
         }
     }
 
-    render(){
+    render() {
         const {
             session: {
                 navn,
                 epost
             } = {}
         } = this.state;
+
+        const { open } = this.state;
 
         const profilStyleOver = {
             backgroundColor: '#FAF9F6',
@@ -85,29 +90,35 @@ class Profil extends React.Component {
             marginTop: '0px'
         }
 
-        const ToolTip = {
-           
+        const handleTooltipClose = () => {
+            this.state.open = false;
+        }
+
+        const handleTooltipOpen = () => {
+            this.state.open = true;
         }
 
         return (
             <div style={profilSide}>
-                <div style = {profilStyleOver}>
+                <div style={profilStyleOver}>
                     <Avatar style={profilAvatar}>{navn}</Avatar>
                 </div>
-                <div style = {profilStyleUnder}>
+                <div style={profilStyleUnder}>
                     <div style={profilKort}>
                         <h2>Profil</h2>
                         <p>Navn: {navn}</p>
                         <p>Epost: {epost}</p>
-                        <h2>Innstillinger <HelpOutlineIcon style={{fill: `${offWhite}`}}/></h2>
+                        <h2 style={{ marginBottom: '0.1em' }}>Innstillinger</h2>
+                        <p style={{ fontStyle: 'italic', marginTop: '0px', paddingLeft: '0.1em' }}>Info blir brukt i SIFOs referansebudsjett</p>
                         <p>Kjønn: </p>
                         <p>Årsinntekt: </p>
-                        <p>Bil: fossil/el/ingen</p>
-                        <p>Student: ja/nei</p>
+                        <p>Antall fossilbil(er): </p>
+                        <p>Antall elbil(er): </p>
+                        <p>Student: </p>
                     </div>
-                    <PrimaryButton style = {editButton}>Rediger brukerinnstillinger</PrimaryButton>
+                    <PrimaryButton style={editButton}>Rediger brukerinnstillinger</PrimaryButton>
                     <Link to="/loggut">
-                        <PrimaryButton style = {loggUtKnapp}>Logg ut</PrimaryButton>
+                        <PrimaryButton style={loggUtKnapp}>Logg ut</PrimaryButton>
                     </Link>
 
                 </div>
