@@ -98,7 +98,11 @@ class Hjem extends React.Component {
 
     return (
       <div>
-        <h2>Mine budsjetter</h2>
+        <h1
+          style={{ margin: "2em 0em", fontFamily: "Ubuntu", fontWeight: "400" }}
+        >
+          Mine budsjetter
+        </h1>{" "}
         {/* <Horiz> */}
         {budsjettElementer}
         {/* </Horiz> */}

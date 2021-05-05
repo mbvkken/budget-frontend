@@ -1,5 +1,9 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import {
+  makeStyles,
+  createMuiTheme,
+  MuiThemeProvider,
+} from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -57,7 +61,11 @@ export default function TransitionsModal(props) {
 
   return (
     <div>
-      <Fab color="primary" aria-label="add" onClick={handleOpen}>
+      <Fab
+        style={{ backgroundColor: "#3C5948", color: "#FAF9F6" }}
+        aria-label="add"
+        onClick={handleOpen}
+      >
         <AddIcon />
       </Fab>
 

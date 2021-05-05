@@ -39,7 +39,7 @@ export default function EditKat(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(props.isOpen);
   const [tittel, setTittel] = useState("");
-  console.log(props.katid);
+  // console.log(props.katid);
   const handleOpen = () => {
     setOpen(true);
   };

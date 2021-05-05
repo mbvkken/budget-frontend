@@ -7,18 +7,17 @@ import {
   /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
 } from "../services/kategori";
 import { PrimaryButton, Horiz } from "../App-Styles";
-
 import Katdiv from "./Kategori";
 import SimpleModal from "../primitives/addKat";
-import ControlledAccordions from "../primitives/accordian";
+import { ControlledAccordions, FakeAccordion } from "../primitives/accordian";
 import EdDelButton from "../primitives/edDelMenu.js";
+import styled from "styled-components";
 
 class BudsjettLink extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      overallSum: "",
+      overallSum: [],
       currentBudgetID: "",
       currentBudgetName: "",
       activeKat: "",
@@ -34,12 +33,8 @@ class BudsjettLink extends React.Component {
 
   async componentDidMount() {
     await this.populateKats();
-    console.log(this.state.allKatsByID);
+    // console.log(this.state.allKatsByID);
     // console.trace('hei');
-  }
-
-  updateOverallSum(newSum) {
-    this.setState({ overallSum: newSum });
   }
 
   async populateKats() {
@@ -85,6 +80,14 @@ class BudsjettLink extends React.Component {
     await this.setState({ activeKat: ID });
     // console.log(this.state.activeKat)
   }
+  async AllKatSum(sum) {
+    const { overallSum } = this.state;
+    await this.setState({
+      overallSum: [...this.state.overallSum, sum],
+    });
+
+    console.log(overallSum);
+  }
 
   render() {
     const id = this.state.currentBudgetID;
@@ -103,20 +106,39 @@ class BudsjettLink extends React.Component {
           <ControlledAccordions
             named={tittel}
             katid={ID}
-            setSum={this.updateOverallSum}
+            setMainSum={this.AllKatSum.bind(this)}
           />
           <EdDelButton katid={ID} />
         </Horiz>
       );
     });
+    const BottomRight = styled.div`
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      z-index: 999;
+    `;
 
+    const toDisplay = this.state.overallSum
+      .filter((item) => item)
+      .reduce((a, b) => a + b, 0);
+    // console.log(toDisplay);
     return (
       <div style={{ width: "95vw" }}>
         <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
-
-        <h1>{tittel}</h1>
-        <SimpleModal budID={this.state.currentBudgetID} />
+        <h1
+          style={{ margin: "1em 0em", fontFamily: "Ubuntu", fontWeight: "400" }}
+        >
+          {tittel}
+          {toDisplay}
+        </h1>
+        <button onClick={() => this.AllKatSum(5)}>clickme</button>
+        {/* <h1>{tittel}</h1> */}
+        {/* <FakeAccordion /> */}
         {KatsElementer}
+        <BottomRight>
+          <SimpleModal budID={this.state.currentBudgetID} />
+        </BottomRight>
       </div>
     );
   }

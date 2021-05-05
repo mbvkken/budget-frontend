@@ -61,10 +61,8 @@ export default class Katdiv extends React.Component {
     });
     return (
       <div>
-        {postsElementer}
-        {/* <PutinCorner> */}
         <AddPost katid={id} />
-        {/* </PutinCorner> */}
+        {postsElementer}
       </div>
     );
   }

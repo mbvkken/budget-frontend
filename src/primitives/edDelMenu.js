@@ -26,7 +26,7 @@ export default function EditDeleteMenu(props) {
 
   function toggleChild() {
     setOpen(!open);
-    console.log(open);
+    // console.log(open);
   }
 
   return (
