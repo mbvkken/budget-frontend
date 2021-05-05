@@ -2,7 +2,7 @@ import React from 'react';
 // import { Nav, Body } from '../App-Styles';
 // import { Link } from 'react-router-dom';
 import { deleteBudget } from '../services/budget';
-import { opprettNyKategori, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID } from '../services/kategori';
+import { opprettNyKategori, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID, sletteKategori } from '../services/kategori';
 import { PrimaryButton, Horiz, SecondaryButton, deleteRed } from '../App-Styles';
 
 import Katdiv from './Kategori'
@@ -66,8 +66,9 @@ class BudsjettLink extends React.Component {
   }
 
 
-  async handleDeleteClick() {
-    const id = this.state.currentBudget.budsjettID;
+  async handleBudgetDeleteClick() {
+
+    const id = this.state.currentBudgetID;
     console.log(id)
     if (!window.confirm('u sure?')) {
       return;
@@ -79,6 +80,22 @@ class BudsjettLink extends React.Component {
       history.push('/');
     } catch (error) {
       console.log('sletting av budsjett feilet...', error);
+    }
+  }
+
+  async handleCategoryDeleteClick() {
+    const id = this.state.allKatsByID;
+    console.log(id);
+    if (!window.confirm('u sure?')) {
+      return;
+    }
+    
+    try {
+      await sletteKategori(id);
+      const { history } = this.props;
+      history.push('/budsjett-detaljer');
+    } catch (error) {
+      console.log('sletting av kategori feilet...', error)
     }
   }
 
@@ -99,8 +116,12 @@ class BudsjettLink extends React.Component {
         // console.log('this is '+ID)
         return (
           <Horiz  key={ID} onClick={()=>this.handleClicker(ID)} style={{width: "95%"}}>
+
             <ControlledAccordions named={tittel} katid={ID} setSum={this.updateOverallSum}/>
-            <EdDelButton katid={ID} />
+            <PrimaryButton katid={ID}>Endre kategori</PrimaryButton>
+            <SecondaryButton katid={ID} onClick={this.handleCategoryDeleteClick}>Slett kategori</SecondaryButton>
+
+            {/* <EdDelButton katid={ID} /> */}
           </Horiz>
 
         )
@@ -117,7 +138,7 @@ class BudsjettLink extends React.Component {
           <SimpleModal budID={this.state.currentBudgetID}/>       
             {KatsElementer}
             <div style={{display: 'flex', justifyContent: 'center', placeItems: 'center'}}>
-          <SecondaryButton  onClick={this.handleDeleteClick.bind(this)}>Slett budsjett</SecondaryButton>
+          <SecondaryButton  onClick={this.handleBudgetDeleteClick.bind(this)}>Slett budsjett</SecondaryButton>
           </div>
       </div>
 
