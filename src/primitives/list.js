@@ -57,3 +57,15 @@ export function ListPosts(props) {
     </Horiz>
   );
 }
+// return(
+
+//   <HorizontalList >
+// <p>{props.tittel}</p>
+// <p>{props.sum}</p>
+
+// {/* <button onClick={handleToggle}>click</button> */}
+// <EditDeleteMenu  budID={props.key}/>
+// </HorizontalList>
+// )
+
+// }

@@ -77,14 +77,11 @@ class BudsjettOpprett extends React.Component {
     if (isLoading) {
       return <div>Laster inn budsjetter...</div>;
     }
-
     return (
       <div>
-        <h1
-          style={{ margin: "2em 0em", fontFamily: "Ubuntu", fontWeight: "400" }}
-        >
+        <Typography variant="h4" style={{ margin: "2em 0em" }}>
           Lag et nytt budsjett
-        </h1>
+        </Typography>
 
         <form>
           <div>
@@ -124,6 +121,53 @@ class BudsjettOpprett extends React.Component {
       </div>
     );
   }
+
+  //     return (
+  //       <div>
+  //         <h1
+  //           style={{ margin: "2em 0em", fontFamily: "Ubuntu", fontWeight: "400" }}
+  //         >
+  //           Lag et nytt budsjett
+  //         </h1>
+
+  //         <form>
+  //           <div>
+  //             <label>
+  //               Tittel:
+  //               <Input
+  //                 type="text"
+  //                 name="tittel"
+  //                 value={budsjett.tittel}
+  //                 placeholder="Budsjettnavn"
+  //                 onChange={this.handleInputChange.bind(this, "tittel")}
+  //               />
+  //             </label>
+  //           </div>
+  //           <div>
+  //             <label>
+  //               Del med:
+  //               <Input
+  //                 type="text"
+  //                 name="shared"
+  //                 value={budsjett.shared}
+  //                 placeholder="Epost"
+  //                 onChange={this.handleInputChange.bind(this, "shared")}
+  //               />
+  //               <p style={{ margin: "0px" }}>Separer med ","</p>
+  //             </label>
+  //           </div>
+  //           <div style={{ display: "grid", placeItems: "center" }}>
+  //             <PrimaryButton
+  //               style={{ width: "100%" }}
+  //               onClick={this.handleNewBudgetClick.bind(this)}
+  //             >
+  //               Legg til nytt budsjett
+  //             </PrimaryButton>
+  //           </div>
+  //         </form>
+  //       </div>
+  //     );
+  //   }
 }
 
 export default BudsjettOpprett;

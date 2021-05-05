@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  makeStyles,
-  createMuiTheme,
-  MuiThemeProvider,
-} from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
@@ -61,13 +57,15 @@ export default function TransitionsModal(props) {
 
   return (
     <div>
-      <Fab
-        style={{ backgroundColor: "#3C5948", color: "#FAF9F6" }}
-        aria-label="add"
-        onClick={handleOpen}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginBottom: "10px",
+        }}
       >
-        <AddIcon />
-      </Fab>
+        <PrimaryButton onClick={handleOpen}>Legg til ny kategori</PrimaryButton>
+      </div>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -92,7 +90,7 @@ export default function TransitionsModal(props) {
 
               <div>
                 <PrimaryButton onClick={handleNewKatClick}>
-                  Legg til nytt Kategori
+                  Legg til ny kategori
                 </PrimaryButton>
               </div>
             </form>

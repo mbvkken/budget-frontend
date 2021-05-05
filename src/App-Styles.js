@@ -4,6 +4,7 @@ import styled from "styled-components";
 export const primaryGreen = "#5e8c71";
 export const secondaryGreen = "#3C5948";
 export const offWhite = "#FAF9F6";
+export const deleteRed = "#eb4034";
 
 // elements
 // header og nav
@@ -83,6 +84,25 @@ export const PageContain = styled.div`
 // buttons
 export const PrimaryButton = styled.button`
   background-color: ${primaryGreen};
+  border-style: none;
+  color: ${offWhite};
+  margin: 1em;
+  padding: 1em 2em;
+  border-radius: 2em;
+  transition: 0.1s;
+  &:active {
+    background-color: #7faa91;
+    /* border: 0; */
+    /* transform: scale(.99); */
+    padding: 0.9em 1.9em;
+  }
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const SecondaryButton = styled.button`
+  background-color: ${deleteRed};
   border-style: none;
   color: ${offWhite};
   margin: 1em;
