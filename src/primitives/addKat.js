@@ -57,9 +57,7 @@ export default function TransitionsModal(props) {
     <div>
 
         <div style={{display: 'flex', justifyContent: 'center', marginBottom: '10px'}}>
-          <Fab color="primary" aria-label="add" onClick={handleOpen}>
-            <AddIcon />
-          </Fab>
+          <PrimaryButton onClick={handleOpen}>Legg til ny kategori</PrimaryButton>
         </div>
 
       <Modal

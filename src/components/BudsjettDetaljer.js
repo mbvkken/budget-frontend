@@ -112,16 +112,12 @@ class BudsjettLink extends React.Component {
       
       <div style={{width: '95vw'}}>
 
-        <h1 style={{display: 'flex', justifyContent: 'center', placeItems: 'center'}}> {tittel} 
-
-          {/* <SecondaryButton onClick={this.handleDeleteClick.bind(this)}>DELETE</SecondaryButton> */}
-        
-        </h1>
+        <h1 style={{display: 'flex', justifyContent: 'center', placeItems: 'center'}}> {tittel}</h1>
 
           <SimpleModal budID={this.state.currentBudgetID}/>       
-          {KatsElementer}
-          <div style={{display: 'flex', justifyContent: 'center', placeItems: 'center'}}>
-          <SecondaryButton  onClick={this.handleDeleteClick.bind(this)}>DELETE</SecondaryButton>
+            {KatsElementer}
+            <div style={{display: 'flex', justifyContent: 'center', placeItems: 'center'}}>
+          <SecondaryButton  onClick={this.handleDeleteClick.bind(this)}>Slett budsjett</SecondaryButton>
           </div>
       </div>
 
