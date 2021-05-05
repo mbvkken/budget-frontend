@@ -5,15 +5,8 @@ import { deleteBudget } from "../services/budget";
 import {
   opprettNyKategori,
   /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
-  sletteKategori,
 } from "../services/kategori";
-import {
-  PrimaryButton,
-  Horiz,
-  SecondaryButton,
-  deleteRed,
-} from "../App-Styles";
-
+import { PrimaryButton, Horiz } from "../App-Styles";
 import Katdiv from "./Kategori";
 import SimpleModal from "../primitives/addKat";
 import ControlledAccordions from "../primitives/accordian";
@@ -67,8 +60,8 @@ class BudsjettLink extends React.Component {
     }
   }
 
-  async handleBudgetDeleteClick() {
-    const id = this.state.currentBudgetID;
+  async handleDeleteClick() {
+    const id = this.state.currentBudget.budsjettID;
     console.log(id);
     if (!window.confirm("u sure?")) {
       return;
@@ -83,20 +76,9 @@ class BudsjettLink extends React.Component {
     }
   }
 
-  async handleCategoryDeleteClick() {
-    const id = this.state.allKatsByID;
-    console.log(id);
-    if (!window.confirm("u sure?")) {
-      return;
-    }
-
-    try {
-      await sletteKategori(id);
-      const { history } = this.props;
-      history.push("/budsjett-detaljer");
-    } catch (error) {
-      console.log("sletting av kategori feilet...", error);
-    }
+  async handleClicker(ID) {
+    await this.setState({ activeKat: ID });
+    // console.log(this.state.activeKat)
   }
   async AllKatSum(sum) {
     const { overallSum } = this.state;
@@ -105,11 +87,6 @@ class BudsjettLink extends React.Component {
     });
 
     console.log(overallSum);
-  }
-
-  async handleClicker(ID) {
-    await this.setState({ activeKat: ID });
-    // console.log(this.state.activeKat)
   }
 
   render() {
@@ -129,52 +106,39 @@ class BudsjettLink extends React.Component {
           <ControlledAccordions
             named={tittel}
             katid={ID}
-            setSum={this.updateOverallSum}
+            setMainSum={this.AllKatSum.bind(this)}
           />
-          <PrimaryButton katid={ID}>Endre kategori</PrimaryButton>
-          <SecondaryButton katid={ID} onClick={this.handleCategoryDeleteClick}>
-            Slett kategori
-          </SecondaryButton>
-
-          {/* <EdDelButton katid={ID} /> */}
+          <EdDelButton katid={ID} />
         </Horiz>
       );
     });
+    const BottomRight = styled.div`
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      z-index: 999;
+    `;
 
     const toDisplay = this.state.overallSum
       .filter((item) => item)
       .reduce((a, b) => a + b, 0);
+    console.log(toDisplay);
     return (
       <div style={{ width: "95vw" }}>
+        <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
         <h1
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            placeItems: "center",
-          }}
-        >
-          {" "}
-          {tittel}
-        </h1>
-        {/* <h1
           style={{ margin: "1em 0em", fontFamily: "Ubuntu", fontWeight: "400" }}
         >
           {tittel}
           {toDisplay}
-        </h1> */}
-        <SimpleModal budID={this.state.currentBudgetID} />
+        </h1>
+        <button onClick={() => this.AllKatSum(5)}>clickme</button>
+        {/* <h1>{tittel}</h1> */}
+        {/* <FakeAccordion /> */}
         {KatsElementer}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            placeItems: "center",
-          }}
-        >
-          <SecondaryButton onClick={this.handleBudgetDeleteClick.bind(this)}>
-            Slett budsjett
-          </SecondaryButton>
-        </div>
+        <BottomRight>
+          <SimpleModal budID={this.state.currentBudgetID} />
+        </BottomRight>
       </div>
     );
   }

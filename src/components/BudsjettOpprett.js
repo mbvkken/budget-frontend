@@ -51,12 +51,19 @@ class BudsjettOpprett extends React.Component {
       //     alert('Please Enter title');
       //     return;
       //   }
-      const newBudget = await createNewBudget(
+      const newBudgetID = await createNewBudget(
         budsjett.tittel,
         budsjett.shared,
         epost
       );
-      console.log(newBudget);
+      console.log(newBudgetID);
+
+      const newBudgetObj = {
+        budsjettID: newBudgetID,
+        tittel: budsjett.tittel,
+      };
+
+      localStorage.setItem("currentBudget", JSON.stringify(newBudgetObj));
       history.push("/budsjett-detaljer");
     } catch (error) {
       this.setState({ error });
