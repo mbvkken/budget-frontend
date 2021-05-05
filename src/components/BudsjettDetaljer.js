@@ -6,12 +6,17 @@ import {
   opprettNyKategori,
   /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
 } from "../services/kategori";
-import { PrimaryButton, Horiz } from "../App-Styles";
 import Katdiv from "./Kategori";
 import SimpleModal from "../primitives/addKat";
 import ControlledAccordions from "../primitives/accordian";
 import EdDelButton from "../primitives/edDelMenu.js";
 import styled from "styled-components";
+import {
+  PrimaryButton,
+  Horiz,
+  SecondaryButton,
+  deleteRed,
+} from "../App-Styles";
 
 class BudsjettLink extends React.Component {
   constructor(props) {
@@ -60,8 +65,8 @@ class BudsjettLink extends React.Component {
     }
   }
 
-  async handleDeleteClick() {
-    const id = this.state.currentBudget.budsjettID;
+  async handleDeleteBudgetClick() {
+    const id = this.state.currentBudgetID;
     console.log(id);
     if (!window.confirm("u sure?")) {
       return;
@@ -108,37 +113,46 @@ class BudsjettLink extends React.Component {
             katid={ID}
             setMainSum={this.AllKatSum.bind(this)}
           />
-          <EdDelButton katid={ID} />
+          {/* <PrimaryButton katid={ID}>Endre</PrimaryButton>
+          <SecondaryButton katid={ID} onClick={this.handleCategoryDeleteClick}>
+            Slett
+          </SecondaryButton> */}
+
+          {/* <EdDelButton katid={ID} /> */}
         </Horiz>
       );
     });
-    const BottomRight = styled.div`
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      z-index: 999;
-    `;
-
     const toDisplay = this.state.overallSum
       .filter((item) => item)
       .reduce((a, b) => a + b, 0);
-    console.log(toDisplay);
     return (
       <div style={{ width: "95vw" }}>
-        <button onClick={this.handleDeleteClick.bind(this)}>DELETE</button>
         <h1
-          style={{ margin: "1em 0em", fontFamily: "Ubuntu", fontWeight: "400" }}
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            placeItems: "center",
+          }}
         >
+          {" "}
           {tittel}
-          {toDisplay}
         </h1>
-        <button onClick={() => this.AllKatSum(5)}>clickme</button>
-        {/* <h1>{tittel}</h1> */}
-        {/* <FakeAccordion /> */}
+
+        <h1>{toDisplay}</h1>
+
+        <SimpleModal budID={this.state.currentBudgetID} />
         {KatsElementer}
-        <BottomRight>
-          <SimpleModal budID={this.state.currentBudgetID} />
-        </BottomRight>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            placeItems: "center",
+          }}
+        >
+          <SecondaryButton onClick={this.handleDeleteBudgetClick.bind(this)}>
+            Slett budsjett
+          </SecondaryButton>
+        </div>
       </div>
     );
   }

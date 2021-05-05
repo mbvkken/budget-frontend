@@ -3,6 +3,7 @@ import jwtDecode from "jwt-decode";
 import { Body, PrimaryButton, Input, Label } from "../App-Styles";
 import { createNewBudget } from "../services/budget";
 import { Typography } from "@material-ui/core";
+import { opprettNyKategori } from "../services/kategori";
 
 class BudsjettOpprett extends React.Component {
   constructor(props) {
@@ -44,6 +45,8 @@ class BudsjettOpprett extends React.Component {
     event.preventDefault();
     const { history } = this.props;
     const { budsjett } = this.state;
+    const { budsjettID } = this.state;
+
     const { session: { epost } = {} } = this.state;
 
     try {
@@ -64,10 +67,18 @@ class BudsjettOpprett extends React.Component {
       };
 
       localStorage.setItem("currentBudget", JSON.stringify(newBudgetObj));
+      await this.setState({ budsjettID: newBudgetID });
+      await this.addDefaultKat(newBudgetID);
       history.push("/budsjett-detaljer");
     } catch (error) {
       this.setState({ error });
     }
+  }
+
+  async addDefaultKat(newBudgetID) {
+    try {
+      await opprettNyKategori("Inntekt", newBudgetID);
+    } catch (error) {}
   }
 
   render() {

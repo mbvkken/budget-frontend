@@ -131,7 +131,7 @@ export const Carousel = styled.div`
 export const BudsjettIcon = styled.div`
   flex: 0 0 auto;
   margin: 5px;
-  border: 2px solid ${secondaryGreen};
+  border: 4px solid ${secondaryGreen};
   box-sizing: border-box;
   border-radius: 10px;
   height: 8em;

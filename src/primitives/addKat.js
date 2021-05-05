@@ -51,7 +51,7 @@ export default function TransitionsModal(props) {
     try {
       await opprettNyKategori(tittel, props.budID);
     } catch (error) {}
-    const newKat = { ID: 5, budsjettID: props.budID, tittel: tittel };
+    // const newKat = { ID: 5, budsjettID: props.budID, tittel: tittel };
     handleClose();
   }
 
