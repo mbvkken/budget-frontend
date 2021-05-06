@@ -52,6 +52,7 @@ export default function TransitionsModal(props) {
       await opprettNyKategori(tittel, props.budID);
     } catch (error) {}
     // const newKat = { ID: 5, budsjettID: props.budID, tittel: tittel };
+    props.refreshPage();
     handleClose();
   }
 
@@ -67,7 +68,7 @@ export default function TransitionsModal(props) {
         <PrimaryButton onClick={handleOpen}>Legg til ny kategori</PrimaryButton>
       </div>
 
-      <Modal
+      {/* <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
@@ -80,23 +81,23 @@ export default function TransitionsModal(props) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}>
-            <form>
-              <Input
-                placeholder="Tittel"
-                value={tittel}
-                onChange={(e) => setTittel(e.target.value)}
-              />
+          <div className={classes.paper}> */}
+      <form>
+        <Input
+          placeholder="Tittel"
+          value={tittel}
+          onChange={(e) => setTittel(e.target.value)}
+        />
 
-              <div>
-                <PrimaryButton onClick={handleNewKatClick}>
-                  Legg til ny kategori
-                </PrimaryButton>
-              </div>
-            </form>
-          </div>
+        <div>
+          <PrimaryButton onClick={handleNewKatClick}>
+            Legg til ny kategori
+          </PrimaryButton>
+        </div>
+      </form>
+      {/* </div>
         </Fade>
-      </Modal>
+      </Modal> */}
     </div>
   );
 }

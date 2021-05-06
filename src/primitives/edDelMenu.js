@@ -1,59 +1,130 @@
 import React, { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
 import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
-import EditKat from "../primitives/editDeleteElements";
-import { Horiz } from "../App-Styles";
+import {
+  Horiz,
+  PrimaryButton,
+  SecondaryButton,
+  EditMenuContain,
+} from "../App-Styles";
+import styled from "styled-components";
+import { deleteBudget } from "../services/budget";
+import { sletteKategori } from "../services/kategori";
+import { sletteBudsjettpost } from "../services/budsjettpost";
 
-export default function EditDeleteMenu(props) {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [open, setOpen] = useState(false);
+import { EditBud, EditKat, EditPost } from "../primitives/editDeleteElements";
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+export function BudgetEDMenu(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+    console.log(isOpen);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const handleEdit = () => {
-    toggleChild();
-    <EditKat katID={"eyoo" /*props.katid*/} isOpen={"jello"} />;
-    handleClose();
-  };
+  async function handleDeleteBudgetClick() {
+    const id = props.budID;
+    console.log(id);
+    if (!window.confirm("u sure?")) {
+      return;
+    }
 
-  function toggleChild() {
-    setOpen(!open);
-    // console.log(open);
+    try {
+      await deleteBudget(id);
+      // const { history } = this.props;
+      // history.push("/");
+    } catch (error) {
+      console.log("sletting av budsjett feilet...", error);
+    }
   }
 
   return (
-    <div>
-      {/* <Button aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-        Open Menu
-      </Button> */}
-      <IconButton
-        aria-label="more"
-        aria-controls="long-menu"
-        aria-haspopup="true"
-        onClick={handleClick}
-      >
+    <Horiz>
+      <EditMenuContain toggle={isOpen}>
+        <SecondaryButton onClick={handleDeleteBudgetClick}>
+          Slett
+        </SecondaryButton>
+        {/* <PrimaryButton>Rediger</PrimaryButton> */}
+        <EditBud budID={props.budID} />
+      </EditMenuContain>
+      <IconButton style={{ paddingLeft: "3px" }} onClick={toggle}>
         <MoreVertIcon />
       </IconButton>
-      <Menu
-        id="simple-menu"
-        anchorEl={anchorEl}
-        keepMounted
-        open={Boolean(anchorEl)}
-        onClose={handleClose}
-      >
-        <Horiz>
-          <MenuItem onClick={handleEdit}>Rediger</MenuItem>
-          <MenuItem onClick={handleClose}>Slett</MenuItem>
-        </Horiz>
-      </Menu>
-    </div>
+    </Horiz>
+  );
+}
+
+export function KatEDMenu(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+    console.log(isOpen);
+  };
+
+  async function handleDeleteKatClick() {
+    const id = props.katid;
+    console.log(id);
+    if (!window.confirm("u sure?")) {
+      return;
+    }
+
+    try {
+      await sletteKategori(id);
+      // const { history } = this.props;
+      // history.push("/");
+    } catch (error) {
+      console.log("sletting av budsjett feilet...", error);
+    }
+    props.refreshPage();
+  }
+
+  return (
+    <Horiz>
+      <EditMenuContain toggle={isOpen}>
+        <SecondaryButton onClick={handleDeleteKatClick}>Slett</SecondaryButton>
+        <EditKat katid={props.katid} refreshPage={props.refreshPage} />
+      </EditMenuContain>
+      <IconButton style={{ padding: "3px" }} onClick={toggle}>
+        <MoreVertIcon />
+      </IconButton>
+    </Horiz>
+  );
+}
+
+export function PostEDMenu(props) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => {
+    setIsOpen(!isOpen);
+    console.log(isOpen);
+  };
+  async function handleDeletePostClick() {
+    const id = props.postID;
+    console.log(id);
+    if (!window.confirm("u sure?")) {
+      return;
+    }
+
+    try {
+      await sletteBudsjettpost(id);
+      // const { history } = this.props;
+      // history.push("/");
+    } catch (error) {
+      console.log("sletting av budsjett feilet...", error);
+    }
+    props.refreshPage();
+  }
+
+  return (
+    <Horiz>
+      <EditMenuContain toggle={isOpen}>
+        <SecondaryButton onClick={handleDeletePostClick}>Slett</SecondaryButton>
+        <EditPost postID={props.postID} refreshPage={props.refreshPage} />
+      </EditMenuContain>
+      <IconButton style={{ padding: "3px" }} onClick={toggle}>
+        <MoreVertIcon />
+      </IconButton>
+    </Horiz>
   );
 }

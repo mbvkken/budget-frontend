@@ -10,6 +10,7 @@ import { Typography } from "@material-ui/core";
 import { EditBud } from "../primitives/editDeleteElements";
 import EditDeleteMenu from "../primitives/edDelMenu";
 import BudsjettCarousel from "../primitives/Carousel";
+import { BudgetEDMenu } from "../primitives/edDelMenu.js";
 
 class Hjem extends React.Component {
   constructor(props) {
@@ -87,6 +88,7 @@ class Hjem extends React.Component {
       return (
         <ListBudsjett
           key={budsjettID}
+          budID={budsjettID}
           tittel={tittel}
           onClick={() => this.handleClick(budsjettID)}
         />
@@ -99,7 +101,11 @@ class Hjem extends React.Component {
     return (
       <div>
         <h1
-          style={{ margin: "2em 0em", fontFamily: "Ubuntu", fontWeight: "400" }}
+          style={{
+            margin: "1.2em 0em",
+            fontFamily: "Ubuntu",
+            fontWeight: "400",
+          }}
         >
           Mine budsjetter
         </h1>{" "}

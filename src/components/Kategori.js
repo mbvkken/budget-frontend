@@ -57,11 +57,19 @@ export default class Katdiv extends React.Component {
     const id = this.props.katid;
     const { allPostsByID } = this.state;
     const postsElementer = allPostsByID.map(({ tittel, sum, ID }) => {
-      return <ListPosts key={ID} sum={sum} tittel={tittel} />;
+      return (
+        <ListPosts
+          key={ID}
+          postID={ID}
+          sum={sum}
+          tittel={tittel}
+          refreshPage={this.populatePosts.bind(this)}
+        />
+      );
     });
     return (
       <div>
-        <AddPost katid={id} />
+        <AddPost katid={id} refreshPage={this.populatePosts.bind(this)} />
         {postsElementer}
       </div>
     );

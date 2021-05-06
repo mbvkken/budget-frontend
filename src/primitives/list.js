@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Body, Horiz, HorizontalList } from "../App-Styles";
+import { Body, Horiz, HorizontalList, GiveSpace } from "../App-Styles";
 import { ReactComponent as Hus } from "../logos/hjem.svg";
-import EditDeleteMenu from "../primitives/edDelMenu";
+import { PostEDMenu, BudgetEDMenu } from "../primitives/edDelMenu";
 
 export default function ListBudsjett(props) {
   const [isActive, setActive] = useState("false");
@@ -15,7 +15,7 @@ export default function ListBudsjett(props) {
     <HorizontalList>
       <h3>{props.tittel}</h3>
       {/* <button onClick={handleToggle}>click</button> */}
-      <EditDeleteMenu budID={props.key} />
+      <BudgetEDMenu budID={props.budID} />
     </HorizontalList>
   );
 }
@@ -26,16 +26,6 @@ export function ListPosts(props) {
     setActive(!isActive);
     console.log(isActive);
   };
-
-  const GiveSpace = styled.div`
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-    /* margin: 0 10px 0 10px; */
-  `;
 
   return (
     <Horiz>
@@ -53,7 +43,7 @@ export function ListPosts(props) {
 
         {/* <button onClick={handleToggle}>click</button> */}
       </GiveSpace>
-      <EditDeleteMenu budID={props.key} />
+      <PostEDMenu postID={props.postID} refreshPage={props.refreshPage} />
     </Horiz>
   );
 }
