@@ -7,7 +7,7 @@ import {
   /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
 } from "../services/kategori";
 import Katdiv from "./Kategori";
-import SimpleModal from "../primitives/addKat";
+import NewKatAction from "../primitives/newAddKat";
 import ControlledAccordions from "../primitives/accordian";
 import styled from "styled-components";
 import {
@@ -126,10 +126,11 @@ class BudsjettLink extends React.Component {
           {" "}
           {tittel}
         </h1>
+        <h1 style={toDisplay >= 0 ? { color: "green" } : { color: "red" }}>
+          {toDisplay}
+        </h1>
 
-        <h1>{toDisplay}</h1>
-
-        <SimpleModal
+        <NewKatAction
           refreshPage={this.populateKats.bind(this)}
           budID={this.state.currentBudgetID}
         />
