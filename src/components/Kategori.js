@@ -1,6 +1,6 @@
 import React from "react";
 import { getPostsByKatID, opprettNyPost } from "../services/budsjettpost";
-import AddPost from "../primitives/addPost";
+import NewPostAction from "../primitives/newAddPost";
 import EditKat from "../primitives/editDeleteElements";
 import EditDeleteMenu from "../primitives/edDelMenu";
 import { ListPosts } from "../primitives/list";
@@ -69,7 +69,7 @@ export default class Katdiv extends React.Component {
     });
     return (
       <div>
-        <AddPost katid={id} refreshPage={this.populatePosts.bind(this)} />
+        <NewPostAction katid={id} refreshPage={this.populatePosts.bind(this)} />
         {postsElementer}
       </div>
     );

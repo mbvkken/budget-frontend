@@ -52,11 +52,13 @@ class Hjem extends React.Component {
     }
   }
 
-  handleClick(id) {
+  handleClick(budsjettObj) {
+    console.log(budsjettObj);
     const { history } = this.props;
     const { budsjett } = this.state;
-    console.log(budsjett);
-    history.push("/budsjett-detaljer/" + id);
+    localStorage.setItem("currentBudget", JSON.stringify(budsjettObj));
+    console.log(budsjettObj);
+    history.push("/budsjett-detaljer");
   }
 
   render() {
@@ -86,15 +88,14 @@ class Hjem extends React.Component {
 
     const budsjettElementer = budsjett.map(({ tittel, budsjettID }) => {
       return (
-        <ListBudsjett
-          key={budsjettID}
-          budID={budsjettID}
-          tittel={tittel}
-          onClick={() => this.handleClick(budsjettID)}
-        />
-
-        /* <EditDeleteMenu budID={budsjettID} />
-               <EditBud budID={budsjettID} /> */
+        <div onClick={() => this.handleClick({ budsjettID, tittel })}>
+          <ListBudsjett
+            key={budsjettID}
+            budID={budsjettID}
+            tittel={tittel}
+            onClick={() => this.handleClick(budsjettID, tittel)}
+          />
+        </div>
       );
     });
 

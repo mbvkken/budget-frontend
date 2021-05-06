@@ -26,9 +26,9 @@ export function BudgetEDMenu(props) {
   async function handleDeleteBudgetClick() {
     const id = props.budID;
     console.log(id);
-    if (!window.confirm("u sure?")) {
-      return;
-    }
+    // if (!window.confirm("u sure?")) {
+    //   return;
+    // }
 
     try {
       await deleteBudget(id);
@@ -66,9 +66,9 @@ export function KatEDMenu(props) {
   async function handleDeleteKatClick() {
     const id = props.katid;
     console.log(id);
-    if (!window.confirm("u sure?")) {
-      return;
-    }
+    // if (!window.confirm("u sure?")) {
+    //   return;
+    // }
 
     try {
       await sletteKategori(id);
@@ -83,7 +83,9 @@ export function KatEDMenu(props) {
   return (
     <Horiz>
       <EditMenuContain toggle={isOpen}>
-        <SecondaryButtonSmall onClick={handleDeleteKatClick}>Slett</SecondaryButtonSmall>
+        <SecondaryButtonSmall onClick={handleDeleteKatClick}>
+          Slett
+        </SecondaryButtonSmall>
         <EditKat katid={props.katid} refreshPage={props.refreshPage} />
       </EditMenuContain>
       <IconButton style={{ padding: "3px" }} onClick={toggle}>
@@ -103,9 +105,9 @@ export function PostEDMenu(props) {
   async function handleDeletePostClick() {
     const id = props.postID;
     console.log(id);
-    if (!window.confirm("u sure?")) {
-      return;
-    }
+    // if (!window.confirm("u sure?")) {
+    //   return;
+    // }
 
     try {
       await sletteBudsjettpost(id);
@@ -120,7 +122,9 @@ export function PostEDMenu(props) {
   return (
     <Horiz>
       <EditMenuContain toggle={isOpen}>
-        <SecondaryButtonSmall onClick={handleDeletePostClick}>Slett</SecondaryButtonSmall>
+        <SecondaryButtonSmall onClick={handleDeletePostClick}>
+          Slett
+        </SecondaryButtonSmall>
         <EditPost postID={props.postID} refreshPage={props.refreshPage} />
       </EditMenuContain>
       <IconButton style={{ padding: "3px" }} onClick={toggle}>
