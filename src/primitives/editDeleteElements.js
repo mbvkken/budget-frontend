@@ -5,7 +5,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import { PrimaryButton } from "../App-Styles";
+import { PrimaryButton, PrimaryButtonSmall } from "../App-Styles";
 import {
   opprettNyKategori,
   getKatsByBudsjettID,
@@ -62,7 +62,7 @@ export function EditKat(props) {
 
   return (
     <div>
-      <PrimaryButton onClick={handleOpen}>Rediger</PrimaryButton>
+      <PrimaryButtonSmall onClick={handleOpen}>Rediger</PrimaryButtonSmall>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -86,9 +86,9 @@ export function EditKat(props) {
               />
 
               <div>
-                <PrimaryButton onClick={handleNewKatClick}>
+                <PrimaryButtonSmall onClick={handleNewKatClick}>
                   Endre Kategori
-                </PrimaryButton>
+                </PrimaryButtonSmall>
               </div>
             </form>
           </div>
@@ -126,7 +126,7 @@ export function EditBud(props) {
       {/* <Fab color="primary" aria-label="add" onClick={handleOpen}>
         <AddIcon />
       </Fab> */}
-      <PrimaryButton onClick={handleOpen}>Rediger</PrimaryButton>
+      <PrimaryButtonSmall onClick={handleOpen}>Rediger</PrimaryButtonSmall>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -150,9 +150,9 @@ export function EditBud(props) {
               />
 
               <div>
-                <PrimaryButton onClick={handleBudClick}>
+                <PrimaryButtonSmall onClick={handleBudClick}>
                   Endre Budsjett
-                </PrimaryButton>
+                </PrimaryButtonSmall>
               </div>
             </form>
           </div>
@@ -190,7 +190,7 @@ export function EditPost(props) {
 
   return (
     <div>
-      <PrimaryButton onClick={handleOpen}>Rediger</PrimaryButton>
+      <PrimaryButtonSmall onClick={handleOpen}>Rediger</PrimaryButtonSmall>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -219,9 +219,9 @@ export function EditPost(props) {
               />
 
               <div>
-                <PrimaryButton onClick={handleEditPostClick}>
+                <PrimaryButtonSmall onClick={handleEditPostClick}>
                   Endre Post
-                </PrimaryButton>
+                </PrimaryButtonSmall>
               </div>
             </form>
           </div>

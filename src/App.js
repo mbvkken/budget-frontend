@@ -1,6 +1,6 @@
 import React from "react";
 
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Link } from "react-router-dom";
 // import withAuthentication from './hoc/with-authentication';
 
 import Hjem from "./components/Hjem";
@@ -19,7 +19,7 @@ import { ModalProvider } from "styled-react-modal";
 
 import { NavBar, TempNoNavBar } from "./components/NavBar";
 
-import { Header, PageContain } from "./App-Styles";
+import { Header, PageContain, offWhite } from "./App-Styles";
 import styled from "styled-components";
 
 const GridContain = styled.div`
@@ -37,7 +37,12 @@ function App() {
           <h1
             style={{ letterSpacing: "0.1em", fontFamily: "Ubuntu, sans-serif" }}
           >
-            Mynt.
+            <Link
+              to="/"
+              style={{ textDecoration: "none", color: `${offWhite}` }}
+            >
+              Mynt.
+            </Link>
           </h1>
         </Header>
 

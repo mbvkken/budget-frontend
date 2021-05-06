@@ -105,7 +105,7 @@ class BudsjettOpprett extends React.Component {
           <div>
             <label>
               Tittel:
-              <Input
+              <Input style={{fontFamily: 'Ubuntu'}}
                 type="text"
                 name="tittel"
                 value={budsjett.tittel}
@@ -117,7 +117,7 @@ class BudsjettOpprett extends React.Component {
           <div>
             <label>
               Del med:
-              <Input
+              <Input style={{fontFamily: 'Ubuntu'}}
                 type="text"
                 name="shared"
                 value={budsjett.shared}

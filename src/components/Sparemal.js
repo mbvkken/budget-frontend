@@ -3,7 +3,6 @@ import { Typography } from "@material-ui/core";
 import { offWhite, primaryGreen, secondaryGreen } from "../App-Styles";
 import { Body, BudsjettIcon, Carousel, Containit } from "../App-Styles";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import PieChart from "react-minimal-pie-chart";
 
 class Sparemal extends React.Component {
   render() {
@@ -41,7 +40,7 @@ class Sparemal extends React.Component {
             </BudsjettIcon>
           </Carousel>
         </Containit>
-        ;
+      
       </div>
     );
   }

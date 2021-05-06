@@ -84,14 +84,21 @@ export default function TransitionsModal(props) {
       >
         <PrimaryButton onClick={handleOpen}>Legg til ny kategori</PrimaryButton>
       </div>
-
-      <StyledModal
-          isOpen={isOpen}
-          onBackgroundClick={toggleModal}
-          onEscapeKeydown={toggleModal}>
-          <span>I am a modal!</span>
-          <button onClick={toggleModal}>Close me</button>
-        </StyledModal>
+ 
+       <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>\
       <form>
         <Input
           placeholder="Tittel"
@@ -105,9 +112,9 @@ export default function TransitionsModal(props) {
           </PrimaryButton>
         </div>
       </form>
-      {/* </div>
+      </div>
         </Fade>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }
