@@ -11,6 +11,8 @@ import {
   /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
 } from "../services/kategori";
 import Input from "@material-ui/core/Input";
+import Modal from 'styled-react-modal'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,6 +33,21 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2, 4, 3),
   },
 }));
+const StyledModal = Modal.styled`
+  width: 20rem;
+  height: 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: ${props => props.theme.colors.white};
+`
+function FancyModalButton(props) {
+  const [isOpen, setIsOpen] = useState(false)
+  const [tittel, setTittel] = useState("");
+
+  function toggleModal(e) {
+    setIsOpen(!isOpen)
+  }
 
 export default function TransitionsModal(props) {
   const classes = useStyles();
