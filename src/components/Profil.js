@@ -1,6 +1,6 @@
 import React from 'react';
 import jwtDecode from 'jwt-decode';
-import { Body, offWhite, PrimaryButton } from '../App-Styles';
+import { Body, offWhite, PrimaryButton, SecondaryButton } from '../App-Styles';
 import { deepOrange } from '@material-ui/core/colors';
 import { Link } from 'react-router-dom';
 import HelpOutlineIcon from '@material-ui/icons/HelpOutline';
@@ -118,7 +118,7 @@ class Profil extends React.Component {
                     </div>
                     <PrimaryButton style={editButton}>Rediger brukerinnstillinger</PrimaryButton>
                     <Link to="/loggut">
-                        <PrimaryButton style={loggUtKnapp}>Logg ut</PrimaryButton>
+                        <SecondaryButton style={loggUtKnapp}>Logg ut</SecondaryButton>
                     </Link>
 
                 </div>

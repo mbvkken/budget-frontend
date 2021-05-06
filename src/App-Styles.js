@@ -114,6 +114,40 @@ export const PageContain = styled.div`
 
 // buttons
 export const PrimaryButton = styled.button`
+    background-color: ${primaryGreen};
+    border-style: none;
+    color: ${offWhite};
+    margin: 1em;
+    padding: 1em 2em;
+    border-radius: 2em;
+    transition: .1s;
+    &:active {
+    background-color: #7faa91;
+    /* border: 0; */
+    /* transform: scale(.99); */
+    padding: .9em 1.9em;
+  }
+    &:focus { outline: none; }
+`;
+
+export const SecondaryButton = styled.button`
+    background-color: ${deleteRed};
+    border-style: none;
+    color: ${offWhite};
+    margin: 1em;
+    padding: 1em 2em;
+    border-radius: 2em;
+    transition: .1s;
+    &:active {
+    background-color: #7faa91;
+    /* border: 0; */
+    /* transform: scale(.99); */
+    padding: .9em 1.9em;
+  }
+    &:focus { outline: none; }
+`;
+
+export const PrimaryButtonSmall = styled.button`
   background-color: ${primaryGreen};
   border-style: none;
   ${textLight}
@@ -134,7 +168,7 @@ export const PrimaryButton = styled.button`
   }
 `;
 
-export const SecondaryButton = styled.button`
+export const SecondaryButtonSmall = styled.button`
   background-color: ${deleteRed};
   border-style: none;
   ${textLight}

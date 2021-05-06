@@ -67,8 +67,8 @@ export default function TransitionsModal(props) {
       >
         <PrimaryButton onClick={handleOpen}>Legg til ny kategori</PrimaryButton>
       </div>
-
-      {/* <Modal
+ 
+       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         className={classes.modal}
@@ -81,7 +81,7 @@ export default function TransitionsModal(props) {
         }}
       >
         <Fade in={open}>
-          <div className={classes.paper}> */}
+          <div className={classes.paper}>\
       <form>
         <Input
           placeholder="Tittel"
@@ -95,9 +95,9 @@ export default function TransitionsModal(props) {
           </PrimaryButton>
         </div>
       </form>
-      {/* </div>
+      </div>
         </Fade>
-      </Modal> */}
+      </Modal>
     </div>
   );
 }

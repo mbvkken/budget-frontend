@@ -5,7 +5,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import { PrimaryButton } from "../App-Styles";
+import { PrimaryButton, PrimaryButtonSmall } from "../App-Styles";
 import {
   opprettNyPost,
   /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
@@ -69,7 +69,7 @@ export default function AddPost(props) {
         {/* <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
           </Fab> */}
-        <PrimaryButton onClick={handleOpen}>Legg til ny post</PrimaryButton>
+        <PrimaryButtonSmall onClick={handleOpen}>Legg til ny post</PrimaryButtonSmall>
       </div>
       <Modal
         aria-labelledby="transition-modal-title"

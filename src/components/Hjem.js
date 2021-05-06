@@ -13,8 +13,7 @@ import { red } from "@material-ui/core/colors";
 import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
 import styled from "styled-components";
 import { ReactComponent as KrIcon } from "../kr.svg";
-import App from "./piChart";
-import MyCompo from "./piChart";
+
 
 class Hjem extends React.Component {
   constructor(props) {
@@ -165,9 +164,7 @@ class Hjem extends React.Component {
             </Carousel>
           </Containit>
         </div>
-        {/* <MyCompo /> */}
-
-        {/* <App /> */}
+      
       </div>
     );
   }

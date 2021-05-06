@@ -5,6 +5,7 @@ import {
   Horiz,
   PrimaryButton,
   SecondaryButton,
+  SecondaryButtonSmall,
   EditMenuContain,
 } from "../App-Styles";
 import styled from "styled-components";
@@ -41,9 +42,9 @@ export function BudgetEDMenu(props) {
   return (
     <Horiz>
       <EditMenuContain toggle={isOpen}>
-        <SecondaryButton onClick={handleDeleteBudgetClick}>
+        <SecondaryButtonSmall onClick={handleDeleteBudgetClick}>
           Slett
-        </SecondaryButton>
+        </SecondaryButtonSmall>
         {/* <PrimaryButton>Rediger</PrimaryButton> */}
         <EditBud budID={props.budID} />
       </EditMenuContain>
@@ -82,7 +83,7 @@ export function KatEDMenu(props) {
   return (
     <Horiz>
       <EditMenuContain toggle={isOpen}>
-        <SecondaryButton onClick={handleDeleteKatClick}>Slett</SecondaryButton>
+        <SecondaryButtonSmall onClick={handleDeleteKatClick}>Slett</SecondaryButtonSmall>
         <EditKat katid={props.katid} refreshPage={props.refreshPage} />
       </EditMenuContain>
       <IconButton style={{ padding: "3px" }} onClick={toggle}>
@@ -119,7 +120,7 @@ export function PostEDMenu(props) {
   return (
     <Horiz>
       <EditMenuContain toggle={isOpen}>
-        <SecondaryButton onClick={handleDeletePostClick}>Slett</SecondaryButton>
+        <SecondaryButtonSmall onClick={handleDeletePostClick}>Slett</SecondaryButtonSmall>
         <EditPost postID={props.postID} refreshPage={props.refreshPage} />
       </EditMenuContain>
       <IconButton style={{ padding: "3px" }} onClick={toggle}>
