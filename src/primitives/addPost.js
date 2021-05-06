@@ -1,29 +1,32 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import { Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons/Add';
-import { PrimaryButton } from '../App-Styles';
-import { opprettNyPost, /*endreKategori, sletteKategori,*/ getKatsByBudsjettID } from '../services/budsjettpost';
-import Input from '@material-ui/core/Input';
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Modal from "@material-ui/core/Modal";
+import Backdrop from "@material-ui/core/Backdrop";
+import Fade from "@material-ui/core/Fade";
+import { Fab } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
+import { PrimaryButton } from "../App-Styles";
+import {
+  opprettNyPost,
+  /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
+} from "../services/budsjettpost";
+import Input from "@material-ui/core/Input";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-          margin: theme.spacing(1),
-        },
-      },
-      modal: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   },
   paper: {
     backgroundColor: theme.palette.background.paper,
-    border: '1px solid #000',
-    borderRadius: '20px',
+    border: "1px solid #000",
+    borderRadius: "20px",
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
   },
@@ -35,7 +38,6 @@ export default function AddPost(props) {
   const [tittel, setTittel] = useState("");
   const [sum, setSum] = useState("");
 
-  
   const handleOpen = () => {
     setOpen(true);
   };
@@ -46,22 +48,29 @@ export default function AddPost(props) {
 
   async function handleNewPostClick(event) {
     event.preventDefault();
-const kategoriID = props.katid
-const fast = 0;
+    const kategoriID = props.katid;
+    const fast = 0;
     try {
-      await opprettNyPost( tittel, sum, fast, kategoriID);
-    } catch (error) {
-    }
+      await opprettNyPost(tittel, sum, fast, kategoriID);
+    } catch (error) {}
+    props.refreshPage();
     handleClose();
-  };
+  }
 
   return (
     <div>
-        <div style={{display: 'flex', justifyContent: 'center', marginTop: '10px'}}>
-          <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          margin: "8px",
+        }}
+      >
+        {/* <Fab size="small" color="primary" aria-label="add" onClick={handleOpen}>
           <AddIcon />
-          </Fab>
-        </div>
+          </Fab> */}
+        <PrimaryButton onClick={handleOpen}>Legg til ny post</PrimaryButton>
+      </div>
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -75,19 +84,27 @@ const fast = 0;
         }}
       >
         <Fade in={open}>
-           <div className={classes.paper}>
-       
+          <div className={classes.paper}>
             <form>
-       
-            <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} />
-            <Input placeholder="Sum" value={sum} onChange={e => setSum(e.target.value)} />
-            {/* <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} /> */}
+              <Input
+                placeholder="Tittel"
+                value={tittel}
+                onChange={(e) => setTittel(e.target.value)}
+              />
+              <Input
+                placeholder="Sum"
+                value={sum}
+                onChange={(e) => setSum(e.target.value)}
+              />
+              {/* <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} /> */}
 
-          <div>
-            <PrimaryButton onClick={handleNewPostClick}>Legg til ny budsjettpost</PrimaryButton>
+              <div>
+                <PrimaryButton onClick={handleNewPostClick}>
+                  Legg til ny budsjettpost
+                </PrimaryButton>
+              </div>
+            </form>
           </div>
-        </form>
-        </div>
         </Fade>
       </Modal>
     </div>

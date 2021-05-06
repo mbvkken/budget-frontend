@@ -9,7 +9,6 @@ import {
 import Katdiv from "./Kategori";
 import SimpleModal from "../primitives/addKat";
 import ControlledAccordions from "../primitives/accordian";
-import EdDelButton from "../primitives/edDelMenu.js";
 import styled from "styled-components";
 import {
   PrimaryButton,
@@ -17,6 +16,7 @@ import {
   SecondaryButton,
   deleteRed,
 } from "../App-Styles";
+import { KatEDMenu } from "../primitives/edDelMenu";
 
 class BudsjettLink extends React.Component {
   constructor(props) {
@@ -39,7 +39,6 @@ class BudsjettLink extends React.Component {
   async componentDidMount() {
     await this.populateKats();
     // console.log(this.state.allKatsByID);
-    // console.trace('hei');
   }
 
   async populateKats() {
@@ -50,16 +49,13 @@ class BudsjettLink extends React.Component {
       currentBudgetID: budget.budsjettID,
       currentBudgetName: budget.tittel,
     });
-    // const {currentBudget} = this.state;
     const id = this.state.currentBudgetID;
-    console.log("othertest! " + this.state.currentBudgetID);
 
     try {
       this.setState({ isLoading: true });
       console.log(id);
       const kats = await getKatsByBudsjettID(budget.budsjettID);
       this.setState({ allKatsByID: kats, isLoading: false });
-      // console.log(this.state.allKatsByID)
     } catch (error) {
       this.setState({ error });
     }
@@ -83,7 +79,6 @@ class BudsjettLink extends React.Component {
 
   async handleClicker(ID) {
     await this.setState({ activeKat: ID });
-    // console.log(this.state.activeKat)
   }
   async AllKatSum(sum) {
     const { overallSum } = this.state;
@@ -101,24 +96,15 @@ class BudsjettLink extends React.Component {
     const { kat, allKatsByID } = this.state;
 
     const KatsElementer = allKatsByID.map(({ tittel, ID }) => {
-      // console.log('this is '+ID)
       return (
-        <Horiz
-          key={ID}
-          onClick={() => this.handleClicker(ID)}
-          style={{ width: "95%" }}
-        >
+        <Horiz key={ID} onClick={() => this.handleClicker(ID)}>
           <ControlledAccordions
+            style={{ margin: "0" }}
             named={tittel}
             katid={ID}
             setMainSum={this.AllKatSum.bind(this)}
           />
-          {/* <PrimaryButton katid={ID}>Endre</PrimaryButton>
-          <SecondaryButton katid={ID} onClick={this.handleCategoryDeleteClick}>
-            Slett
-          </SecondaryButton> */}
-
-          {/* <EdDelButton katid={ID} /> */}
+          <KatEDMenu katid={ID} refreshPage={this.populateKats.bind(this)} />
         </Horiz>
       );
     });
@@ -132,6 +118,9 @@ class BudsjettLink extends React.Component {
             display: "flex",
             justifyContent: "center",
             placeItems: "center",
+            margin: "1.2em 0em",
+            fontFamily: "Ubuntu",
+            fontWeight: "400",
           }}
         >
           {" "}
@@ -140,7 +129,10 @@ class BudsjettLink extends React.Component {
 
         <h1>{toDisplay}</h1>
 
-        <SimpleModal budID={this.state.currentBudgetID} />
+        <SimpleModal
+          refreshPage={this.populateKats.bind(this)}
+          budID={this.state.currentBudgetID}
+        />
         {KatsElementer}
         <div
           style={{

@@ -1,10 +1,18 @@
 import styled from "styled-components";
+import { css } from "styled-components";
 
 // colors
 export const primaryGreen = "#5e8c71";
 export const secondaryGreen = "#3C5948";
 export const offWhite = "#FAF9F6";
 export const deleteRed = "#eb4034";
+
+//text
+export const textLight = css`
+  font-family: "Ubuntu";
+  font-weight: 400;
+  font-size: 0.7em;
+`;
 
 // elements
 // header og nav
@@ -60,13 +68,36 @@ export const HorizontalList = styled.div`
 `;
 export const Horiz = styled.div`
   display: flex;
-  min-width: 100%;
+  /* min-width: 100%; */
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
   margin: 5px;
 
   /* height: 90vh; */
+`;
+export const GiveSpace = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  /* margin: 0 10px 0 10px; */
+`;
+
+export const EditMenuContain = styled.div`
+  display: flex;
+  width: ${(props) => (props.toggle ? "100px" : "0px")};
+  padding: ${(props) => (props.toggle ? "3px" : "0px")};
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin: 0px;
+  /* background-color: yellow; */
+  overflow-x: hidden;
+  transition: all 0.2s ease-out;
+  /* box-sizing: border-box; */
 `;
 
 // app
@@ -85,15 +116,17 @@ export const PageContain = styled.div`
 export const PrimaryButton = styled.button`
   background-color: ${primaryGreen};
   border-style: none;
+  ${textLight}
+
   color: ${offWhite};
-  margin: 1em;
-  padding: 1em 2em;
+  padding: 0.8em 0.7em;
   border-radius: 2em;
   transition: 0.1s;
+  margin: 0.1em;
   &:active {
     background-color: #7faa91;
     /* border: 0; */
-    /* transform: scale(.99); */
+    /* transform: scale(0.99); */
     padding: 0.9em 1.9em;
   }
   &:focus {
@@ -104,16 +137,17 @@ export const PrimaryButton = styled.button`
 export const SecondaryButton = styled.button`
   background-color: ${deleteRed};
   border-style: none;
+  ${textLight}
   color: ${offWhite};
-  margin: 1em;
-  padding: 1em 2em;
+  margin: 0.1em;
+  padding: 0.8em 0.7em;
   border-radius: 2em;
   transition: 0.1s;
   &:active {
     background-color: #7faa91;
     /* border: 0; */
     /* transform: scale(.99); */
-    padding: 0.9em 1.9em;
+    padding: 0.2em 0.2em;
   }
   &:focus {
     outline: none;

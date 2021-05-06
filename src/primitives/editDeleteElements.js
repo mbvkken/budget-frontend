@@ -12,6 +12,7 @@ import {
   endreKategori,
 } from "../services/kategori";
 import { updateBudget } from "../services/budget";
+import { endrePost } from "../services/budsjettpost";
 
 import Input from "@material-ui/core/Input";
 
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function EditKat(props) {
+export function EditKat(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(props.isOpen);
   const [tittel, setTittel] = useState("");
@@ -56,13 +57,12 @@ export default function EditKat(props) {
       await endreKategori(tittel, props.katid);
       //   window.location.reload(false);
     } catch (error) {}
+    props.refreshPage();
   }
 
   return (
     <div>
-      {/* <Fab color="primary" aria-label="add" onClick={handleOpen}>
-          <AddIcon />
-        </Fab> */}
+      <PrimaryButton onClick={handleOpen}>Rediger</PrimaryButton>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -123,9 +123,10 @@ export function EditBud(props) {
 
   return (
     <div>
-      <Fab color="primary" aria-label="add" onClick={handleOpen}>
+      {/* <Fab color="primary" aria-label="add" onClick={handleOpen}>
         <AddIcon />
-      </Fab>
+      </Fab> */}
+      <PrimaryButton onClick={handleOpen}>Rediger</PrimaryButton>
 
       <Modal
         aria-labelledby="transition-modal-title"
@@ -151,6 +152,75 @@ export function EditBud(props) {
               <div>
                 <PrimaryButton onClick={handleBudClick}>
                   Endre Budsjett
+                </PrimaryButton>
+              </div>
+            </form>
+          </div>
+        </Fade>
+      </Modal>
+    </div>
+  );
+}
+
+export function EditPost(props) {
+  const classes = useStyles();
+  const [open, setOpen] = React.useState(props.isOpen);
+  const [tittel, setTittel] = useState("");
+  const [sum, setSum] = useState("");
+
+  // console.log(props.katid);
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  async function handleEditPostClick(event) {
+    console.log(tittel, props.postID);
+    event.preventDefault();
+    handleClose();
+    try {
+      await endrePost(tittel, sum, 0, props.postID);
+      //   window.location.reload(false);
+    } catch (error) {}
+    props.refreshPage();
+  }
+
+  return (
+    <div>
+      <PrimaryButton onClick={handleOpen}>Rediger</PrimaryButton>
+
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        className={classes.modal}
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <div className={classes.paper}>
+            <form>
+              <Input
+                placeholder="Tittel"
+                value={tittel}
+                onChange={(e) => setTittel(e.target.value)}
+              />
+              <Input
+                placeholder="Sum"
+                value={sum}
+                onChange={(e) => setSum(e.target.value)}
+              />
+
+              <div>
+                <PrimaryButton onClick={handleEditPostClick}>
+                  Endre Post
                 </PrimaryButton>
               </div>
             </form>
