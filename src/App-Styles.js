@@ -114,6 +114,7 @@ export const PageContain = styled.div`
 
 // buttons
 export const PrimaryButton = styled.button`
+    ${textLight};
     background-color: ${primaryGreen};
     border-style: none;
     color: ${offWhite};
@@ -131,6 +132,7 @@ export const PrimaryButton = styled.button`
 `;
 
 export const SecondaryButton = styled.button`
+    ${textLight};
     background-color: ${deleteRed};
     border-style: none;
     color: ${offWhite};
