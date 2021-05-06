@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Fab } from "@material-ui/core";
@@ -13,6 +12,7 @@ import {
 } from "../services/kategori";
 import { updateBudget } from "../services/budget";
 import { endrePost } from "../services/budsjettpost";
+import Modal from "styled-react-modal";
 
 import Input from "@material-ui/core/Input";
 
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export function EditKat(props) {
+export function EditKatold(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(props.isOpen);
   const [tittel, setTittel] = useState("");
@@ -162,7 +162,7 @@ export function EditBud(props) {
   );
 }
 
-export function EditPost(props) {
+export function EditPostold(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(props.isOpen);
   const [tittel, setTittel] = useState("");
@@ -227,6 +227,112 @@ export function EditPost(props) {
           </div>
         </Fade>
       </Modal>
+    </div>
+  );
+}
+
+const StyledModal = Modal.styled`
+  width: 12rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+`;
+
+export function EditPost(props) {
+  const [tittel, setTittel] = useState("");
+  const [sum, setSum] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleModal(e) {
+    setIsOpen(!isOpen);
+  }
+
+  async function handleEditPostClick(event) {
+    console.log(tittel, props.postID);
+    event.preventDefault();
+    toggleModal();
+    try {
+      await endrePost(tittel, sum, 0, props.postID);
+      //   window.location.reload(false);
+    } catch (error) {}
+    props.refreshPage();
+  }
+
+  return (
+    <div>
+      <PrimaryButtonSmall onClick={toggleModal}>Rediger</PrimaryButtonSmall>
+
+      <StyledModal
+        isOpen={isOpen}
+        onBackgroundClick={toggleModal}
+        onEscapeKeydown={toggleModal}
+      >
+        <form>
+          <Input
+            placeholder="Tittel"
+            value={tittel}
+            onChange={(e) => setTittel(e.target.value)}
+          />
+          <Input
+            placeholder="Sum"
+            value={sum}
+            onChange={(e) => setSum(e.target.value)}
+          />
+          {/* <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} /> */}
+
+          <div>
+            <PrimaryButton onClick={handleEditPostClick}>Rediger</PrimaryButton>
+          </div>
+        </form>
+      </StyledModal>
+    </div>
+  );
+}
+
+export function EditKat(props) {
+  const [tittel, setTittel] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+
+  function toggleModal(e) {
+    setIsOpen(!isOpen);
+  }
+
+  async function handleNewKatClick(event) {
+    console.log(tittel, props.katid);
+    event.preventDefault();
+    toggleModal();
+    try {
+      await endreKategori(tittel, props.katid);
+      //   window.location.reload(false);
+    } catch (error) {}
+    props.refreshPage();
+  }
+
+  return (
+    <div>
+      <PrimaryButtonSmall onClick={toggleModal}>Rediger</PrimaryButtonSmall>
+
+      <StyledModal
+        isOpen={isOpen}
+        onBackgroundClick={toggleModal}
+        onEscapeKeydown={toggleModal}
+      >
+        <form>
+          <Input
+            placeholder="Tittel"
+            value={tittel}
+            onChange={(e) => setTittel(e.target.value)}
+          />
+
+          <div>
+            <PrimaryButton onClick={handleNewKatClick}>
+              Endre kategori
+            </PrimaryButton>
+          </div>
+        </form>
+      </StyledModal>
     </div>
   );
 }

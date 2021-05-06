@@ -64,9 +64,9 @@ class BudsjettLink extends React.Component {
   async handleDeleteBudgetClick() {
     const id = this.state.currentBudgetID;
     console.log(id);
-    if (!window.confirm("u sure?")) {
-      return;
-    }
+    // if (!window.confirm("u sure?")) {
+    //   return;
+    // }
 
     try {
       await deleteBudget(id);
@@ -123,13 +123,15 @@ class BudsjettLink extends React.Component {
             fontWeight: "400",
           }}
         >
-          {" "}
           {tittel}
         </h1>
-        <h1 style={toDisplay >= 0 ? { color: "green" } : { color: "red" }}>
-          {toDisplay}
-        </h1>
+        <Horiz>
+          <h1>Balanse: </h1>
 
+          <h1 style={toDisplay >= 0 ? { color: "green" } : { color: "red" }}>
+            {toDisplay}
+          </h1>
+        </Horiz>
         <NewKatAction
           refreshPage={this.populateKats.bind(this)}
           budID={this.state.currentBudgetID}

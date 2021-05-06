@@ -14,7 +14,6 @@ export default function ListBudsjett(props) {
   return (
     <HorizontalList>
       <h3>{props.tittel}</h3>
-      {/* <button onClick={handleToggle}>click</button> */}
       <BudgetEDMenu budID={props.budID} />
     </HorizontalList>
   );
@@ -40,22 +39,8 @@ export function ListPosts(props) {
       >
         <h3>{props.tittel}</h3>
         <h3>{props.sum}</h3>
-
-        {/* <button onClick={handleToggle}>click</button> */}
       </GiveSpace>
       <PostEDMenu postID={props.postID} refreshPage={props.refreshPage} />
     </Horiz>
   );
 }
-// return(
-
-//   <HorizontalList >
-// <p>{props.tittel}</p>
-// <p>{props.sum}</p>
-
-// {/* <button onClick={handleToggle}>click</button> */}
-// <EditDeleteMenu  budID={props.key}/>
-// </HorizontalList>
-// )
-
-// }
