@@ -82,9 +82,9 @@ class Hjem extends React.Component {
       );
     }
 
-    if (isLoading) {
-      return <div>Laster inn budsjetter...</div>;
-    }
+    // if (isLoading) {
+    //   return <div>Laster inn budsjetter...</div>;
+    // }
 
     const budsjettElementer = budsjett.map(({ tittel, budsjettID }) => {
       return (

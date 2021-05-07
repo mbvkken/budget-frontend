@@ -9,15 +9,22 @@ import { GiveSpace } from "../App-Styles";
 export default function ControlledAccordions(props) {
   const [expanded, setExpanded] = React.useState(false);
   const [totalSum, setTotalSum] = React.useState(0);
-  // const prevNum = React.useRef(0)
-  //Prev.current = totalSum;
+  const prevNum = React.useRef(0);
+
   React.useEffect(() => {
-    props.setMainSum(totalSum);
+    fixedNum(prevNum.current);
+    prevNum.current = totalSum;
+    // let old = totalSum - prevNum.current;
+    // props.setMainSum(fixed);
   }, [totalSum, props.updateSum]);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
+
+  function fixedNum(old) {
+    props.setMainSum(totalSum - old);
+  }
 
   const handleNew = () => {
     // props.refeshPlz();
