@@ -211,8 +211,8 @@ export function EditPostold(props) {
 }
 
 export function EditPost(props) {
-  const [tittel, setTittel] = useState("");
-  const [sum, setSum] = useState("");
+  const [tittel, setTittel] = useState(props.tittel);
+  const [sum, setSum] = useState(props.sum);
   const [isOpen, setIsOpen] = useState(false);
 
   function toggleModal(e) {

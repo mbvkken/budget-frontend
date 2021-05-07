@@ -33,7 +33,12 @@ export default function ListBudsjett(props) {
       >
         <h3>{props.tittel}</h3>
       </div>
-      <BudgetEDMenu budID={props.budID} refreshPage={props.refreshPage} />
+      <BudgetEDMenu
+        tittel={props.tittel}
+        sum={props.sum}
+        budID={props.budID}
+        refreshPage={props.refreshPage}
+      />
     </HorizontalList>
   );
 }
@@ -61,7 +66,12 @@ export function ListPosts(props) {
         <h3>{props.tittel}</h3>
         <h3>{props.sum}</h3>
       </GiveSpace>
-      <PostEDMenu postID={props.postID} refreshPage={props.refreshPage} />
+      <PostEDMenu
+        tittel={props.tittel}
+        sum={props.sum}
+        postID={props.postID}
+        refreshPage={props.refreshPage}
+      />
     </Horiz>
   );
 }
