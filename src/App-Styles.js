@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
+import Modal from "styled-react-modal";
 
 // colors
 export const primaryGreen = "#5e8c71";
@@ -114,46 +115,57 @@ export const PageContain = styled.div`
 
 // buttons
 export const PrimaryButton = styled.button`
-    ${textLight};
-    background-color: ${primaryGreen};
-    border-style: none;
-    color: ${offWhite};
-    margin: 1em;
-    padding: 1em 2em;
-    border-radius: 2em;
-    transition: .1s;
-    &:active {
+  ${textLight};
+  font-size: 0.78em;
+  background-color: ${primaryGreen};
+  border-style: none;
+  color: ${offWhite};
+  margin: 1em;
+  padding: 0.8em 1em;
+  border-radius: 2em;
+  transition: 0.05s;
+  &:active {
     background-color: #7faa91;
     /* border: 0; */
     /* transform: scale(.99); */
-    padding: .9em 1.9em;
+    /* padding: 0.9em 1.9em; */
+    transform: scale(0.9);
   }
-    &:focus { outline: none; }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const SecondaryButton = styled.button`
-    ${textLight};
-    background-color: ${deleteRed};
-    border-style: none;
-    color: ${offWhite};
-    margin: 1em;
-    padding: 1em 2em;
-    border-radius: 2em;
-    transition: .1s;
-    &:active {
-    background-color: #7faa91;
+  ${textLight};
+  font-size: 0.78em;
+
+  background-color: ${deleteRed};
+  transform-origin: center;
+
+  border-style: none;
+  color: ${offWhite};
+  margin: 1em;
+  padding: 0.8em 1em;
+  border-radius: 2em;
+  transition: 0.05s;
+  &:active {
+    background-color: #e95e54;
     /* border: 0; */
     /* transform: scale(.99); */
-    padding: .9em 1.9em;
+    /* padding: 0.6em 1.6em; */
+    transform: scale(0.9);
   }
-    &:focus { outline: none; }
+  &:focus {
+    outline: none;
+  }
 `;
 
 export const PrimaryButtonSmall = styled.button`
   background-color: ${primaryGreen};
   border-style: none;
   ${textLight}
-
+  transform-origin: center;
   color: ${offWhite};
   padding: 0.8em 0.7em;
   border-radius: 2em;
@@ -163,7 +175,7 @@ export const PrimaryButtonSmall = styled.button`
     background-color: #7faa91;
     /* border: 0; */
     /* transform: scale(0.99); */
-    padding: 0.9em 1.9em;
+    padding: 0.5em 0.4em;
   }
   &:focus {
     outline: none;
@@ -174,16 +186,18 @@ export const SecondaryButtonSmall = styled.button`
   background-color: ${deleteRed};
   border-style: none;
   ${textLight}
+  transform-origin: center;
+
   color: ${offWhite};
   margin: 0.1em;
   padding: 0.8em 0.7em;
   border-radius: 2em;
   transition: 0.1s;
   &:active {
-    background-color: #7faa91;
+    background-color: #e95e54;
     /* border: 0; */
     /* transform: scale(.99); */
-    padding: 0.2em 0.2em;
+    padding: 0.5em 0.5em;
   }
   &:focus {
     outline: none;
@@ -221,4 +235,19 @@ export const Input = styled.input`
   margin: 8px 0;
   font-size: 1em;
   border: 1px solid #ccc;
+`;
+
+export const StyledModal = Modal.styled`
+  width: max-content;
+  height: max-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // place-items: center;
+  background-color: white;
+  border-radius: 20px;
+  padding:15px;
+
+
 `;

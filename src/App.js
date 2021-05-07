@@ -58,14 +58,14 @@ function App() {
               <Route path="/budsjett-oversikt" component={BudsjettOversikt} />
               <Route path="/budsjett-detaljer" component={BudsjettLink} />
               <Route path="/budsjett/:budsjettid" component={null} />
-              <Route path="/budsjett-opprett/" component={BudsjettOpprett} />
+              <Route path="/budsjett-opprett" component={BudsjettOpprett} />
               <Route path="/budsjett-endre/:budsjettid" component={null} />
 
               {/** sparemaal */}
               <Route path="/sparemaal" component={Sparemal} />
 
               {/** Profil */}
-              <Route path="/profil/:epost" component={Profil} />
+              <Route path="/profil" component={Profil} />
             </Switch>
             {/* :id" render={(props)=>(<BudsjettLink {...props}/>)} */}
           </ModalProvider>

@@ -12,7 +12,6 @@ import styled from "styled-components";
 import { deleteBudget } from "../services/budget";
 import { sletteKategori } from "../services/kategori";
 import { sletteBudsjettpost } from "../services/budsjettpost";
-
 import { EditBud, EditKat, EditPost } from "../primitives/editDeleteElements";
 
 export function BudgetEDMenu(props) {
@@ -37,6 +36,7 @@ export function BudgetEDMenu(props) {
     } catch (error) {
       console.log("sletting av budsjett feilet...", error);
     }
+    props.refreshPage();
   }
 
   return (
@@ -46,7 +46,7 @@ export function BudgetEDMenu(props) {
           Slett
         </SecondaryButtonSmall>
         {/* <PrimaryButton>Rediger</PrimaryButton> */}
-        <EditBud budID={props.budID} />
+        <EditBud budID={props.budID} refreshPage={props.refreshPage} />
       </EditMenuContain>
       <IconButton style={{ paddingLeft: "3px" }} onClick={toggle}>
         <MoreVertIcon />
@@ -77,7 +77,7 @@ export function KatEDMenu(props) {
     } catch (error) {
       console.log("sletting av budsjett feilet...", error);
     }
-    props.refreshPage();
+    props.refreshPage(true);
   }
 
   return (

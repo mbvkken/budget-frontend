@@ -5,16 +5,7 @@ import {
   opprettNyPost,
   /*endreKategori, sletteKategori,*/ getKatsByBudsjettID,
 } from "../services/budsjettpost";
-import { PrimaryButton } from "../App-Styles";
-
-const StyledModal = Modal.styled`
-  width: 12rem;
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-`;
+import { PrimaryButton, StyledModal } from "../App-Styles";
 
 export default function NewPostAction(props) {
   const [tittel, setTittel] = useState("");
@@ -41,6 +32,7 @@ export default function NewPostAction(props) {
       <PrimaryButton onClick={toggleModal}>Legg til post</PrimaryButton>
 
       <StyledModal
+        style={{ width: "200px" }}
         isOpen={isOpen}
         onBackgroundClick={toggleModal}
         onEscapeKeydown={toggleModal}

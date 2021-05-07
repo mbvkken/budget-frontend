@@ -12,7 +12,7 @@ export default class Katdiv extends React.Component {
     super(props);
 
     this.state = {
-      totalSum: "",
+      totalSum: 0,
       activePost: "",
       isLoading: false,
       error: null,
@@ -36,6 +36,7 @@ export default class Katdiv extends React.Component {
     // console.log(this.state.allPostsByID)
   }
   getTotalSum(posts) {
+    const totalSum = this.state.totalSum;
     const summedUp = posts.reduce((a, b) => a + (parseInt(b.sum) || 0), 0);
     this.setState({ totalSum: summedUp });
   }
@@ -50,7 +51,9 @@ export default class Katdiv extends React.Component {
     } catch (error) {
       this.setState({ error });
     }
-    this.getTotalSum(this.state.allPostsByID);
+    await this.getTotalSum(this.state.allPostsByID);
+    console.log(this.state.totalSum);
+    this.props.setSum(this.state.totalSum);
   }
 
   render() {

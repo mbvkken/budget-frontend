@@ -2,16 +2,7 @@ import React, { useState } from "react";
 import Input from "@material-ui/core/Input";
 import Modal from "styled-react-modal";
 import { opprettNyKategori, getKatsByBudsjettID } from "../services/kategori";
-import { PrimaryButton } from "../App-Styles";
-
-const StyledModal = Modal.styled`
-  width: 12rem;
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-`;
+import { PrimaryButton, StyledModal } from "../App-Styles";
 
 export default function NewKatAction(props) {
   const [tittel, setTittel] = useState("");
