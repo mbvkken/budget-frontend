@@ -101,6 +101,7 @@ export function PostEDMenu(props) {
   const toggle = () => {
     setIsOpen(!isOpen);
     console.log(isOpen);
+    // console.log(props.postID);
   };
   async function handleDeletePostClick() {
     const id = props.postID;
@@ -125,7 +126,12 @@ export function PostEDMenu(props) {
         <SecondaryButtonSmall onClick={handleDeletePostClick}>
           Slett
         </SecondaryButtonSmall>
-        <EditPost postID={props.postID} refreshPage={props.refreshPage} />
+        <EditPost
+          tittel={props.tittel}
+          sum={props.sum}
+          postID={props.postID}
+          refreshPage={props.refreshPage}
+        />
       </EditMenuContain>
       <IconButton style={{ padding: "3px" }} onClick={toggle}>
         <MoreVertIcon />
