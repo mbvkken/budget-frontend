@@ -103,7 +103,7 @@ class BudsjettLink extends React.Component {
     const { overallSum } = this.state;
     await this.populateKats();
     await this.setState({
-      // overallSum: [],
+      // overallSum: [0],
       callRefresh: this.state.callRefresh + 1,
       refreshPage: res,
     });
@@ -111,11 +111,11 @@ class BudsjettLink extends React.Component {
   }
 
   smolboyRefresh() {
-    // this.populateKats();
     this.setState({
-      overallSum: [0],
-      // callRefresh: this.state.callRefresh + 1,
+      // overallSum: [0],
+      callRefresh: this.state.callRefresh + 1,
     });
+    this.populateKats();
     console.log(this.state.callRefresh);
   }
 
