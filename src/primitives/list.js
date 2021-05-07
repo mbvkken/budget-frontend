@@ -10,11 +10,30 @@ export default function ListBudsjett(props) {
     setActive(!isActive);
     console.log(isActive);
   };
+  const { history } = props;
+  console.log(history);
+  function handleClick(id, tittel) {
+    // console.log(budsjettObj);
 
+    const budsjettObj = { budsjettID: id, tittel };
+    console.log(budsjettObj);
+
+    // const { budsjett } = state;
+    localStorage.setItem("currentBudget", JSON.stringify(budsjettObj));
+    // console.log(budsjettObj);
+    history.push("/budsjett-detaljer");
+  }
+  const budID = props.budID;
+  const tittel = props.tittel;
   return (
     <HorizontalList>
-      <h3>{props.tittel}</h3>
-      <BudgetEDMenu budID={props.budID} />
+      <div
+        style={{ width: "50%", backgroundColor: "" }}
+        onClick={() => handleClick(props.budID, props.tittel)}
+      >
+        <h3>{props.tittel}</h3>
+      </div>
+      <BudgetEDMenu budID={props.budID} refreshPage={props.refreshPage} />
     </HorizontalList>
   );
 }
@@ -30,10 +49,12 @@ export function ListPosts(props) {
     <Horiz>
       <GiveSpace
         style={{
+          height: "50px",
           padding: "0 10px 0px 5px",
-          backgroundColor: "#fbfbfb",
-          borderRadius: "5px",
-          boxShadow: "0px 3px 4px 0px #c4c2c2ab",
+          // backgroundColor: "#fbfbfb",
+          // borderRadius: "5px",
+          borderBottom: " 3px solid rgba(113,127,125,0.49)",
+          // boxShadow: "0px 3px 4px 0px #c4c2c2ab",
           // margin: "0px 10px 5px 10px",
         }}
       >

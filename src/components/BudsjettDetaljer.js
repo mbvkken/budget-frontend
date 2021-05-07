@@ -10,18 +10,36 @@ import Katdiv from "./Kategori";
 import NewKatAction from "../primitives/newAddKat";
 import ControlledAccordions from "../primitives/accordian";
 import styled from "styled-components";
-import {
-  PrimaryButton,
-  Horiz,
-  SecondaryButton,
-  deleteRed,
-} from "../App-Styles";
+import { Horiz, SecondaryButton } from "../App-Styles";
 import { KatEDMenu } from "../primitives/edDelMenu";
+import CachedIcon from "@material-ui/icons/Cached";
+
+const RefreshButton = styled.div`
+  width: ${(props) => (props.toggle ? "40px" : "0px")};
+  height: ${(props) => (props.toggle ? "40px" : "0px")};
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background-color: lightgrey;
+  transition: 0.3s ease-in-out;
+  margin: 10px;
+  /* box-shadow: 5px 4px 6px -4px rgba(0, 0, 0, 0.59); */
+  overflow: hidden;
+  &:active {
+    background-color: #7ac478;
+    /* border: 0; */
+    /* transform: scale(.99); */
+    /* padding: 0.6em 1.6em; */
+    transform: rotateZ(360deg);
+  }
+`;
 
 class BudsjettLink extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      refreshPage: false,
+      callRefresh: 0,
       overallSum: [],
       currentBudgetID: "",
       currentBudgetName: "",
@@ -80,6 +98,27 @@ class BudsjettLink extends React.Component {
   async handleClicker(ID) {
     await this.setState({ activeKat: ID });
   }
+
+  async AllKatSumRefresh(res) {
+    const { overallSum } = this.state;
+    await this.populateKats();
+    await this.setState({
+      overallSum: [],
+      callRefresh: this.state.callRefresh + 1,
+      refreshPage: res,
+    });
+    console.log(this.state.callRefresh);
+  }
+
+  smolboyRefresh() {
+    // this.populateKats();
+    this.setState({
+      overallSum: [0],
+      // callRefresh: this.state.callRefresh + 1,
+    });
+    console.log(this.state.callRefresh);
+  }
+
   async AllKatSum(sum) {
     const { overallSum } = this.state;
     await this.setState({
@@ -89,12 +128,14 @@ class BudsjettLink extends React.Component {
     console.log(overallSum);
   }
 
+  refreshPage() {
+    window.location.reload();
+  }
+
   render() {
     const id = this.state.currentBudgetID;
     const tittel = this.state.currentBudgetName;
-
     const { kat, allKatsByID } = this.state;
-
     const KatsElementer = allKatsByID.map(({ tittel, ID }) => {
       return (
         <Horiz key={ID} onClick={() => this.handleClicker(ID)}>
@@ -103,8 +144,13 @@ class BudsjettLink extends React.Component {
             named={tittel}
             katid={ID}
             setMainSum={this.AllKatSum.bind(this)}
+            updateSum={this.state.callRefresh}
+            refeshPlz={this.smolboyRefresh.bind(this)}
           />
-          <KatEDMenu katid={ID} refreshPage={this.populateKats.bind(this)} />
+          <KatEDMenu
+            katid={ID}
+            refreshPage={this.AllKatSumRefresh.bind(this)}
+          />
         </Horiz>
       );
     });
@@ -113,6 +159,7 @@ class BudsjettLink extends React.Component {
       .reduce((a, b) => a + b, 0);
     return (
       <div style={{ width: "95vw" }}>
+        {/* <div onClick={this.smolboyRefresh.bind(this)}>clickme</div> */}
         <h1
           style={{
             display: "flex",
@@ -126,11 +173,22 @@ class BudsjettLink extends React.Component {
           {tittel}
         </h1>
         <Horiz>
-          <h1>Balanse: </h1>
-
-          <h1 style={toDisplay >= 0 ? { color: "green" } : { color: "red" }}>
-            {toDisplay}
+          <h1
+            style={
+              toDisplay >= 0
+                ? { color: "#0daa61", fontWeight: "400" }
+                : { color: "#c03d3d" }
+            }
+          >
+            <span style={{ color: "#262a38" }}>Balanse:</span> {toDisplay}kr
           </h1>
+
+          <RefreshButton
+            toggle={this.state.refreshPage}
+            onClick={() => this.refreshPage()}
+          >
+            <CachedIcon />
+          </RefreshButton>
         </Horiz>
         <NewKatAction
           refreshPage={this.populateKats.bind(this)}
@@ -144,7 +202,10 @@ class BudsjettLink extends React.Component {
             placeItems: "center",
           }}
         >
-          <SecondaryButton onClick={this.handleDeleteBudgetClick.bind(this)}>
+          <SecondaryButton
+            isTrue={"test"}
+            onClick={this.handleDeleteBudgetClick.bind(this)}
+          >
             Slett budsjett
           </SecondaryButton>
         </div>

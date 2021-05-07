@@ -2,15 +2,15 @@ import React from "react";
 // import { Link } from 'react-router-dom';
 import ListBudsjett from "../primitives/list";
 import jwtDecode from "jwt-decode";
-import { Body, BudsjettIcon, Carousel, Containit, Horiz } from "../App-Styles";
-import { Link } from "react-router-dom";
-import { deleteBudget, getBudgetByEpost, newBudget } from "../services/budget";
-import BudsjettOpprett from "./BudsjettOpprett";
-import { Typography } from "@material-ui/core";
-import { EditBud } from "../primitives/editDeleteElements";
-import EditDeleteMenu from "../primitives/edDelMenu";
-import BudsjettCarousel from "../primitives/Carousel";
-import { BudgetEDMenu } from "../primitives/edDelMenu.js";
+// import { Body, BudsjettIcon, Carousel, Containit, Horiz } from "../App-Styles";
+// import { Link } from "react-router-dom";
+import { getBudgetByEpost } from "../services/budget";
+// import BudsjettOpprett from "./BudsjettOpprett";
+// import { Typography } from "@material-ui/core";
+// import { EditBud } from "../primitives/editDeleteElements";
+// import EditDeleteMenu from "../primitives/edDelMenu";
+// import BudsjettCarousel from "../primitives/Carousel";
+// import { BudgetEDMenu } from "../primitives/edDelMenu.js";
 
 class Hjem extends React.Component {
   constructor(props) {
@@ -88,19 +88,18 @@ class Hjem extends React.Component {
 
     const budsjettElementer = budsjett.map(({ tittel, budsjettID }) => {
       return (
-        <div onClick={() => this.handleClick({ budsjettID, tittel })}>
-          <ListBudsjett
-            key={budsjettID}
-            budID={budsjettID}
-            tittel={tittel}
-            onClick={() => this.handleClick(budsjettID, tittel)}
-          />
-        </div>
+        <ListBudsjett
+          key={budsjettID}
+          budID={budsjettID}
+          tittel={tittel}
+          history={this.props.history}
+          refreshPage={this.populateBudgets.bind(this)}
+        />
       );
     });
 
     return (
-      <div>
+      <div style={{ display: "grid", placeItems: "center", width: "100vw" }}>
         <h1
           style={{
             margin: "1.2em 0em",
@@ -119,20 +118,3 @@ class Hjem extends React.Component {
 }
 
 export default Hjem;
-
-// class BudsjettOversikt extends React.Component {
-
-//                     render() {
-//         return (
-//                 <div>
-//                     <h2>Mine budsjetter</h2>
-//                     <ListItem />
-//                     <ListItem />
-//                     <ListItem />
-//                     <ListItem />
-//                 </div>
-//         )
-//     }
-// }
-
-// export default BudsjettOversikt;

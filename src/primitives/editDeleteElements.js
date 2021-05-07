@@ -4,7 +4,7 @@ import Backdrop from "@material-ui/core/Backdrop";
 import Fade from "@material-ui/core/Fade";
 import { Fab } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import { PrimaryButton, PrimaryButtonSmall } from "../App-Styles";
+import { PrimaryButton, PrimaryButtonSmall, StyledModal } from "../App-Styles";
 import {
   opprettNyKategori,
   getKatsByBudsjettID,
@@ -99,65 +99,44 @@ export function EditKatold(props) {
 }
 
 export function EditBud(props) {
-  const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [tittel, setTittel] = useState("");
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
+  function toggleModal(e) {
+    setIsOpen(!isOpen);
+  }
 
   async function handleBudClick(event) {
     console.log(tittel, props.budID);
     event.preventDefault();
-    handleClose();
+    toggleModal();
     try {
       await updateBudget(tittel, props.budID);
       //   window.location.reload(false);
     } catch (error) {}
+    props.refreshPage();
   }
 
   return (
     <div>
-      {/* <Fab color="primary" aria-label="add" onClick={handleOpen}>
-        <AddIcon />
-      </Fab> */}
-      <PrimaryButtonSmall onClick={handleOpen}>Rediger</PrimaryButtonSmall>
+      <PrimaryButtonSmall onClick={toggleModal}>Rediger</PrimaryButtonSmall>
 
-      <Modal
-        aria-labelledby="transition-modal-title"
-        aria-describedby="transition-modal-description"
-        className={classes.modal}
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
+      <StyledModal
+        isOpen={isOpen}
+        onBackgroundClick={toggleModal}
+        onEscapeKeydown={toggleModal}
       >
-        <Fade in={open}>
-          <div className={classes.paper}>
-            <form>
-              <Input
-                placeholder="Tittel"
-                value={tittel}
-                onChange={(e) => setTittel(e.target.value)}
-              />
-
-              <div>
-                <PrimaryButtonSmall onClick={handleBudClick}>
-                  Endre Budsjett
-                </PrimaryButtonSmall>
-              </div>
-            </form>
-          </div>
-        </Fade>
-      </Modal>
+        <form>
+          <Input
+            placeholder="Tittel"
+            value={tittel}
+            onChange={(e) => setTittel(e.target.value)}
+          />
+        </form>
+        <PrimaryButtonSmall style={{ margin: "5px" }} onClick={handleBudClick}>
+          Endre Budsjett
+        </PrimaryButtonSmall>
+      </StyledModal>
     </div>
   );
 }
@@ -231,15 +210,6 @@ export function EditPostold(props) {
   );
 }
 
-const StyledModal = Modal.styled`
-  width: 12rem;
-  height: 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-`;
-
 export function EditPost(props) {
   const [tittel, setTittel] = useState("");
   const [sum, setSum] = useState("");
@@ -268,6 +238,7 @@ export function EditPost(props) {
         isOpen={isOpen}
         onBackgroundClick={toggleModal}
         onEscapeKeydown={toggleModal}
+        style={{ width: "200px" }}
       >
         <form>
           <Input
@@ -281,11 +252,10 @@ export function EditPost(props) {
             onChange={(e) => setSum(e.target.value)}
           />
           {/* <Input placeholder="Tittel" value={tittel} onChange={e => setTittel(e.target.value)} /> */}
-
-          <div>
-            <PrimaryButton onClick={handleEditPostClick}>Rediger</PrimaryButton>
-          </div>
         </form>
+        <div>
+          <PrimaryButton onClick={handleEditPostClick}>Rediger</PrimaryButton>
+        </div>
       </StyledModal>
     </div>
   );
@@ -325,13 +295,12 @@ export function EditKat(props) {
             value={tittel}
             onChange={(e) => setTittel(e.target.value)}
           />
-
-          <div>
-            <PrimaryButton onClick={handleNewKatClick}>
-              Endre kategori
-            </PrimaryButton>
-          </div>
         </form>
+        <div>
+          <PrimaryButton onClick={handleNewKatClick}>
+            Endre kategori
+          </PrimaryButton>
+        </div>
       </StyledModal>
     </div>
   );

@@ -1,50 +1,42 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Accordion from "@material-ui/core/Accordion";
-import AccordionDetails from "@material-ui/core/AccordionDetails";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
-import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Katdiv from "../components/Kategori";
-import EditKat from "./editDeleteElements";
 import styled from "styled-components";
 import { GiveSpace } from "../App-Styles";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     width: "100%",
-//   },
-//   heading: {
-//     fontSize: theme.typography.pxToRem(20),
-//     flexBasis: "33.33%",
-//     flexShrink: 0,
-//   },
-//   secondaryHeading: {
-//     fontSize: theme.typography.pxToRem(15),
-//     color: theme.palette.text.secondary,
-//   },
-// }));
-
 export default function ControlledAccordions(props) {
-  //   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
-  const [totalSum, setTotalSum] = React.useState("");
-
-  React.useEffect(() => props.setMainSum(totalSum), [totalSum]);
+  const [totalSum, setTotalSum] = React.useState(0);
+  // const prevNum = React.useRef(0)
+  //Prev.current = totalSum;
+  React.useEffect(() => {
+    props.setMainSum(totalSum);
+  }, [totalSum, props.updateSum]);
 
   const handleChange = (panel) => (event, isExpanded) => {
     setExpanded(isExpanded ? panel : false);
   };
 
+  const handleNew = () => {
+    // props.refeshPlz();
+    props.setMainSum(totalSum);
+    // console.log("hello");
+  };
   return (
     <div style={{ width: "100%" }}>
+      {/* <button onClick={() => handleNew()}>Clickme</button> */}
       <Accordion
         style={{ margin: "0" }}
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
       >
         <AccordionSummary
-          style={{ height: "70px", boxShadow: "0px 3px 4px 0px #c4c2c2ab" }}
+          style={{
+            height: "70px",
+            boxShadow: "-1px 6px 14px 4px rgba(119,119,119,0.07)",
+          }}
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
@@ -54,7 +46,21 @@ export default function ControlledAccordions(props) {
               {props.named}
             </h3>
 
-            <h3>{totalSum}</h3>
+            <h3
+              style={
+                totalSum >= 0
+                  ? {
+                      color: "#0daa61",
+                      letterSpacing: "1px",
+                    }
+                  : {
+                      color: "#c03d3d",
+                      letterSpacing: "1px",
+                    }
+              }
+            >
+              {totalSum}kr
+            </h3>
           </GiveSpace>
         </AccordionSummary>
 
