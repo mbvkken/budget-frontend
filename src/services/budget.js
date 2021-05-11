@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 export function getBudgetByEpost(epost) {
   return fetch(`${API_URL}/budsjett/${epost}`).then((res) => res.json());

@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 export function getPostsByKatID(katid) {
   return fetch(`${API_URL}/budsjettpost/${katid}`).then((res) => res.json());
